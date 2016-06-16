@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-sm-12" style="margin-bottom: 20px;">
+        <div class="rowTitle">
+            <span style="display: inline-block;" class="animated flipInY">
+                <img src="components/blyn/core/space/view/img/icon64_appwx_logo.png" class="img-rounded" width="50" height="50">
+                &nbsp;
+                {{vm.app.alias}}
+            </span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="col-sm-4" ng-repeat="userNut in vm.app.userNuts track by $index" style="margin-bottom: 20px;">
+                <div class="functionSection">
+                    <div class="functionSection-content">
+                        <div class="functionSection-head">
+                            <div class="functionSection-icon">
+                                <span class="fa fa-gear"></span>
+                            </div>
+                        </div>
+                        <div class="functionSection-body">
+                            <div class="functionSection-body-content">
+                                <div class="functionSection-top">
+                                    <a class="functionSection-title" ui-sref="pc.space.app.{{userNut.name}}.home({nutId:userNut._id})">{{userNut.name}}</a>
+                                </div>
+                                <div class="functionSection-middle">
+                                    <span ng-repeat="(index, permit) in userNut.permits"><a ui-sref="pc.space.app.{{userNut.name}}.{{vm.dotToDashInString(permit.name)}}({nutId:userNut._id})">{{permit.name}}</a>&nbsp;&nbsp;</span>
+                                </div>
+                                <div class="functionSection-bottom">
+                                    <a ui-sref="pc.space.app.adminNutPermit({nutId:userNut._id})">权限设置</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

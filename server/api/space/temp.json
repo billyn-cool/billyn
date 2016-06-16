@@ -1,0 +1,3667 @@
+[
+    {
+        "profile": {
+            "alias": "mySpace belong to aa",
+            "description": null
+        },
+        "_id": 1,
+        "name": "mySpace_aa",
+        "alias": "mySpace belong to aa",
+        "description": null,
+        "typeId": 5,
+        "active": null,
+        "type": {
+            "typeName": "space.person.normal",
+            "categoryName": "space.person.normal",
+            "name": "space.person.normal",
+            "_id": 5,
+            "parentId": 4,
+            "spaceId": -1,
+            "appId": -1,
+            "alias": "space.person.normal",
+            "fullname": "root.typeRoot.space.person.normal",
+            "owner": "space",
+            "ownerId": -1,
+            "active": null
+        },
+        "roles": [
+            {
+                "roleName": "admin",
+                "name": "admin",
+                "_id": 3,
+                "parentId": 2,
+                "spaceId": 1,
+                "appId": -1,
+                "alias": "admin",
+                "fullname": "root.role.admin",
+                "owner": null,
+                "ownerId": -1,
+                "active": null,
+                "users": [
+                    {
+                        "profile": {
+                            "name": null,
+                            "familyname": null,
+                            "surname": null,
+                            "fullname": "null null",
+                            "gender": null,
+                            "age": 46
+                        },
+                        "age": 46,
+                        "token": {
+                            "_id": 1,
+                            "role": "user"
+                        },
+                        "_id": 1,
+                        "loginId": "aa",
+                        "name": null,
+                        "familyname": null,
+                        "surname": null,
+                        "email": null,
+                        "mobile": null,
+                        "birth": null,
+                        "gender": null,
+                        "address": null,
+                        "role": "user",
+                        "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                        "description": null,
+                        "provider": "local",
+                        "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                        "facebook": null,
+                        "twitter": null,
+                        "google": null,
+                        "github": null,
+                        "UserRole": {
+                            "_id": 1,
+                            "userId": 1,
+                            "roleId": 3,
+                            "spaceId": 1,
+                            "active": null,
+                            "UserId": 1,
+                            "RoleId": 3
+                        }
+                    }
+                ]
+            }
+        ],
+        "apps": [
+            {
+                "_id": 1,
+                "name": "appEngine",
+                "alias": "App Engine",
+                "description": null,
+                "typeId": 8,
+                "spaceId": 1,
+                "active": null,
+                "SpaceId": 1,
+                "type": {
+                    "typeName": "app.core",
+                    "categoryName": "app.core",
+                    "name": "app.core",
+                    "_id": 8,
+                    "parentId": 7,
+                    "spaceId": 1,
+                    "appId": -1,
+                    "alias": "app.core",
+                    "fullname": "root.typeRoot.app.core",
+                    "owner": "app",
+                    "ownerId": -1,
+                    "active": null
+                },
+                "nuts": [
+                    {
+                        "_id": 3,
+                        "name": "collab",
+                        "appId": 1,
+                        "spaceId": 1,
+                        "alias": "collab",
+                        "description": "collab",
+                        "typeId": 11,
+                        "active": null,
+                        "AppId": 1,
+                        "permitRoles": [
+                            {
+                                "_id": 5,
+                                "owner": "nut",
+                                "ownerId": 3,
+                                "permitId": 9,
+                                "roleId": 3,
+                                "spaceId": 1,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminCollab",
+                                    "name": "adminCollab",
+                                    "_id": 9,
+                                    "parentId": 8,
+                                    "spaceId": 1,
+                                    "appId": -1,
+                                    "alias": "admin collab",
+                                    "fullname": "root.permit.adminCollab",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 3,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 3,
+                                    "parentId": 2,
+                                    "spaceId": 1,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 1,
+                                                "userId": 1,
+                                                "roleId": 3,
+                                                "spaceId": 1,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 3
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "_id": 1,
+                        "name": "role",
+                        "appId": 1,
+                        "spaceId": 1,
+                        "alias": "role",
+                        "description": "role",
+                        "typeId": 11,
+                        "active": null,
+                        "AppId": 1,
+                        "permitRoles": [
+                            {
+                                "_id": 1,
+                                "owner": "nut",
+                                "ownerId": 1,
+                                "permitId": 3,
+                                "roleId": 3,
+                                "spaceId": 1,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminSpaceRole",
+                                    "name": "adminSpaceRole",
+                                    "_id": 3,
+                                    "parentId": 2,
+                                    "spaceId": 1,
+                                    "appId": -1,
+                                    "alias": "admin space role",
+                                    "fullname": "root.permit.adminSpaceRole",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 1,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 3,
+                                    "parentId": 2,
+                                    "spaceId": 1,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 1,
+                                                "userId": 1,
+                                                "roleId": 3,
+                                                "spaceId": 1,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 3
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "_id": 2,
+                                "owner": "nut",
+                                "ownerId": 1,
+                                "permitId": 4,
+                                "roleId": 3,
+                                "spaceId": 1,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminUserRole",
+                                    "name": "adminUserRole",
+                                    "_id": 4,
+                                    "parentId": 2,
+                                    "spaceId": 1,
+                                    "appId": -1,
+                                    "alias": "admin user role",
+                                    "fullname": "root.permit.adminUserRole",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 1,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 3,
+                                    "parentId": 2,
+                                    "spaceId": 1,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 1,
+                                                "userId": 1,
+                                                "roleId": 3,
+                                                "spaceId": 1,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 3
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "_id": 2,
+                        "name": "space",
+                        "appId": 1,
+                        "spaceId": 1,
+                        "alias": "space",
+                        "description": "space",
+                        "typeId": 11,
+                        "active": null,
+                        "AppId": 1,
+                        "permitRoles": [
+                            {
+                                "_id": 3,
+                                "owner": "nut",
+                                "ownerId": 2,
+                                "permitId": 6,
+                                "roleId": 3,
+                                "spaceId": 1,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminSpace",
+                                    "name": "adminSpace",
+                                    "_id": 6,
+                                    "parentId": 5,
+                                    "spaceId": 1,
+                                    "appId": -1,
+                                    "alias": "admin space",
+                                    "fullname": "root.permit.adminSpace",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 2,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 3,
+                                    "parentId": 2,
+                                    "spaceId": 1,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 1,
+                                                "userId": 1,
+                                                "roleId": 3,
+                                                "spaceId": 1,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 3
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "_id": 4,
+                                "owner": "nut",
+                                "ownerId": 2,
+                                "permitId": 7,
+                                "roleId": 3,
+                                "spaceId": 1,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "appStore",
+                                    "name": "appStore",
+                                    "_id": 7,
+                                    "parentId": 5,
+                                    "spaceId": 1,
+                                    "appId": -1,
+                                    "alias": "appStore",
+                                    "fullname": "root.permit.appStore",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 2,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 3,
+                                    "parentId": 2,
+                                    "spaceId": 1,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 1,
+                                                "userId": 1,
+                                                "roleId": 3,
+                                                "spaceId": 1,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 3
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "_id": 2,
+                "name": "userApp",
+                "alias": "User App",
+                "description": null,
+                "typeId": 8,
+                "spaceId": 1,
+                "active": null,
+                "SpaceId": 1,
+                "type": {
+                    "typeName": "app.core",
+                    "categoryName": "app.core",
+                    "name": "app.core",
+                    "_id": 8,
+                    "parentId": 7,
+                    "spaceId": 1,
+                    "appId": -1,
+                    "alias": "app.core",
+                    "fullname": "root.typeRoot.app.core",
+                    "owner": "app",
+                    "ownerId": -1,
+                    "active": null
+                },
+                "nuts": [
+                    {
+                        "_id": 4,
+                        "name": "user",
+                        "appId": 2,
+                        "spaceId": 1,
+                        "alias": "user",
+                        "description": "user",
+                        "typeId": 11,
+                        "active": null,
+                        "AppId": 2,
+                        "permitRoles": [
+                            {
+                                "_id": 7,
+                                "owner": "nut",
+                                "ownerId": 4,
+                                "permitId": 12,
+                                "roleId": 3,
+                                "spaceId": 1,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminUser",
+                                    "name": "adminUser",
+                                    "_id": 12,
+                                    "parentId": 11,
+                                    "spaceId": 1,
+                                    "appId": -1,
+                                    "alias": "adminUser",
+                                    "fullname": "root.permit.adminUser",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 4,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 3,
+                                    "parentId": 2,
+                                    "spaceId": 1,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 1,
+                                                "userId": 1,
+                                                "roleId": 3,
+                                                "spaceId": 1,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 3
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "profile": {
+            "alias": "aa1",
+            "description": null
+        },
+        "_id": 2,
+        "name": "aa1",
+        "alias": "aa1",
+        "description": null,
+        "typeId": 12,
+        "active": null,
+        "type": {
+            "typeName": "space.normal",
+            "categoryName": "space.normal",
+            "name": "space.normal",
+            "_id": 12,
+            "parentId": 3,
+            "spaceId": -1,
+            "appId": -1,
+            "alias": "普通机构",
+            "fullname": "root.typeRoot.space.normal",
+            "owner": "space",
+            "ownerId": -1,
+            "active": null
+        },
+        "roles": [
+            {
+                "roleName": "admin",
+                "name": "admin",
+                "_id": 8,
+                "parentId": 7,
+                "spaceId": 2,
+                "appId": -1,
+                "alias": "admin",
+                "fullname": "root.role.admin",
+                "owner": null,
+                "ownerId": -1,
+                "active": null,
+                "users": [
+                    {
+                        "profile": {
+                            "name": null,
+                            "familyname": null,
+                            "surname": null,
+                            "fullname": "null null",
+                            "gender": null,
+                            "age": 46
+                        },
+                        "age": 46,
+                        "token": {
+                            "_id": 1,
+                            "role": "user"
+                        },
+                        "_id": 1,
+                        "loginId": "aa",
+                        "name": null,
+                        "familyname": null,
+                        "surname": null,
+                        "email": null,
+                        "mobile": null,
+                        "birth": null,
+                        "gender": null,
+                        "address": null,
+                        "role": "user",
+                        "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                        "description": null,
+                        "provider": "local",
+                        "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                        "facebook": null,
+                        "twitter": null,
+                        "google": null,
+                        "github": null,
+                        "UserRole": {
+                            "_id": 2,
+                            "userId": 1,
+                            "roleId": 8,
+                            "spaceId": 2,
+                            "active": null,
+                            "UserId": 1,
+                            "RoleId": 8
+                        }
+                    }
+                ]
+            }
+        ],
+        "apps": [
+            {
+                "_id": 3,
+                "name": "appEngine",
+                "alias": "App Engine",
+                "description": null,
+                "typeId": 14,
+                "spaceId": 2,
+                "active": null,
+                "SpaceId": 2,
+                "type": {
+                    "typeName": "app.core",
+                    "categoryName": "app.core",
+                    "name": "app.core",
+                    "_id": 14,
+                    "parentId": 13,
+                    "spaceId": 2,
+                    "appId": -1,
+                    "alias": "app.core",
+                    "fullname": "root.typeRoot.app.core",
+                    "owner": "app",
+                    "ownerId": -1,
+                    "active": null
+                },
+                "nuts": [
+                    {
+                        "_id": 7,
+                        "name": "collab",
+                        "appId": 3,
+                        "spaceId": 2,
+                        "alias": "collab",
+                        "description": "collab",
+                        "typeId": 16,
+                        "active": null,
+                        "AppId": 3,
+                        "permitRoles": [
+                            {
+                                "_id": 14,
+                                "owner": "nut",
+                                "ownerId": 7,
+                                "permitId": 22,
+                                "roleId": 8,
+                                "spaceId": 2,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminCollab",
+                                    "name": "adminCollab",
+                                    "_id": 22,
+                                    "parentId": 21,
+                                    "spaceId": 2,
+                                    "appId": -1,
+                                    "alias": "admin collab",
+                                    "fullname": "root.permit.adminCollab",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 7,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 8,
+                                    "parentId": 7,
+                                    "spaceId": 2,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 2,
+                                                "userId": 1,
+                                                "roleId": 8,
+                                                "spaceId": 2,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 8
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "_id": 5,
+                        "name": "role",
+                        "appId": 3,
+                        "spaceId": 2,
+                        "alias": "role",
+                        "description": "role",
+                        "typeId": 16,
+                        "active": null,
+                        "AppId": 3,
+                        "permitRoles": [
+                            {
+                                "_id": 10,
+                                "owner": "nut",
+                                "ownerId": 5,
+                                "permitId": 16,
+                                "roleId": 8,
+                                "spaceId": 2,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminSpaceRole",
+                                    "name": "adminSpaceRole",
+                                    "_id": 16,
+                                    "parentId": 15,
+                                    "spaceId": 2,
+                                    "appId": -1,
+                                    "alias": "admin space role",
+                                    "fullname": "root.permit.adminSpaceRole",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 5,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 8,
+                                    "parentId": 7,
+                                    "spaceId": 2,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 2,
+                                                "userId": 1,
+                                                "roleId": 8,
+                                                "spaceId": 2,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 8
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "_id": 11,
+                                "owner": "nut",
+                                "ownerId": 5,
+                                "permitId": 17,
+                                "roleId": 8,
+                                "spaceId": 2,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminUserRole",
+                                    "name": "adminUserRole",
+                                    "_id": 17,
+                                    "parentId": 15,
+                                    "spaceId": 2,
+                                    "appId": -1,
+                                    "alias": "admin user role",
+                                    "fullname": "root.permit.adminUserRole",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 5,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 8,
+                                    "parentId": 7,
+                                    "spaceId": 2,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 2,
+                                                "userId": 1,
+                                                "roleId": 8,
+                                                "spaceId": 2,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 8
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "_id": 6,
+                        "name": "space",
+                        "appId": 3,
+                        "spaceId": 2,
+                        "alias": "space",
+                        "description": "space",
+                        "typeId": 16,
+                        "active": null,
+                        "AppId": 3,
+                        "permitRoles": [
+                            {
+                                "_id": 12,
+                                "owner": "nut",
+                                "ownerId": 6,
+                                "permitId": 19,
+                                "roleId": 8,
+                                "spaceId": 2,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminSpace",
+                                    "name": "adminSpace",
+                                    "_id": 19,
+                                    "parentId": 18,
+                                    "spaceId": 2,
+                                    "appId": -1,
+                                    "alias": "admin space",
+                                    "fullname": "root.permit.adminSpace",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 6,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 8,
+                                    "parentId": 7,
+                                    "spaceId": 2,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 2,
+                                                "userId": 1,
+                                                "roleId": 8,
+                                                "spaceId": 2,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 8
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "_id": 13,
+                                "owner": "nut",
+                                "ownerId": 6,
+                                "permitId": 20,
+                                "roleId": 8,
+                                "spaceId": 2,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "appStore",
+                                    "name": "appStore",
+                                    "_id": 20,
+                                    "parentId": 18,
+                                    "spaceId": 2,
+                                    "appId": -1,
+                                    "alias": "appStore",
+                                    "fullname": "root.permit.appStore",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 6,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 8,
+                                    "parentId": 7,
+                                    "spaceId": 2,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 2,
+                                                "userId": 1,
+                                                "roleId": 8,
+                                                "spaceId": 2,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 8
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "_id": 4,
+                "name": "weMember",
+                "alias": "We member",
+                "description": null,
+                "typeId": 17,
+                "spaceId": 2,
+                "active": null,
+                "SpaceId": 2,
+                "type": {
+                    "typeName": "app.normal",
+                    "categoryName": "app.normal",
+                    "name": "app.normal",
+                    "_id": 17,
+                    "parentId": 13,
+                    "spaceId": 2,
+                    "appId": -1,
+                    "alias": "app.normal",
+                    "fullname": "root.typeRoot.app.normal",
+                    "owner": "app",
+                    "ownerId": -1,
+                    "active": null
+                },
+                "nuts": [
+                    {
+                        "_id": 10,
+                        "name": "card",
+                        "appId": 4,
+                        "spaceId": 2,
+                        "alias": "card",
+                        "description": "card",
+                        "typeId": 18,
+                        "active": null,
+                        "AppId": 4,
+                        "permitRoles": [
+                            {
+                                "_id": 22,
+                                "owner": "nut",
+                                "ownerId": 10,
+                                "permitId": 33,
+                                "roleId": 8,
+                                "spaceId": 2,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminCard",
+                                    "name": "adminCard",
+                                    "_id": 33,
+                                    "parentId": 32,
+                                    "spaceId": 2,
+                                    "appId": -1,
+                                    "alias": "adminCard",
+                                    "fullname": "root.permit.adminCard",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 10,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 8,
+                                    "parentId": 7,
+                                    "spaceId": 2,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 2,
+                                                "userId": 1,
+                                                "roleId": 8,
+                                                "spaceId": 2,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 8
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "_id": 9,
+                        "name": "point",
+                        "appId": 4,
+                        "spaceId": 2,
+                        "alias": "point",
+                        "description": "point",
+                        "typeId": 18,
+                        "active": null,
+                        "AppId": 4,
+                        "permitRoles": [
+                            {
+                                "_id": 19,
+                                "owner": "nut",
+                                "ownerId": 9,
+                                "permitId": 29,
+                                "roleId": 8,
+                                "spaceId": 2,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminPoint",
+                                    "name": "adminPoint",
+                                    "_id": 29,
+                                    "parentId": 28,
+                                    "spaceId": 2,
+                                    "appId": -1,
+                                    "alias": "adminPoint",
+                                    "fullname": "root.permit.adminPoint",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 9,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 8,
+                                    "parentId": 7,
+                                    "spaceId": 2,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 2,
+                                                "userId": 1,
+                                                "roleId": 8,
+                                                "spaceId": 2,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 8
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "_id": 8,
+                        "name": "voucher",
+                        "appId": 4,
+                        "spaceId": 2,
+                        "alias": "voucher",
+                        "description": "voucher",
+                        "typeId": 18,
+                        "active": null,
+                        "AppId": 4,
+                        "permitRoles": [
+                            {
+                                "_id": 16,
+                                "owner": "nut",
+                                "ownerId": 8,
+                                "permitId": 25,
+                                "roleId": 8,
+                                "spaceId": 2,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminVoucher",
+                                    "name": "adminVoucher",
+                                    "_id": 25,
+                                    "parentId": 24,
+                                    "spaceId": 2,
+                                    "appId": -1,
+                                    "alias": "adminVoucher",
+                                    "fullname": "root.permit.adminVoucher",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 8,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 8,
+                                    "parentId": 7,
+                                    "spaceId": 2,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 2,
+                                                "userId": 1,
+                                                "roleId": 8,
+                                                "spaceId": 2,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 8
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "profile": {
+            "alias": "aa2",
+            "description": null
+        },
+        "_id": 3,
+        "name": "aa2",
+        "alias": "aa2",
+        "description": null,
+        "typeId": 12,
+        "active": null,
+        "type": {
+            "typeName": "space.normal",
+            "categoryName": "space.normal",
+            "name": "space.normal",
+            "_id": 12,
+            "parentId": 3,
+            "spaceId": -1,
+            "appId": -1,
+            "alias": "普通机构",
+            "fullname": "root.typeRoot.space.normal",
+            "owner": "space",
+            "ownerId": -1,
+            "active": null
+        },
+        "roles": [
+            {
+                "roleName": "admin",
+                "name": "admin",
+                "_id": 14,
+                "parentId": 13,
+                "spaceId": 3,
+                "appId": -1,
+                "alias": "admin",
+                "fullname": "root.role.admin",
+                "owner": null,
+                "ownerId": -1,
+                "active": null,
+                "users": [
+                    {
+                        "profile": {
+                            "name": null,
+                            "familyname": null,
+                            "surname": null,
+                            "fullname": "null null",
+                            "gender": null,
+                            "age": 46
+                        },
+                        "age": 46,
+                        "token": {
+                            "_id": 1,
+                            "role": "user"
+                        },
+                        "_id": 1,
+                        "loginId": "aa",
+                        "name": null,
+                        "familyname": null,
+                        "surname": null,
+                        "email": null,
+                        "mobile": null,
+                        "birth": null,
+                        "gender": null,
+                        "address": null,
+                        "role": "user",
+                        "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                        "description": null,
+                        "provider": "local",
+                        "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                        "facebook": null,
+                        "twitter": null,
+                        "google": null,
+                        "github": null,
+                        "UserRole": {
+                            "_id": 3,
+                            "userId": 1,
+                            "roleId": 14,
+                            "spaceId": 3,
+                            "active": null,
+                            "UserId": 1,
+                            "RoleId": 14
+                        }
+                    }
+                ]
+            }
+        ],
+        "apps": [
+            {
+                "_id": 5,
+                "name": "appEngine",
+                "alias": "App Engine",
+                "description": null,
+                "typeId": 20,
+                "spaceId": 3,
+                "active": null,
+                "SpaceId": 3,
+                "type": {
+                    "typeName": "app.core",
+                    "categoryName": "app.core",
+                    "name": "app.core",
+                    "_id": 20,
+                    "parentId": 19,
+                    "spaceId": 3,
+                    "appId": -1,
+                    "alias": "app.core",
+                    "fullname": "root.typeRoot.app.core",
+                    "owner": "app",
+                    "ownerId": -1,
+                    "active": null
+                },
+                "nuts": [
+                    {
+                        "_id": 13,
+                        "name": "collab",
+                        "appId": 5,
+                        "spaceId": 3,
+                        "alias": "collab",
+                        "description": "collab",
+                        "typeId": 22,
+                        "active": null,
+                        "AppId": 5,
+                        "permitRoles": [
+                            {
+                                "_id": 29,
+                                "owner": "nut",
+                                "ownerId": 13,
+                                "permitId": 43,
+                                "roleId": 14,
+                                "spaceId": 3,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminCollab",
+                                    "name": "adminCollab",
+                                    "_id": 43,
+                                    "parentId": 42,
+                                    "spaceId": 3,
+                                    "appId": -1,
+                                    "alias": "admin collab",
+                                    "fullname": "root.permit.adminCollab",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 13,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 14,
+                                    "parentId": 13,
+                                    "spaceId": 3,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 3,
+                                                "userId": 1,
+                                                "roleId": 14,
+                                                "spaceId": 3,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 14
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "_id": 11,
+                        "name": "role",
+                        "appId": 5,
+                        "spaceId": 3,
+                        "alias": "role",
+                        "description": "role",
+                        "typeId": 22,
+                        "active": null,
+                        "AppId": 5,
+                        "permitRoles": [
+                            {
+                                "_id": 25,
+                                "owner": "nut",
+                                "ownerId": 11,
+                                "permitId": 37,
+                                "roleId": 14,
+                                "spaceId": 3,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminSpaceRole",
+                                    "name": "adminSpaceRole",
+                                    "_id": 37,
+                                    "parentId": 36,
+                                    "spaceId": 3,
+                                    "appId": -1,
+                                    "alias": "admin space role",
+                                    "fullname": "root.permit.adminSpaceRole",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 11,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 14,
+                                    "parentId": 13,
+                                    "spaceId": 3,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 3,
+                                                "userId": 1,
+                                                "roleId": 14,
+                                                "spaceId": 3,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 14
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "_id": 26,
+                                "owner": "nut",
+                                "ownerId": 11,
+                                "permitId": 38,
+                                "roleId": 14,
+                                "spaceId": 3,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminUserRole",
+                                    "name": "adminUserRole",
+                                    "_id": 38,
+                                    "parentId": 36,
+                                    "spaceId": 3,
+                                    "appId": -1,
+                                    "alias": "admin user role",
+                                    "fullname": "root.permit.adminUserRole",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 11,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 14,
+                                    "parentId": 13,
+                                    "spaceId": 3,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 3,
+                                                "userId": 1,
+                                                "roleId": 14,
+                                                "spaceId": 3,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 14
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "_id": 12,
+                        "name": "space",
+                        "appId": 5,
+                        "spaceId": 3,
+                        "alias": "space",
+                        "description": "space",
+                        "typeId": 22,
+                        "active": null,
+                        "AppId": 5,
+                        "permitRoles": [
+                            {
+                                "_id": 27,
+                                "owner": "nut",
+                                "ownerId": 12,
+                                "permitId": 40,
+                                "roleId": 14,
+                                "spaceId": 3,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminSpace",
+                                    "name": "adminSpace",
+                                    "_id": 40,
+                                    "parentId": 39,
+                                    "spaceId": 3,
+                                    "appId": -1,
+                                    "alias": "admin space",
+                                    "fullname": "root.permit.adminSpace",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 12,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 14,
+                                    "parentId": 13,
+                                    "spaceId": 3,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 3,
+                                                "userId": 1,
+                                                "roleId": 14,
+                                                "spaceId": 3,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 14
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "_id": 28,
+                                "owner": "nut",
+                                "ownerId": 12,
+                                "permitId": 41,
+                                "roleId": 14,
+                                "spaceId": 3,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "appStore",
+                                    "name": "appStore",
+                                    "_id": 41,
+                                    "parentId": 39,
+                                    "spaceId": 3,
+                                    "appId": -1,
+                                    "alias": "appStore",
+                                    "fullname": "root.permit.appStore",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 12,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 14,
+                                    "parentId": 13,
+                                    "spaceId": 3,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 3,
+                                                "userId": 1,
+                                                "roleId": 14,
+                                                "spaceId": 3,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 14
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "_id": 6,
+                "name": "weMember",
+                "alias": "We member",
+                "description": null,
+                "typeId": 23,
+                "spaceId": 3,
+                "active": null,
+                "SpaceId": 3,
+                "type": {
+                    "typeName": "app.normal",
+                    "categoryName": "app.normal",
+                    "name": "app.normal",
+                    "_id": 23,
+                    "parentId": 19,
+                    "spaceId": 3,
+                    "appId": -1,
+                    "alias": "app.normal",
+                    "fullname": "root.typeRoot.app.normal",
+                    "owner": "app",
+                    "ownerId": -1,
+                    "active": null
+                },
+                "nuts": [
+                    {
+                        "_id": 16,
+                        "name": "card",
+                        "appId": 6,
+                        "spaceId": 3,
+                        "alias": "card",
+                        "description": "card",
+                        "typeId": 24,
+                        "active": null,
+                        "AppId": 6,
+                        "permitRoles": [
+                            {
+                                "_id": 37,
+                                "owner": "nut",
+                                "ownerId": 16,
+                                "permitId": 54,
+                                "roleId": 14,
+                                "spaceId": 3,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminCard",
+                                    "name": "adminCard",
+                                    "_id": 54,
+                                    "parentId": 53,
+                                    "spaceId": 3,
+                                    "appId": -1,
+                                    "alias": "adminCard",
+                                    "fullname": "root.permit.adminCard",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 16,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 14,
+                                    "parentId": 13,
+                                    "spaceId": 3,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 3,
+                                                "userId": 1,
+                                                "roleId": 14,
+                                                "spaceId": 3,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 14
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "_id": 15,
+                        "name": "point",
+                        "appId": 6,
+                        "spaceId": 3,
+                        "alias": "point",
+                        "description": "point",
+                        "typeId": 24,
+                        "active": null,
+                        "AppId": 6,
+                        "permitRoles": [
+                            {
+                                "_id": 34,
+                                "owner": "nut",
+                                "ownerId": 15,
+                                "permitId": 50,
+                                "roleId": 14,
+                                "spaceId": 3,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminPoint",
+                                    "name": "adminPoint",
+                                    "_id": 50,
+                                    "parentId": 49,
+                                    "spaceId": 3,
+                                    "appId": -1,
+                                    "alias": "adminPoint",
+                                    "fullname": "root.permit.adminPoint",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 15,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 14,
+                                    "parentId": 13,
+                                    "spaceId": 3,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 3,
+                                                "userId": 1,
+                                                "roleId": 14,
+                                                "spaceId": 3,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 14
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "_id": 14,
+                        "name": "voucher",
+                        "appId": 6,
+                        "spaceId": 3,
+                        "alias": "voucher",
+                        "description": "voucher",
+                        "typeId": 24,
+                        "active": null,
+                        "AppId": 6,
+                        "permitRoles": [
+                            {
+                                "_id": 31,
+                                "owner": "nut",
+                                "ownerId": 14,
+                                "permitId": 46,
+                                "roleId": 14,
+                                "spaceId": 3,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminVoucher",
+                                    "name": "adminVoucher",
+                                    "_id": 46,
+                                    "parentId": 45,
+                                    "spaceId": 3,
+                                    "appId": -1,
+                                    "alias": "adminVoucher",
+                                    "fullname": "root.permit.adminVoucher",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 14,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 14,
+                                    "parentId": 13,
+                                    "spaceId": 3,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 3,
+                                                "userId": 1,
+                                                "roleId": 14,
+                                                "spaceId": 3,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 14
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "profile": {
+            "alias": "aa3",
+            "description": null
+        },
+        "_id": 4,
+        "name": "aa3",
+        "alias": "aa3",
+        "description": null,
+        "typeId": 26,
+        "active": null,
+        "type": {
+            "typeName": "space.agent.propertyManagement",
+            "categoryName": "space.agent.propertyManagement",
+            "name": "space.agent.propertyManagement",
+            "_id": 26,
+            "parentId": 25,
+            "spaceId": -1,
+            "appId": -1,
+            "alias": "固定资产管理公司",
+            "fullname": "root.typeRoot.space.agent.propertyManagement",
+            "owner": "space",
+            "ownerId": -1,
+            "active": null
+        },
+        "roles": [
+            {
+                "roleName": "admin",
+                "name": "admin",
+                "_id": 20,
+                "parentId": 19,
+                "spaceId": 4,
+                "appId": -1,
+                "alias": "admin",
+                "fullname": "root.role.admin",
+                "owner": null,
+                "ownerId": -1,
+                "active": null,
+                "users": [
+                    {
+                        "profile": {
+                            "name": null,
+                            "familyname": null,
+                            "surname": null,
+                            "fullname": "null null",
+                            "gender": null,
+                            "age": 46
+                        },
+                        "age": 46,
+                        "token": {
+                            "_id": 1,
+                            "role": "user"
+                        },
+                        "_id": 1,
+                        "loginId": "aa",
+                        "name": null,
+                        "familyname": null,
+                        "surname": null,
+                        "email": null,
+                        "mobile": null,
+                        "birth": null,
+                        "gender": null,
+                        "address": null,
+                        "role": "user",
+                        "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                        "description": null,
+                        "provider": "local",
+                        "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                        "facebook": null,
+                        "twitter": null,
+                        "google": null,
+                        "github": null,
+                        "UserRole": {
+                            "_id": 4,
+                            "userId": 1,
+                            "roleId": 20,
+                            "spaceId": 4,
+                            "active": null,
+                            "UserId": 1,
+                            "RoleId": 20
+                        }
+                    }
+                ]
+            }
+        ],
+        "apps": [
+            {
+                "_id": 7,
+                "name": "appEngine",
+                "alias": "App Engine",
+                "description": null,
+                "typeId": 28,
+                "spaceId": 4,
+                "active": null,
+                "SpaceId": 4,
+                "type": {
+                    "typeName": "app.core",
+                    "categoryName": "app.core",
+                    "name": "app.core",
+                    "_id": 28,
+                    "parentId": 27,
+                    "spaceId": 4,
+                    "appId": -1,
+                    "alias": "app.core",
+                    "fullname": "root.typeRoot.app.core",
+                    "owner": "app",
+                    "ownerId": -1,
+                    "active": null
+                },
+                "nuts": [
+                    {
+                        "_id": 19,
+                        "name": "collab",
+                        "appId": 7,
+                        "spaceId": 4,
+                        "alias": "collab",
+                        "description": "collab",
+                        "typeId": 30,
+                        "active": null,
+                        "AppId": 7,
+                        "permitRoles": [
+                            {
+                                "_id": 44,
+                                "owner": "nut",
+                                "ownerId": 19,
+                                "permitId": 64,
+                                "roleId": 20,
+                                "spaceId": 4,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminCollab",
+                                    "name": "adminCollab",
+                                    "_id": 64,
+                                    "parentId": 63,
+                                    "spaceId": 4,
+                                    "appId": -1,
+                                    "alias": "admin collab",
+                                    "fullname": "root.permit.adminCollab",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 19,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 20,
+                                    "parentId": 19,
+                                    "spaceId": 4,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 4,
+                                                "userId": 1,
+                                                "roleId": 20,
+                                                "spaceId": 4,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 20
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "_id": 69,
+                                "owner": "nut",
+                                "ownerId": 19,
+                                "permitId": 92,
+                                "roleId": 20,
+                                "spaceId": 4,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "parentCollabs",
+                                    "name": "parentCollabs",
+                                    "_id": 92,
+                                    "parentId": 57,
+                                    "spaceId": 4,
+                                    "appId": -1,
+                                    "alias": "manage parent collab",
+                                    "fullname": "root.permit.parentCollabs",
+                                    "value": null,
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 20,
+                                    "parentId": 19,
+                                    "spaceId": 4,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 4,
+                                                "userId": 1,
+                                                "roleId": 20,
+                                                "spaceId": 4,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 20
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "_id": 17,
+                        "name": "role",
+                        "appId": 7,
+                        "spaceId": 4,
+                        "alias": "role",
+                        "description": "role",
+                        "typeId": 30,
+                        "active": null,
+                        "AppId": 7,
+                        "permitRoles": [
+                            {
+                                "_id": 40,
+                                "owner": "nut",
+                                "ownerId": 17,
+                                "permitId": 58,
+                                "roleId": 20,
+                                "spaceId": 4,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminSpaceRole",
+                                    "name": "adminSpaceRole",
+                                    "_id": 58,
+                                    "parentId": 57,
+                                    "spaceId": 4,
+                                    "appId": -1,
+                                    "alias": "admin space role",
+                                    "fullname": "root.permit.adminSpaceRole",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 17,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 20,
+                                    "parentId": 19,
+                                    "spaceId": 4,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 4,
+                                                "userId": 1,
+                                                "roleId": 20,
+                                                "spaceId": 4,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 20
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "_id": 41,
+                                "owner": "nut",
+                                "ownerId": 17,
+                                "permitId": 59,
+                                "roleId": 20,
+                                "spaceId": 4,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminUserRole",
+                                    "name": "adminUserRole",
+                                    "_id": 59,
+                                    "parentId": 57,
+                                    "spaceId": 4,
+                                    "appId": -1,
+                                    "alias": "admin user role",
+                                    "fullname": "root.permit.adminUserRole",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 17,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 20,
+                                    "parentId": 19,
+                                    "spaceId": 4,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 4,
+                                                "userId": 1,
+                                                "roleId": 20,
+                                                "spaceId": 4,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 20
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "_id": 18,
+                        "name": "space",
+                        "appId": 7,
+                        "spaceId": 4,
+                        "alias": "space",
+                        "description": "space",
+                        "typeId": 30,
+                        "active": null,
+                        "AppId": 7,
+                        "permitRoles": [
+                            {
+                                "_id": 42,
+                                "owner": "nut",
+                                "ownerId": 18,
+                                "permitId": 61,
+                                "roleId": 20,
+                                "spaceId": 4,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminSpace",
+                                    "name": "adminSpace",
+                                    "_id": 61,
+                                    "parentId": 60,
+                                    "spaceId": 4,
+                                    "appId": -1,
+                                    "alias": "admin space",
+                                    "fullname": "root.permit.adminSpace",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 18,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 20,
+                                    "parentId": 19,
+                                    "spaceId": 4,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 4,
+                                                "userId": 1,
+                                                "roleId": 20,
+                                                "spaceId": 4,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 20
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "_id": 43,
+                                "owner": "nut",
+                                "ownerId": 18,
+                                "permitId": 62,
+                                "roleId": 20,
+                                "spaceId": 4,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "appStore",
+                                    "name": "appStore",
+                                    "_id": 62,
+                                    "parentId": 60,
+                                    "spaceId": 4,
+                                    "appId": -1,
+                                    "alias": "appStore",
+                                    "fullname": "root.permit.appStore",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 18,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 20,
+                                    "parentId": 19,
+                                    "spaceId": 4,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 4,
+                                                "userId": 1,
+                                                "roleId": 20,
+                                                "spaceId": 4,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 20
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "_id": 9,
+                "name": "propertyManagement",
+                "alias": "propertyManagement",
+                "description": null,
+                "typeId": 31,
+                "spaceId": 4,
+                "active": null,
+                "SpaceId": 4,
+                "type": {
+                    "typeName": "app.normal",
+                    "categoryName": "app.normal",
+                    "name": "app.normal",
+                    "_id": 31,
+                    "parentId": 27,
+                    "spaceId": 4,
+                    "appId": -1,
+                    "alias": "app.normal",
+                    "fullname": "root.typeRoot.app.normal",
+                    "owner": "app",
+                    "ownerId": -1,
+                    "active": null
+                },
+                "nuts": [
+                    {
+                        "_id": 24,
+                        "name": "propertyInfo",
+                        "appId": 9,
+                        "spaceId": 4,
+                        "alias": "propertyInfo",
+                        "description": "propertyInfo",
+                        "typeId": 32,
+                        "active": null,
+                        "AppId": 9,
+                        "permitRoles": [
+                            {
+                                "_id": 60,
+                                "owner": "nut",
+                                "ownerId": 24,
+                                "permitId": 84,
+                                "roleId": 20,
+                                "spaceId": 4,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "managePropertyInfo",
+                                    "name": "managePropertyInfo",
+                                    "_id": 84,
+                                    "parentId": 83,
+                                    "spaceId": 4,
+                                    "appId": -1,
+                                    "alias": "managePropertyInfo",
+                                    "fullname": "root.permit.managePropertyInfo",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 24,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 20,
+                                    "parentId": 19,
+                                    "spaceId": 4,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 4,
+                                                "userId": 1,
+                                                "roleId": 20,
+                                                "spaceId": 4,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 20
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "_id": 23,
+                        "name": "propertyOwner",
+                        "appId": 9,
+                        "spaceId": 4,
+                        "alias": "propertyOwner",
+                        "description": "propertyOwner",
+                        "typeId": 32,
+                        "active": null,
+                        "AppId": 9,
+                        "permitRoles": [
+                            {
+                                "_id": 55,
+                                "owner": "nut",
+                                "ownerId": 23,
+                                "permitId": 79,
+                                "roleId": 20,
+                                "spaceId": 4,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "manageOwnerProperty",
+                                    "name": "manageOwnerProperty",
+                                    "_id": 79,
+                                    "parentId": 78,
+                                    "spaceId": 4,
+                                    "appId": -1,
+                                    "alias": "manageOwnerProperty",
+                                    "fullname": "root.permit.manageOwnerProperty",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 23,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 20,
+                                    "parentId": 19,
+                                    "spaceId": 4,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 4,
+                                                "userId": 1,
+                                                "roleId": 20,
+                                                "spaceId": 4,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 20
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "_id": 25,
+                        "name": "propertyProduct",
+                        "appId": 9,
+                        "spaceId": 4,
+                        "alias": "propertyProduct",
+                        "description": "propertyProduct",
+                        "typeId": 32,
+                        "active": null,
+                        "AppId": 9,
+                        "permitRoles": [
+                            {
+                                "_id": 65,
+                                "owner": "nut",
+                                "ownerId": 25,
+                                "permitId": 89,
+                                "roleId": 20,
+                                "spaceId": 4,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "managePropertyProduct",
+                                    "name": "managePropertyProduct",
+                                    "_id": 89,
+                                    "parentId": 88,
+                                    "spaceId": 4,
+                                    "appId": -1,
+                                    "alias": "managePropertyProduct",
+                                    "fullname": "root.permit.managePropertyProduct",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 25,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 20,
+                                    "parentId": 19,
+                                    "spaceId": 4,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 4,
+                                                "userId": 1,
+                                                "roleId": 20,
+                                                "spaceId": 4,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 20
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "_id": 8,
+                "name": "weMember",
+                "alias": "We member",
+                "description": null,
+                "typeId": 31,
+                "spaceId": 4,
+                "active": null,
+                "SpaceId": 4,
+                "type": {
+                    "typeName": "app.normal",
+                    "categoryName": "app.normal",
+                    "name": "app.normal",
+                    "_id": 31,
+                    "parentId": 27,
+                    "spaceId": 4,
+                    "appId": -1,
+                    "alias": "app.normal",
+                    "fullname": "root.typeRoot.app.normal",
+                    "owner": "app",
+                    "ownerId": -1,
+                    "active": null
+                },
+                "nuts": [
+                    {
+                        "_id": 22,
+                        "name": "card",
+                        "appId": 8,
+                        "spaceId": 4,
+                        "alias": "card",
+                        "description": "card",
+                        "typeId": 32,
+                        "active": null,
+                        "AppId": 8,
+                        "permitRoles": [
+                            {
+                                "_id": 52,
+                                "owner": "nut",
+                                "ownerId": 22,
+                                "permitId": 75,
+                                "roleId": 20,
+                                "spaceId": 4,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminCard",
+                                    "name": "adminCard",
+                                    "_id": 75,
+                                    "parentId": 74,
+                                    "spaceId": 4,
+                                    "appId": -1,
+                                    "alias": "adminCard",
+                                    "fullname": "root.permit.adminCard",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 22,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 20,
+                                    "parentId": 19,
+                                    "spaceId": 4,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 4,
+                                                "userId": 1,
+                                                "roleId": 20,
+                                                "spaceId": 4,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 20
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "_id": 21,
+                        "name": "point",
+                        "appId": 8,
+                        "spaceId": 4,
+                        "alias": "point",
+                        "description": "point",
+                        "typeId": 32,
+                        "active": null,
+                        "AppId": 8,
+                        "permitRoles": [
+                            {
+                                "_id": 49,
+                                "owner": "nut",
+                                "ownerId": 21,
+                                "permitId": 71,
+                                "roleId": 20,
+                                "spaceId": 4,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminPoint",
+                                    "name": "adminPoint",
+                                    "_id": 71,
+                                    "parentId": 70,
+                                    "spaceId": 4,
+                                    "appId": -1,
+                                    "alias": "adminPoint",
+                                    "fullname": "root.permit.adminPoint",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 21,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 20,
+                                    "parentId": 19,
+                                    "spaceId": 4,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 4,
+                                                "userId": 1,
+                                                "roleId": 20,
+                                                "spaceId": 4,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 20
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "_id": 20,
+                        "name": "voucher",
+                        "appId": 8,
+                        "spaceId": 4,
+                        "alias": "voucher",
+                        "description": "voucher",
+                        "typeId": 32,
+                        "active": null,
+                        "AppId": 8,
+                        "permitRoles": [
+                            {
+                                "_id": 46,
+                                "owner": "nut",
+                                "ownerId": 20,
+                                "permitId": 67,
+                                "roleId": 20,
+                                "spaceId": 4,
+                                "active": null,
+                                "permit": {
+                                    "permitName": "adminVoucher",
+                                    "name": "adminVoucher",
+                                    "_id": 67,
+                                    "parentId": 66,
+                                    "spaceId": 4,
+                                    "appId": -1,
+                                    "alias": "adminVoucher",
+                                    "fullname": "root.permit.adminVoucher",
+                                    "value": null,
+                                    "owner": "nut",
+                                    "ownerId": 20,
+                                    "active": null
+                                },
+                                "role": {
+                                    "roleName": "admin",
+                                    "name": "admin",
+                                    "_id": 20,
+                                    "parentId": 19,
+                                    "spaceId": 4,
+                                    "appId": -1,
+                                    "alias": "admin",
+                                    "fullname": "root.role.admin",
+                                    "owner": null,
+                                    "ownerId": -1,
+                                    "active": null,
+                                    "users": [
+                                        {
+                                            "profile": {
+                                                "name": null,
+                                                "familyname": null,
+                                                "surname": null,
+                                                "fullname": "null null",
+                                                "gender": null,
+                                                "age": 46
+                                            },
+                                            "age": 46,
+                                            "token": {
+                                                "_id": 1,
+                                                "role": "user"
+                                            },
+                                            "_id": 1,
+                                            "loginId": "aa",
+                                            "name": null,
+                                            "familyname": null,
+                                            "surname": null,
+                                            "email": null,
+                                            "mobile": null,
+                                            "birth": null,
+                                            "gender": null,
+                                            "address": null,
+                                            "role": "user",
+                                            "password": "O8hYuTLKPlfz1K/Scweoq7aRdHAUNQutBR3kljZ3D5fF47jZzCzJ5BAvBDNqxKsIYxkxbmHeFP2FFG3nd+9Vqg==",
+                                            "description": null,
+                                            "provider": "local",
+                                            "salt": "DT8ugZJz3YhhY26OFC0LBw==",
+                                            "facebook": null,
+                                            "twitter": null,
+                                            "google": null,
+                                            "github": null,
+                                            "UserRole": {
+                                                "_id": 4,
+                                                "userId": 1,
+                                                "roleId": 20,
+                                                "spaceId": 4,
+                                                "active": null,
+                                                "UserId": 1,
+                                                "RoleId": 20
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

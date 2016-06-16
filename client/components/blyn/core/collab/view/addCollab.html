@@ -1,0 +1,77 @@
+<div class="panel panel-default">
+  <div class="panel-heading">创建合作关系</div>
+  <div class="panel-body">
+    <form novalidate name="form" ng-submit="vm.createCollab(form)">
+      <div class="form-group">
+        <label>关系名称（字母唯一名称）:</label>
+        <input ng-model="vm.collab.name" name="collabName" placeholder="输入ID..." class="form-control" required style="min-height:30px"
+          type="text">
+        <div ng-show="form.collabName.$dirty && form.collabName.$invalid">
+          <span style="color: red;"><b>请定义关系名称</b></span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label> 关系别名:</label>
+        <input ng-model="vm.collab.alias" name="collabAlias" placeholder="输入名称..." class="form-control" required style="min-height:30px"
+          type="text">
+        <div ng-show="form.collabAlias.$dirty && form.collabAlias.$invalid">
+          <span style="color: red;"> <b>请定义机构关系名称</b></span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label> 关系描述:</label>
+        <input ng-model="vm.collab.description" name="collabDescription" placeholder="输入描述..." class="form-control" required style="min-height:30px"
+          type="text">
+        <div ng-show="form.collabDescription.$dirty && form.collabDescription.$invalid">
+          <span style="color: red;"> <b>请定义机构关系描述</b></span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label> 选择关系分类 :</label>
+        <select ng-model="vm.collab.type" name="collabType" class="form-control" ng-options="collabType.name as collabType.alias for collabType in vm.collabTypes"
+          required>
+          <!--<option value="">请选择机构关系分类</option>-->
+        </select>
+        <div ng-show="form.collabType.$dirty && form.collabType.$invalid">
+          <span style=" color: red;"> <b>请选择机构关系分类</b></span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label> 创建执行角色 :</label>
+        <div class="row">
+          <div class="col-md-6 col-xs-6"><input ng-model="vm.inputRole.name" name="collabRoleName" placeholder="字母名称..." class="form-control" style="min-height:30px"
+              type="text"></div>
+          <div class="col-md-6 col-xs-6"><input ng-model="vm.inputRole.alias" name="collabRoleAlias" placeholder="别名..." class="form-control" style="min-height:30px"
+              type="text"></div>
+        </div>
+        <label> 或者选择执行角色 :</label>
+        <div class="checkbox" ng-repeat="role in vm.current.space.roles">
+          <label>
+              <input type="checkbox" 
+              id="{{role._id}}"
+              name="{{role.name}}" 
+              ng-model="role.selected" >
+              {{role.name}}
+          </label><span>&nbsp;（执行功能：{{vm.showNutPermitList(vm.roleNutPermits[role._id])}}）</span>
+        </div>     
+      </div>
+      <!--<div class="form-group">-->
+      <!--<label> 选择数据云 :</label>-->
+      <!--<select-->
+      <!--ng-options="collabDb.id as collabDb.alias for collabDb in vm.collabDbs"-->
+      <!--ng-model="collab.db" name="collabDb" class="form-control" required>-->
+      <!--<option value="">请选择数据云</option>-->
+      <!--</select>-->
+      <!--<div ng-show="form.collabDb.$dirty && form.collabDb.$invalid">-->
+      <!--<span style=" color: red;"> <b>请选择数据云</b></span>-->
+      <!--</div>-->
+      <!--</div>-->
+      <div class="form-group">
+        <button class="btn btn-primary" ng-disabled="form.$invalid || vm.creating" type="submit">
+          <bil-waitword waiting="创建中" active="vm.creating">创建</bil-waitword>
+        </button>
+        <button class="btn btn-default" type="reset">重置</button>
+      </div>
+    </form>
+  </div>
+</div>

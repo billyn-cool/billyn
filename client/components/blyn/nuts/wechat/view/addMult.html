@@ -1,0 +1,39 @@
+<div class="tabbable tabs-right" style="margin-top: 15px;"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs" style="margin-bottom: 15px">
+    <li class="active"><a href="#/tab1" data-toggle="tab">基本设置</a></li>
+    <li class=""><a href="#/tab2" data-toggle="tab">图文信息</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1" style="min-height: 270px">
+      <form class="form-inline" novalidate name="addMultForm">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>属性</th>
+            <th>内容</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td> 关键词</td>
+            <td>
+              <input placeholder="关键词..." required="required" class="form-control" ng-model="mult.name" name="multName" type="text"></td>
+          </tr>
+          <tr>
+            <td> 关键词类型</td>
+            <td>
+              <select required="required" class="form-control" ng-model="mult.type" name="multType">
+                <option value="completeMatching">完全匹配</option>
+                <option value="fuzzyMatching">模糊匹配</option>
+              </select></td>
+          </tr>
+          </tbody>
+        </table>
+      </form>
+      <button class="btn btn-success" ng-click="keyWords.saveMult(mult)">保存</button>
+    </div>
+    <div class="tab-pane" id="tab2" style="min-height: 270px">
+      <div class="well"><h5 class="text-warning">需要先保存多图文基本内容，然后再添加图文信息</h5></div>
+    </div>
+  </div>
+</div>

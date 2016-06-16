@@ -1,0 +1,17 @@
+{
+	"type":"nut.core",
+	"permits": {
+		"adminSpaceRole": {
+			"alias": "admin space role"
+		},
+		"adminUserRole": {
+			"alias": "admin user role"
+		},
+		"manager": {
+			"alias": "role manager"
+		},
+		"customer": {
+			"alias": "role customer"
+		}
+	}
+}

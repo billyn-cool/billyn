@@ -1,0 +1,46 @@
+<script type="text/javascript">
+  $('#checkAllSinglePic').click(function (event) {
+    if (this.checked) {
+      // Iterate each checkbox
+      $(':checkbox').each(function () {
+        this.checked = true;
+      });
+    }
+    else {
+      $(':checkbox').each(function () {
+        this.checked = false;
+      });
+    }
+  });
+</script>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th><input type="checkbox" id="checkAllSinglePic"></th>
+    <th>关键词</th>
+    <th>关键词类型</th>
+    <th>标题</th>
+    <th>所属分类</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="single in keyWords.WeChatService.singleData">
+    <td>
+      <input type="checkbox" name="subBox[]" value="27">
+    </td>
+    <td> {{single.name}}</td>
+    <td> {{single.tyle}}</td>
+    <td> {{single.title}}</td>
+    <td></td>
+    <td>
+      <div class="row-fluid">
+        <a href="#">编辑</a>|
+        <a href="#">删除</a></div>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div>
+  <a class="btn btn-primary" ui-sref="weChat.keyWord.addSingle">新增单图文回复</a>
+</div>

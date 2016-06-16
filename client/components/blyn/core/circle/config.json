@@ -1,0 +1,38 @@
+{
+	"type": "nut.core",
+	"permits": {
+		"adminCircle": {
+			"alias": "admin circle",
+			"description": "设置圈子，将机构的合作关系加入圈子"
+		},
+		"manageCircle": {
+			"alias": "manage circle",
+			"description": "管理机构圈，比如批准申请加入圈子的请求，批准将机构关系加入圈子的请求"
+		},
+		"circleMemberAdmin": {
+			"alias": "circle member admin",
+			"description": "进行申请加入机构圈的操作，将本机构关系加入圈子的操作"
+		},
+		"circleMember": {
+			"alias":"circle member",
+			"description":"圈子成员，显示圈子成员的主页，这个页面将会首先显示客户依据角色可以执行的功能列表"
+		}
+	},
+	"circleTypes": {
+		"normal": {
+			"name": "normal",
+			"alias": "normal circle",
+			"defaultCollabs": [
+				{
+					"type": "normal",
+					"name": "circleMember",
+					"alias": "circle member",
+					"description": "collab for all circle member",
+					"parentRoles": [
+						"member.circle"
+					]
+				}
+			]
+		}
+	}
+}

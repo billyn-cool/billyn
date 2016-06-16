@@ -1,0 +1,168 @@
+[
+    {
+        "type": {
+            "name": "discount.percent",
+            "alias": "discount percent",
+            "attributes": {
+                "unit": "percent"
+            }
+        },
+        "alias": "9折券",
+        "description": "",
+        "value": 10,
+        "grants": {
+            "customer": "allow.apply,allow.collect,allow.use",
+            "manager": "allow.issue",
+            "cashier": "allow.cash",
+            "admin": "allow.admin"
+        },
+        "timeslots": {
+            "use": {
+                "startTime": "now",
+                "endTime.offset.value": 15,
+                "endTime.offset.timeUnit": "day"
+            }
+        },
+        "name": "discount_10",
+        "spaceId": 2
+    },
+    {
+        "type": {
+            "name": "discount.percent",
+            "alias": "discount percent",
+            "attributes": {
+                "unit": "percent"
+            }
+        },
+        "alias": "生日8折券",
+        "description": "",
+        "value": 20,
+        "grants": {
+            "customer": "allow.apply,allow.collect,allow.use",
+            "manager": "allow.issue",
+            "cashier": "allow.cash",
+            "admin": "allow.admin"
+        },
+        "timeslots": {
+            "use": {
+                "startTime": "birth",
+                "endTime.offset.value": 15,
+                "endTime.offset.timeUnit": "day"
+            }
+        },
+        "name": "birth_discount_20",
+        "spaceId": 2
+    },
+    {
+        "type": {
+            "name": "lunarNewYear.discount.percent",
+            "alias": "Lunar New Year discount percent",
+            "attributes": {
+                "unit": "percent"
+            }
+        },
+        "alias": "春节8折券",
+        "description": "",
+        "value": -20,
+        "grants": {
+            "customer": "allow.apply,allow.collect,allow.use",
+            "manager": "allow.issue",
+            "cashier": "allow.cash",
+            "admin": "allow.admin"
+        },
+        "timeslots": {
+            "use": {
+                "startTime": "lunar_new_year",
+                "startTime.offset.value": -15,
+                "startTime.offset.timeUnit": "day",
+                "endTime.offset.value": 15,
+                "endTime.offset.timeUnit": "day"
+            }
+        },
+        "name": "lunar_new_year_discount_20",
+        "spaceId": 2
+    },
+    {
+        "type": {
+            "name": "discount.percent",
+            "alias": "discount percent",
+            "attributes": {
+                "unit": "percent"
+            }
+        },
+        "alias": "8折券",
+        "description": "",
+        "value": 10,
+        "grants": {
+            "customer": "allow.apply,allow.collect,allow.use",
+            "manager": "allow.issue",
+            "cashier": "allow.cash",
+            "admin": "allow.admin"
+        },
+        "timeslots": {
+            "use": {
+                "startTime": "now",
+                "endTime.offset.value": 15,
+                "endTime.offset.timeUnit": "day"
+            }
+        },
+        "name": "discount_20",
+        "spaceId": 2
+    },
+    {
+        "type": {
+            "name": "discount.percent",
+            "alias": "discount percent",
+            "attributes": {
+                "unit": "percent"
+            }
+        },
+        "alias": "生日7折券",
+        "description": "",
+        "value": 20,
+        "grants": {
+            "customer": "allow.apply,allow.collect,allow.use",
+            "manager": "allow.issue",
+            "cashier": "allow.cash",
+            "admin": "allow.admin"
+        },
+        "timeslots": {
+            "use": {
+                "startTime": "birth",
+                "endTime.offset.value": 15,
+                "endTime.offset.timeUnit": "day"
+            }
+        },
+        "name": "birth_discount_30",
+        "spaceId": 2
+    },
+    {
+        "type": {
+            "name": "lunarNewYear.discount.percent",
+            "alias": "Lunar New Year discount percent",
+            "attributes": {
+                "unit": "percent"
+            }
+        },
+        "alias": "春节7折券",
+        "description": "",
+        "value": -30,
+        "grants": {
+            "customer": "allow.apply,allow.collect,allow.use",
+            "manager": "allow.issue",
+            "cashier": "allow.cash",
+            "admin": "allow.admin"
+        },
+        "timeslots": {
+            "use": {
+                "startTime": "lunar_new_year",
+                "startTime.offset.value": -15,
+                "startTime.offset.timeUnit": "day",
+                "endTime.offset.value": 15,
+                "endTime.offset.timeUnit": "day"
+            }
+        },
+        "name": "lunar_new_year_discount_30",
+        "spaceId": 2
+    }
+]

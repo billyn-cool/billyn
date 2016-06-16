@@ -1,0 +1,85 @@
+<form class="form-inline" novalidate name="addMenuForm">
+  <div class="row">
+    <div class="col-md-11">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <a style="color: white" ui-sref="weChat.home">功能列表</a>\
+          <a style="color: white" ui-sref="weChat.menu">公众号菜单列表\</a>添加菜单
+        </div>
+        <div class="panel-body">
+          <table class="table table-hover">
+            <colgroup>
+              <col class="span1">
+              <col class="span7">
+            </colgroup>
+            <thead>
+            <tr>
+              <th>属性</th>
+              <th>内容</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td> 菜单名称<span style=" color: #aaa;">(可创建最多 3 个一级菜单，每个一级菜单下可创建最多 5 个二级菜单)</span></td>
+              <td>
+                <input placeholder="菜单名称..." required class="form-control" type="text" ng-model="menu.name" name="menuName"></td>
+            </tr>
+            <tr>
+              <td> 一级菜单<span style=" color: #aaa;">(如果是一级菜单，选择“无”即可)</span></td>
+              <td>
+                <select placeholder="无..." required="required" class="form-control" required ng-model="menu.parentId" name="menuParentId">
+                  <option value="0" >无</option>
+                  <option value="12">会员中心</option>
+                </select></td>
+            </tr>
+            <tr>
+              <td> 响应类型</td>
+              <td>
+                <select placeholder="菜单响应类型..." class="form-control"  onchange="javascript:typeDataRequest()"
+                        id="menuType" ng-model="menu.type" name="menuType">
+                  <option value="none">无事件的一级菜单</option>
+                  <option value="click" >点击推事件</option>
+                  <option value="view">跳转URL</option>
+                </select></td>
+            </tr>
+            <tr>
+              <td id="responseText" style="display: none"> 响应值</td>
+              <td id="responseVal" style="display: none">
+                <input placeholder="响应值..." required class="form-control"
+                       onkeyup="this.value=this.value.replace(' ','')" id="menuVal" type="text" ng-model="menu.value" name="menuValue"></td>
+            </tr>
+            <tr>
+              <td> 排序号</td>
+              <td>
+                <input placeholder="数值越小越靠前..." required class="form-control" type="text" ng-model="menu.sort" name="menuSort"></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var defaultTypeVal = $("#menuType  option:selected").val();
+    if (defaultTypeVal !== 'none') {
+      $("#responseText").show();
+      $("#responseVal").show();
+    }
+    function typeDataRequest() {
+      var typeVal = $("#menuType  option:selected").val();
+      if (typeVal !== 'none') {
+        $("#responseText").show();
+        $("#responseVal").show();
+      } else {
+        $("#responseText").hide();
+        $("#responseVal").hide();
+      }
+      $("#menuVal").val(" ");
+    }
+  </script>
+
+</form>
+<div class="row-fluid">
+  <button class="btn btn-primary" ng-click="menu.save(menu)">保存设置</button>
+</div>
+

@@ -1,0 +1,60 @@
+<div class="panel panel-default">
+    <div class="panel-heading">加关注</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-2 col-xs-4">机构名称：</div>
+            <div class="col-md-5 col-xs-8">{{vm.current.space.alias}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-xs-4">机构描述：</div>
+            <div class="col-md-5 col-xs-8">{{vm.current.space.description}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-xs-4">关系名称：</div>
+            <div class="col-md-5 col-xs-8">{{vm.current.collab.alias}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-xs-4">关系描述：</div>
+            <div class="col-md-5 col-xs-8">{{vm.current.collab.description}}</div>
+        </div>
+        <hr>
+        <form novalidate name="form" ng-submit="vm.joinCollab(form)">
+            <div class="form-group">
+                <label> 创建执行角色 :</label>
+                <input ng-model="vm.inputRole.name" name="collabRoleName" placeholder="字母名称..." class="form-control" style="min-height:30px"
+                    type="text">
+                <input ng-model="vm.inputRole.alias" name="collabRoleAlias" placeholder="别名..." class="form-control" style="min-height:30px"
+                    type="text">
+            </div>
+            <div class="form-group">
+                <label>（或者）选择加入的角色 :</label>
+                <div class="checkbox" ng-repeat="role in vm.roles">
+                    <label>
+                    <input type="checkbox" 
+                    id="{{role._id}}"
+                    name="{{role.name}}" 
+                    ng-model="role.selected" >
+                    {{role.name}}
+                </label>
+                </div>
+            </div>
+            <!--<div class="form-group">-->
+            <!--<label> 选择数据云 :</label>-->
+            <!--<select-->
+            <!--ng-options="collabDb.id as collabDb.alias for collabDb in vm.collabDbs"-->
+            <!--ng-model="collab.db" name="collabDb" class="form-control" required>-->
+            <!--<option value="">请选择数据云</option>-->
+            <!--</select>-->
+            <!--<div ng-show="form.collabDb.$dirty && form.collabDb.$invalid">-->
+            <!--<span style=" color: red;"> <b>请选择数据云</b></span>-->
+            <!--</div>-->
+            <!--</div>-->
+            <div class="form-group">
+                <button class="btn btn-primary" ng-disabled="form.$invalid || vm.creating" type="submit">
+          <bil-waitword waiting="创建中" active="vm.creating">创建</bil-waitword>
+        </button>
+                <button class="btn btn-default" type="reset">重置</button>
+            </div>
+        </form>
+    </div>
+</div>

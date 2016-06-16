@@ -1,0 +1,216 @@
+<!-- This is the uib-accordion-group template -->
+<script type="text/ng-template" id="uib-accordion-group-template.html">
+  <div class="panel" ng-class="panelClass || 'panel-default'">
+    <div role="tab" id="{{::headingId}}" aria-selected="{{isOpen}}" class="panel-heading" ng-keypress="toggleOpen($event)">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" href aria-expanded="{{isOpen}}" aria-controls="{{::panelId}}" tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading"><span uib-accordion-header ng-class="{'text-muted': isDisabled}">{{heading}}</span></a>
+      </h4>
+    </div>
+    <div id="{{::panelId}}" aria-labelledby="{{::headingId}}" aria-hidden="{{!isOpen}}" role="tabpanel" class="panel-collapse collapse" uib-collapse="!isOpen">
+      <div class="" style="" ng-transclude></div>
+    </div>
+  </div>
+</script>
+
+<!-- uib-accordion -->
+<style type="text/css">
+  .accordion-toggle:focus {
+    outline: 0;
+  }
+  .header-label {
+    display: inline-block;
+    height: 20px;
+    margin-left: 10px
+  }
+  table.user-roles {
+    margin: 0;
+  }
+</style>
+
+<div class="panel panel-default">
+  <div class="panel-heading"> 
+    <a ui-sref="pc.space.app.role.admin.home.space">机构角色管理</a> | 
+    <a ui-sref="pc.space.app.role.admin.home.user">用户角色管理</a>
+  </div>
+  
+  <div class="panel-body">
+    <div ui-view></div>
+  </div>
+</div>
+<!--
+<div class="panel panel-default">
+  <div class="panel-heading"> 
+    <a ui-sref="pc.space.app.role.admin.home">机构角色管理</a> | 
+    <a ui-sref="pc.space.app.role.admin.home">用户角色管理</a>
+  </div>
+  
+  <div class="panel-body">
+    <table class="table user-roles">
+      <thead>
+        <th>角色</th>
+        <th>功能</th>
+        <th>操作</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="label label-danger">管理员</span>
+          </td>
+          <td>
+            <span class="badge">管理机构</span>
+            <span class="badge">应用商店</span>
+            <span class="badge">管理成员</span>
+            <span class="badge">...</span>
+          </td>
+          <td>
+            <button type="button" class="btn btn-default btn-xs" ui-sref="pc.space.app.role.admin.addRole">
+            	设置
+            </button>
+            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal">
+            	删除
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="label label-warning">成员</span>
+          </td>
+          <td>
+            <span class="badge">门店管理</span>
+            <span class="badge">微信配置</span>
+          </td>
+          <td>
+            <button type="button" class="btn btn-default btn-xs" ui-sref="pc.space.app.role.admin.addRole">
+            	设置
+            </button>
+            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal">
+            	删除
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="label label-success">客户</span>
+          </td>
+          <td>
+            <span class="badge">访问主页</span>
+          </td>
+          <td>
+            <button type="button" class="btn btn-default btn-xs" ui-sref="pc.space.app.role.admin.addRole">
+            	设置
+            </button>
+            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal">
+            	删除
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="label label-info">自定义角色</span>
+          </td>
+          <td>
+            <span class="badge">访问主页</span>
+          </td>
+          <td>
+            <button type="button" class="btn btn-default btn-xs" ui-sref="pc.space.app.role.admin.addRole">
+            	设置
+            </button>
+            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal">
+            	删除
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">删除角色</h4>
+      </div>
+      <div class="modal-body">
+        确定要彻底删除&nbsp;<span class="label label-danger">管理员</span>&nbsp;这一角色吗？
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <a data-dismiss="modal" class="btn btn-danger" href="#">删除角色</a>
+      </div>
+    </div>
+  </div>
+</div>-->
+
+<!--
+<div class="panel panel-default">
+  <div class="panel-heading">角色管理</div>
+  <div class="panel-body">
+    <table class="table user-roles">
+      <thead>
+        <th>分类</th>
+        <th>名称</th>
+        <th>操作</th>
+      </thead>
+      <tbody>
+        <tr data-ng-repeat="role in vm.adminRoles">
+          <td> {{role.name}} </td>
+          <td> {{role.alias}} </td>
+          <td>
+            <button type="button" class="btn btn-default btn-xs" ui-sref="pc.space.app.role.admin.addRole({parent: role})">
+            	添加子角色
+            </button>
+            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal" ng-click="vm.deletingRole=role" ng-hide="role.fullname == 'root.admin'">
+            	删除
+            </button>
+          </td>
+        </tr>
+       <tr data-ng-repeat="role in vm.memberRoles">
+          <td> {{role.name}}</td>
+          <td> {{role.alias}} </td>
+          <td>
+            <button type="button" class="btn btn-default btn-xs" ui-sref="pc.space.app.role.admin.addRole({parent: role})">
+            	添加子角色
+            </button>
+            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal" ng-click="vm.deletingRole=role" ng-hide="role.fullname == 'root.member'">
+            	删除
+            </button>
+          </td>
+        </tr>
+         <tr data-ng-repeat="role in vm.customerRoles">
+          <td> {{role.name}} </td>
+          <td> {{role.alias}} </td>
+          <td>
+            <button type="button" class="btn btn-default btn-xs" ui-sref="pc.space.app.role.admin.addRole({parent: role})">
+            	添加子角色
+            </button>
+            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal" ng-click="vm.deletingRole=role" ng-hide="role.fullname == 'root.customer'">
+            	删除
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">删除角色</h4>
+      </div>
+      <div class="modal-body">
+        确定要彻底删除&nbsp;<span class="label label-danger">{{vm.deletingRole.name}}</span>&nbsp;这一角色吗？
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <a data-dismiss="modal" class="btn btn-danger" href="#">删除角色</a>
+      </div>
+    </div>
+  </div>
+</div>-->

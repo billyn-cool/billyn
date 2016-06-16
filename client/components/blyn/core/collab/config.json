@@ -1,0 +1,24 @@
+{
+	"alias": "InterSpace",
+	"type": "nut.core",
+	"permits": {
+		"adminCollab": {
+			"alias": "admin collab"
+		},
+		"shareCollabs": {
+			"alias": "manage share collab"
+		},
+		"joinCollabs": {
+			"alias": "manage join collab"
+		},
+		"collabNuts": {
+			"alias": "collab nuts"
+		}
+	},
+	"types": {
+		"normal": {
+			"name": "normal",
+			"alias": "normal collab"
+		}
+	}
+}

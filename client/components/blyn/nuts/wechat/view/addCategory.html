@@ -1,0 +1,39 @@
+<form class="form-inline" novalidate name="addCategoryForm">
+  <table class="table table-hover">
+    <colgroup>
+      <col class="span1">
+      <col class="span7">
+    </colgroup>
+    <thead>
+    <tr>
+      <th>属性</th>
+      <th>内容</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td> 分类标题</td>
+      <td>
+        <input placeholder="分类标题..." required class="form-control" type="text" ng-model="category.name"
+               name="categoryName">
+      </td>
+    </tr>
+    <tr>
+      <td> 封面图片</td>
+      <td>
+        <input required class="form-control" id="cover" type="file" ng-model="category.cover" name="categoryCover">
+      </td>
+    </tr>
+    <tr>
+      <td> 排序号</td>
+      <td>
+        <input placeholder="排序号..." required class="form-control" type="text" ng-model="category.sort"
+               name="categorySort">
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</form>
+<div class="row-fluid">
+  <button class="btn btn-primary" ng-click="site.saveCategory(category)">保存设置</button>
+</div>

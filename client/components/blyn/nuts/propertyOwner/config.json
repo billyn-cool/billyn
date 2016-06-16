@@ -1,0 +1,17 @@
+{
+	"type": "nut.normal",
+	"permits": {
+		"manageOwnerProperty": {
+			"alias": "管理个人资产"
+		},
+		"ownerProfile": {
+			"alias": "个人档案"
+		},
+		"propertyEvaluation": {
+			"alias": "资产评估"
+		},
+		"propertyReport": {
+			"alias": "资产报告"
+		}
+	}
+}

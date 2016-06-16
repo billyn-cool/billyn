@@ -1,0 +1,86 @@
+/* applicationIcon */
+.applicationIcon {
+    display: inline-block;
+}
+.applicationIcon-icon {
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    border: 1px solid #D8D8D8;
+    border-radius: 5px;
+    box-shadow: 0px 0px 1px #D8D8D8;
+    vertical-align: middle;
+}
+.applicationIcon-icon img {
+    width: 72px;
+    height: 72px;
+}
+.applicationIcon-name {
+    text-align: center;
+    width: 80px;
+    height: 25px;
+    font-size: 14px;
+    line-height: 25px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+/* appBookmark */
+.appBookmark {
+    margin: 10px 0;
+}
+.appBookmark-show {
+    text-decoration: none;
+}
+.appBookmark-show:after {
+    content: " ";
+    display: block;
+    clear: both;
+}
+.appBookmark-icon {
+    width: 40px;
+    float: left;
+    text-align: center;
+    font-size: 20px;
+    line-height: 100%;
+    vertical-align: top;
+}
+.appBookmark-text {
+    width: calc(100% - 40px);
+    float: left;
+}
+.appBookmark-name {
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+}
+.appBookmark-detail {
+    color: #666;
+}
+.appBookmark-link {
+    margin-left: 40px;
+}
+.appBookmark-link a {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+/* firstWelcome */
+.firstWelcome {
+    width: 600px;
+    margin: 0 auto;
+}
+.firstWelcome-title {
+    margin:50px 0;
+    text-align:center;
+    font-size:24px;
+    color:gray;
+}
+.firstWelcome-operation {
+    margin-bottom: 40px;
+    text-align:center;
+}
+.firstWelcome-description {
+    font-size:16px
+}

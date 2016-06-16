@@ -1,0 +1,11 @@
+{
+	"type": "nut.normal",
+	"permits": {
+		"managePropertyProduct": {
+			"alias": "管理置业产品"
+		},
+		"searchProduct": {
+			"alias": "查找置业"
+		}
+	}
+}

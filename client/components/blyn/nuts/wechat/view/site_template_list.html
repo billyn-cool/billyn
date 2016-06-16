@@ -1,0 +1,160 @@
+<style>
+  /* 模板 */
+  .template_select {
+    float: left;
+    width: 100%;
+    zoom: 1;
+    margin: 0 0 20px;
+  }
+
+  .template_select li {
+    float: left;
+    position: relative;
+    margin: 0 25px;
+    width: 170px;
+    height: 410px;
+    text-align: center;
+    list-style: none;
+    cursor: pointer
+  }
+
+  .template_select li .phone {
+    width: 170px;
+    height: 353px;
+    position: relative;
+    background: url(/components/blyn/nuts/wechat/view/images/iphone0.png) no-repeat;
+  }
+
+  .template_select li .phone img {
+    position: absolute;
+    width: 144px;
+    height: 240px;
+    top: 55px;
+    left: 13.5px;
+  }
+
+  .template_select li.selected .phone, .template_select li.hover .phone {
+    background: url(/components/blyn/nuts/wechat/view/images/iphone1.png) no-repeat;
+  }
+
+  .template_item p {
+    padding-top: 10px;
+  }
+
+  .template_item input {
+    display: inline;
+    vertical-align: middle;
+    margin: 0 5px 0 0;
+  }
+
+  .template_item label {
+    display: inline;
+  }
+
+  .template_item .use_tips {
+    z-index: 99;
+    position: absolute;
+    top: 50px;
+    right: -146px;
+    background: #333;
+    padding: 10px;
+    color: #fff;
+    width: 150px;
+    border-radius: 10px;
+    text-align: left;
+    display: none
+  }
+
+  .normal_tips {
+    margin-bottom: 20px;
+    background: #f4ffc1;
+    padding: 15px;
+    color: #da4224;
+    word-break: break-all;
+    /*margin: 0 20px;*/
+  }
+</style>
+<p class="normal_tips">
+  <b class="fa fa-info-circle"></b>
+  点击选中下面模板即可实时切换模板，请慎重点击。选择后可点击
+  <a href="#">这里</a> 进行预览
+</p>
+<ul class="template_select">
+  <li class="template_item">
+    <div class="phone">
+      <img src="/components/blyn/nuts/wechat/view/images/TemplateListsV3_icon.png">
+    </div>
+    <p><input type="radio" name="V3" id="template_V3" value="V3">
+      <label for="template_V3">图文列表V-3(大图)</label></p>
+  </li>
+  <li class="template_item">
+    <div class="phone">
+      <img src="/components/blyn/nuts/wechat/view/images/TemplateListsV2_icon.png">
+    </div>
+    <p><input type="radio" name="V2" id="template_V2" value="V2">
+      <label for="template_V2">相册列表模板V-1</label></p>
+  </li>
+  <li class="template_item">
+    <div class="phone">
+      <img src="/components/blyn/nuts/wechat/view/images/TemplateListsV1_icon.png">
+    </div>
+    <p><input type="radio" name="V1" id="template_V1" value="V1">
+      <label for="template_V1">图文列表V-1</label></p>
+  </li>
+  <li class="template_item">
+    <div class="phone">
+      <img src="/components/blyn/nuts/wechat/view/images/TemplateListsV4_icon.png">
+    </div>
+    <p><input type="radio" name="V4" id="template_V4" value="V4">
+      <label for="template_V4">图文列表V-1(无banner)</label></p>
+  </li>
+</ul>
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    var templateData = $('input[name = ""]');
+    templateData.attr("checked", "checked");
+    templateData.parent().parent().addClass('selected');
+    //选择模板并且ajax提交
+    //选择Ajax提交
+    $('.template_item').click(function () {
+      if (!$(this).hasClass('selected')) {
+        $(this).addClass('selected');
+        $(this).siblings().removeClass("selected");
+        $(this).find('input').click();
+
+        var value = $(this).find('input').val();
+        $.ajax({
+//          url: '/billyn-dev-pro/index.php/site/index/cooker/BSite%40addTemplateIndex/theme/devoops/theLinkId/templateIndex/b_ajaxLinkId/b68ad5262138116af6da507c0f30294b',
+//          type: 'POST',
+//          data: {templateIndex: value},
+//          datatype: 'json',
+//          // async: false,
+//          beforeSend: function () {
+//            $("#ajax-loaderdiv").show();
+//          },
+//          success: function (html) {
+//            // on success do some validation or refresh the content div to display the uploaded images
+//            jQuery("#show_showTemplateContent_content").html(html);
+//          },
+//          complete: function () {
+//            $("#ajax-loaderdiv").hide();
+//          },
+//          error: function (data) {
+//            alert("There may a error on uploading. Try again later");
+//          },
+//          cache: false
+        });
+
+        return false;
+      }
+    });
+  });
+  $('.template_item').hover(function () {
+    $(this).find('.use_tips').stop().fadeIn();
+    $(this).addClass('hover');
+  }, function () {
+    $(this).find('.use_tips').stop().fadeOut();
+    $(this).removeClass('hover');
+  })
+</script>
+

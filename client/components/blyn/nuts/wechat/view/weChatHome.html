@@ -1,0 +1,159 @@
+<style>
+  .institution p strong {
+    font-size: 20px;
+    margin: 10px 30px 0 10px;
+  }
+
+  .institution p {
+    color: #1E90FF;
+    font-size: 20px;
+    margin-top: 10px;
+  }
+
+  .func1 ul li {
+    list-style: none;
+  }
+
+  .box_con {
+    font-size: 14px;
+
+  }
+
+  .ico {
+    width: 290px;
+    height: 160px;
+    border: 1px solid dodgerblue;
+    border-radius: 10px;
+    position: relative;
+    display: inline-block;
+    box-shadow: 10px 10px 5px #AAA;
+    margin: 15px;
+  }
+
+  /*.ico:hover{
+          width: 280px;
+          height: 160px;
+          border: 2px solid #C8DEF4;
+          background-color: #fff;
+          box-shadow: 10px 10px 5px #AAA;
+  }*/
+  .icon {
+    height: 150px;
+    width: 40px;
+    background: url(/components/blyn/core/user/view/img/event_list_icon.png) no-repeat;
+    position: absolute;
+    top: 10px;
+    left: 3px;
+  }
+
+  .func1 {
+    height: 150px;
+    width: 240px;
+    position: absolute;
+    left: 40px;
+    top: 0px;
+  }
+
+  .func1 ul {
+    position: absolute;
+    top: 5px;
+    left: -20px;
+  }
+
+  .func1 ul li {
+    padding-top: 5px;
+  }
+
+  .func1 ul li span {
+    padding-left: 50px;
+    /*cursor: pointer;*/
+  }
+
+  .func1 ul li:first-child {
+    color: dodgerblue;
+    font-size: 20px;
+  }
+
+  .row-fluid {
+    padding-top: 20px;
+  }
+
+</style>
+<div class="row">
+  <div class="col-md-11">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        应用功能
+      </div>
+      <div class="institution">
+        <p style="margin-bottom: 0px;padding-left: 15px;">所属机构<strong>机构1</strong></p>
+      </div>
+      <div class="panel-body" style="padding-top: 0px;">
+        <div class="box_con">
+          <div class="ico">
+            <div class="icon"></div>
+            <div class="func1">
+              <ul>
+                <li><p><span><strong>微信公众号配置</strong></span></p></li>
+                <li><p>功能类型<span><strong>微信公众号配置</strong></span></p></li>
+                <li><p>所属角色<span><strong>系统管理员</strong></span></p></li>
+                <li><p style="text-align: center;">
+                  <a href="#">权限设置</a> | <a ui-sref="weChat.config">设置微信公众号</a></p></li>
+              </ul>
+            </div>
+          </div>
+          <div class="ico">
+            <div class="icon"></div>
+            <div class="func1">
+              <ul>
+                <li><p><span><strong>自定义菜单</strong></span></p></li>
+                <li><p>功能类型<span><strong>自定义菜单</strong></span></p></li>
+                <li><p>所属角色<span><strong>系统管理员</strong></span></p></li>
+                <li><p style="text-align: center;">
+                  <a href="#">权限设置</a> | <a ui-sref="weChat.menu">设置自定义菜单</a></p></li>
+              </ul>
+            </div>
+          </div>
+          <div class="ico">
+            <div class="icon"></div>
+            <div class="func1">
+              <ul>
+                <li><p><span><strong>关键词回复</strong></span></p></li>
+                <li><p>功能类型<span><strong>关键词回复</strong></span></p></li>
+                <li><p>所属角色<span><strong>系统管理员</strong></span></p></li>
+                <li><p style="text-align: center;">
+                  <a href="#">权限设置</a> | <a ui-sref="weChat.keyWord.single">设置关键词回复</a></p></li>
+              </ul>
+            </div>
+          </div>
+          <div class="ico">
+            <div class="icon"></div>
+            <div class="func1">
+              <ul>
+                <li><p><span><strong>群发功能</strong></span></p></li>
+                <li><p>功能类型<span><strong>群发功能</strong></span></p></li>
+                <li><p>所属角色<span><strong>系统管理员</strong></span></p></li>
+                <li><p style="text-align: center;">
+                  <a href="#">权限设置</a> | <a ui-sref="weChat.mass">设置群发</a></p></li>
+              </ul>
+            </div>
+          </div>
+          <div class="ico">
+            <div class="icon"></div>
+            <div class="func1">
+              <ul>
+                <li><p><span><strong>微网站</strong></span></p></li>
+                <li><p>功能类型<span><strong>微网站</strong></span></p></li>
+                <li><p>所属角色<span><strong>系统管理员</strong></span></p></li>
+                <li><p style="text-align: center;">
+                  <a href="#">权限设置</a> | <a ui-sref="weChat.site.category">设置微网站</a></p></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

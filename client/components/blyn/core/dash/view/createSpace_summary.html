@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-md-11">
+    <div class="panel panel-info">
+      <div class="panel-heading">创建机构--&gt;总结</div>
+      <div class="panel-body">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>属性</th>
+            <th>输入值</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>机构ID:</td>
+            <td>{{createSpace.SpaceService.spaceData.id}}</td>
+          </tr>
+          <tr>
+            <td>机构名称:</td>
+            <td>{{createSpace.SpaceService.spaceData.name}}</td>
+          </tr>
+          <tr>
+            <td>机构分类:</td>
+            <td>
+              {{createSpace.getSpaceCategory(createSpace.SpaceService.spaceData.category)}}
+              </td>
+          </tr>
+          <tr>
+            <td>机构数据:</td>
+            <td>
+              {{createSpace.getSpaceDb(createSpace.SpaceService.spaceData.db)}}
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div>
+          <button class="btn btn-primary" ng-click="createSpace.createSpace()">完成创建</button>
+          <button class="btn btn-default" ui-sref="user.createSpace">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

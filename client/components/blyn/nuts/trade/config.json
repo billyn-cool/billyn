@@ -1,0 +1,14 @@
+{
+	"type":"nut.normal",
+	"permits": {
+		"nut.admin": {
+			"alias": "admin"
+		},
+		"nut.member": {
+			"alias": "member"
+		},
+		"nut.customer": {
+			"alias": "customer"
+		}
+	}
+}

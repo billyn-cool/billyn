@@ -1,0 +1,34 @@
+{
+	"type": "nut.core",
+	"permits": {
+		"spaceAdmin": {
+			"alias": "space admin"
+		},
+		"spaceManager": {
+			"alias": "space member"
+		},
+		"spaceCustomer": {
+			"alias": "space customer"
+		}
+	},
+	"types": {
+		"normal": {
+			"name": "normal",
+			"alias": "普通机构",
+			"description": "普通机构",
+			"roles": [
+				"admin","manager","member","customer"
+			],
+			"apps": ["weMember"]			
+		},
+		"agent.propertyManagement": {
+			"name": "agent.propertyManagement",
+			"alias": "固定资产管理公司",
+			"description": "专注于客户固定资产项目管理的置业管理公司",
+			"roles": [
+				"admin","manager","member","customer"
+			],
+			"apps": ["weMember","propertyManagement"]
+		}
+	}
+}

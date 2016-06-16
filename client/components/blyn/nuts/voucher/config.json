@@ -1,0 +1,230 @@
+{
+	"type": "nut.normal",
+	"permits": {
+		"adminVoucher": {
+			"alias": "admin voucher"
+		},
+		"manageVoucher": {
+			"alias": "manage voucher"
+		},
+		"useVoucher": {
+			"alias": "use voucher"
+		}
+	},
+	"defaultVouchers": {
+		"discount_10": {
+			"type": {
+				"name": "discount.percent",
+				"alias": "discount percent",
+				"attributes": {
+					"unit": "percent"
+				}
+			},
+			"alias": "9折券",
+			"description": "",
+			"value": 10,
+			"grants": {
+				"customer": "allow.apply,allow.collect,allow.use",
+				"manager": "allow.issue",
+				"cashier": "allow.cash",
+				"admin": "allow.admin"
+			},
+			"timeslots": {
+				"use": {
+					"startTime": "now",
+					"endTime.offset.value": 15,
+					"endTime.offset.timeUnit": "day"
+				}
+			}
+		},
+		"birth_discount_20": {
+			"type": {
+				"name": "discount.percent",
+				"alias": "discount percent",
+				"attributes": {
+					"unit": "percent"
+				}
+			},
+			"alias": "生日8折券",
+			"description": "",
+			"value": 20,
+			"grants": {
+				"customer": "allow.apply,allow.collect,allow.use",
+				"manager": "allow.issue",
+				"cashier": "allow.cash",
+				"admin": "allow.admin"
+			},
+			"timeslots": {
+				"use": {
+					"startTime": "birth",
+					"endTime.offset.value": 15,
+					"endTime.offset.timeUnit": "day"
+				}
+			}
+		},
+		"lunar_new_year_discount_20": {
+			"type": {
+				"name": "lunarNewYear.discount.percent",
+				"alias": "Lunar New Year discount percent",
+				"attributes": {
+					"unit": "percent"
+				}
+			},
+			"alias": "春节8折券",
+			"description": "",
+			"value": -20,
+			"grants": {
+				"customer": "allow.apply,allow.collect,allow.use",
+				"manager": "allow.issue",
+				"cashier": "allow.cash",
+				"admin": "allow.admin"
+			},
+			"timeslots": {
+				"use": {
+					"startTime": "lunar_new_year",
+					"startTime.offset.value": -15,
+					"startTime.offset.timeUnit": "day",
+					"endTime.offset.value": 15,
+					"endTime.offset.timeUnit": "day"
+				}
+			}
+		},
+		"group_discount_20": {
+			"type": {
+				"name": "lunarNewYear.discount.percent",
+				"alias": "Lunar New Year discount percent",
+				"attributes": {
+					"unit": "percent"
+				}
+			},
+			"alias": "团购8折券",
+			"description": "",
+			"value": 20,
+			"grants": {
+				"customer": "allow.apply,allow.collect,allow.use",
+				"manager": "allow.issue",
+				"cashier": "allow.cash",
+				"admin": "allow.admin"
+			},
+			"timeslots": {
+				"use": {
+					"startTime": "now",
+					"endTime.offset.value": 15,
+					"endTime.offset.timeUnit": "day",
+					"unit": "day"
+				}
+			},
+			"minMembers": 10,
+			"minExpense": {
+				"amount": 50,
+				"currency": "yuan"
+			}
+		},
+		"yuan_50": {
+			"type": {
+				"name": "gift.money.yuan",
+				"alias": "gift money yuan",
+				"attributes": {
+					"currency": "yuan"
+				}
+			},
+			"alias": "50元现金券",
+			"value": 50,
+			"grants": {
+				"customer": "allow.apply,allow.collect,allow.use",
+				"manager": "allow.issue",
+				"cashier": "allow.cash",
+				"admin": "allow.admin"
+			},
+			"timeslots": {
+				"use": {
+					"startTime": "now",
+					"endTime.offset.value": 15,
+					"endTime.offset.timeUnit": "day"
+				}
+			}
+		},
+		"birth_yuan_50": {
+			"type": {
+				"name": "birth.gift.money.yuan",
+				"alias": "birth.gift money yuan",
+				"attributes": {
+					"currency": "yuan"
+				}
+			},
+			"alias": "生日50元券",
+			"description": "",
+			"value": 50,
+			"grants": {
+				"customer": "allow.apply,allow.collect,allow.use",
+				"manager": "allow.issue",
+				"cashier": "allow.cash",
+				"admin": "allow.admin"
+			},
+			"timeslots": {
+				"use": {
+					"startTime": "birth",
+					"endTime.offset.value": 15,
+					"endTime.offset.timeUnit": "day"
+				}
+			}
+		},
+		"lunar_new_year_yuan_50": {
+			"type": {
+				"name": "luar.gift.money.yuan",
+				"alias": "lunar.gift money yuan",
+				"attributes": {
+					"currency": "yuan"
+				}
+			},
+			"alias": "春节50元券",
+			"description": "",
+			"value": 50,
+			"grants": {
+				"customer": "allow.apply,allow.collect,allow.use",
+				"manager": "allow.issue",
+				"cashier": "allow.cash",
+				"admin": "allow.admin"
+			},
+			"timeslots": {
+				"use": {
+					"startTime": "lunar_new_year",
+					"startTime.offset.value": -15,
+					"startTime.offset.timeUnit": "day",
+					"endTime.offset.value": 15,
+					"endTime.offset.timeUnit": "day"
+				}
+			}
+		},
+		"group_yuan_100": {
+			"type": {
+				"name": "group.gift.money.yuan",
+				"alias": "group gift money yuan",
+				"attributes": {
+					"currency": "yuan"
+				}
+			},
+			"alias": "团购100元券",
+			"description": "",
+			"value": 100,
+			"grants": {
+				"customer": "allow.apply,allow.collect,allow.use",
+				"manager": "allow.issue",
+				"cashier": "allow.cash",
+				"admin": "allow.admin"
+			},
+			"timeslots": {
+				"use": {
+					"startTime": "now",
+					"endTime.offset.timeUnit": "day",
+					"endTime.offset.value": 15
+				}
+			},
+			"minMembers": 10,
+			"minExpense": {
+				"amount": 50,
+				"currency": "yuan"
+			}
+		}
+	}
+}

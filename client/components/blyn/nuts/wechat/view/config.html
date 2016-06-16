@@ -1,0 +1,68 @@
+<script type="text/javascript">
+  $('#checkAll').click(function (event) {
+    if (this.checked) {
+      // Iterate each checkbox
+      $(':checkbox').each(function () {
+        this.checked = true;
+      });
+    }
+    else {
+      $(':checkbox').each(function () {
+        this.checked = false;
+      });
+    }
+  });
+</script>
+<div class="row">
+  <div class="col-md-11">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <a style="color: white" ui-sref="weChat.home">功能列表</a>\
+        <a style="color: white" href="#">设置机构公众号</a></div>
+      <div class="panel-body">
+        <div class="row" style="margin-top: -12px">
+          <div class="col-md-11 text-right">
+            <legend><h5 class="text-muted"> 设置机构公众号 | <a ui-sref="weChat.type">设置公众号类型</a></h5></legend>
+          </div>
+        </div>
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th><input type="checkbox" name="checkAll" id="checkAll"></th>
+            <th>公众号名称</th>
+            <th>原始ID</th>
+            <th>公众号类型</th>
+            <th>操作</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="weChat in config.WeChatService.weChatData">
+            <td>
+              <input type="checkbox" name="subBox[]" value="5">
+            </td>
+            <td>{{weChat.name}}</td>
+            <td> {{weChat.id}}</td>
+            <td> {{weChat.type}}</td>
+            <td>
+              <div class="row-fluid">
+                <a href="#">设置为当前公众号</a>|
+                <a href="#">修改</a>|
+                <a href="#">删除</a></div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="well">
+  <h5 class="text-warning">尚未设置当前公众号！请及时设置！</h5>
+  <h5 class="text-warning">URL(服务器地址)：<span style="color: red;">http://localhost:9000/wechat/config/4</span></h5>
+  <h5 class="text-warning">Token(令牌)：<span style="color: red;">billyn</span></h5>
+</div>
+<div>
+  <a class="btn btn-primary" ui-sref="weChat.addWeChat">添加公众号
+  </a>
+</div>

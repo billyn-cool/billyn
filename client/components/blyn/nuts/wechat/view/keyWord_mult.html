@@ -1,0 +1,44 @@
+<script type="text/javascript">
+  $('#checkAllSinglePic').click(function (event) {
+    if (this.checked) {
+      // Iterate each checkbox
+      $(':checkbox').each(function () {
+        this.checked = true;
+      });
+    }
+    else {
+      $(':checkbox').each(function () {
+        this.checked = false;
+      });
+    }
+  });
+</script>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th><input type="checkbox" id="checkAllSinglePic"></th>
+    <th>关键词</th>
+    <th>关键词类型</th>
+    <th>图文列表</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="mult in keyWords.WeChatService.multData">
+    <td>
+      <input type="checkbox" name="subBox[]">
+    </td>
+    <td> {{mult.name}}</td>
+    <td> {{mult.type}}</td>
+    <td></td>
+    <td>
+      <div class="row-fluid">
+        <a href="#">编辑</a>|
+        <a href="#">删除</a></div>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div>
+  <a class="btn btn-success" ui-sref="weChat.keyWord.addMult">新增多图文回复</a>
+</div>

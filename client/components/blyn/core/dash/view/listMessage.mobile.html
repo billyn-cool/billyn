@@ -1,0 +1,27 @@
+<style>
+	.icon-point {
+	    display: inline-block;
+	    width: .5rem;
+	    height: .5rem;
+	    border-radius: .06rem;
+	    margin-right: .25rem;
+	    margin-top: -.06rem;
+	    margin-bottom: -.06rem;
+	    background-color: #F5716E;
+	    vertical-align: middle;
+	    background: url(http://tunnel.youth-dream.net/meituan/img/icon-point.png);
+	    background-size: 100%;
+	}
+</style>
+<header class="navbar">
+    <span class="nav-header h1">我的机构书签</span>
+</header>
+<dl class="list">
+    <dd ng-repeat="space in listMessage.spaces">
+        <a ui-sref="pc.space.home({spaceId: space._id})" class="react" >
+            <div class="more more-weak">
+            <i class="icon-point"></i> {{space.alias}}<span  class="more-after"></span>
+            </div>
+        </a>
+    </dd>
+</dl>

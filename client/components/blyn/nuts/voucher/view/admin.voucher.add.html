@@ -1,0 +1,133 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <a class="btn btn-default btn-sm" ui-sref="pc.space.app.voucher.admin.home"><i class="fa fa-chevron-left"></i> 所有优惠券</a>
+  </div>
+  <div class="panel-body">
+    <form class="form-horizontal" novalidate name="voucherForm">
+      <div class="form-group">
+          <label  class="col-sm-2 control-label">优惠券名称</label>
+          <div class="col-sm-10">
+              <input type="text" class="form-control" ng-model="vm.voucher.name" name="voucherName"  placeholder="名称" required>
+              <div ng-show="voucherForm.voucherName.$dirty && voucherForm.voucherName.$invalid">
+                  <span style=" color: red;"> <b>请填写优惠券名称</b></span>
+              </div>
+          </div>
+      </div>
+      <div class="form-group">
+          <label  class="col-sm-2 control-label">优惠券别名</label>
+          <div class="col-sm-10">
+              <input type="text" class="form-control" ng-model="vm.voucher.alias" name="voucherAlias"  placeholder="别名" required>
+              <div ng-show="voucherForm.voucherAlias.$dirty && voucherForm.voucherAlias.$invalid">
+                  <span style=" color: red;"> <b>请填写优惠券别名</b></span>
+              </div>
+          </div>
+      </div>
+      <div class="form-group">
+          <label  class="col-sm-2 control-label">优惠券类型</label>
+          <div class="col-sm-10">
+              <select ng-change="getVoucherType(vm.voucher.typeId, voucher)" class="form-control" ng-model="vm.voucher.typeId" name="voucherType" ng-options="voucherType.id as voucherType.alias for voucherType in vm.vouchersType" required>
+                  <option value="">请选择优惠券类型</option>
+              </select>
+              <div ng-show="voucherForm.voucherType.$dirty && voucherForm.voucherType.$invalid">
+                  <span style=" color: red;"> <b>请选择优惠券类型</b></span>
+              </div>
+          </div>
+      </div>
+      <div class="form-group" ng-show="isDiscount" ><!--style="display: none;"-->
+          <label  class="col-sm-2 control-label">券折扣率（％）</label>
+          <div class="col-sm-10">
+              <input type="number" string-to-number ng-minlength="0" ng-maxlength="2" ng-pattern="/^[0-9]\d*$/"  class="form-control" ng-model="vm.voucher.discount" name="voucherDiscount">
+          </div>
+      </div>
+      <div class="form-group" ng-show="isMoney" ><!--style="display: none;"-->
+          <label  class="col-sm-2 control-label">优惠券金额（元）</label>
+          <div class="col-sm-10">
+              <input type="number" string-to-number  ng-pattern="/^[0-9]\d*$/" class="form-control" ng-model="vm.voucher.money" name="voucherMoney">
+          </div>
+      </div>
+      <div class="form-group" ng-show="isGroup" >
+          <label  class="col-sm-2 control-label">最少团购人数</label>
+          <div class="col-sm-10">
+              <input type="number" string-to-number  ng-pattern="/^[0-9]\d*$/" class="form-control" ng-model="vm.voucher.minCustomer" name="voucherMinCustomer">
+          </div>
+      </div>
+      <div class="form-group">
+          <label  class="col-sm-2 control-label">最低消费金额（元）</label>
+          <div class="col-sm-10">
+              <input type="number" string-to-number  ng-pattern="/^[0-9]\d*$/" class="form-control" ng-model="vm.voucher.allowMinExpense" name="voucherAllowMinExpense">
+          </div>
+      </div>
+      <div class="form-group">
+          <label  class="col-sm-2 control-label">发放方式</label>
+          <div class="col-sm-10">
+              <select class="form-control" ng-model="vm.voucher.allowAssigner" name="voucherAllowAssigner" ng-options="allowAssigner.id as allowAssigner.alias for allowAssigner in vm.allowAssigners">
+                  <option value="" >请选择发放方式</option>
+              </select> 
+          </div>
+      </div>
+      <div class="form-group">
+          <label  class="col-sm-2 control-label">发放条件</label>
+          <div class="col-sm-10">
+              <select class="form-control" ng-model="vm.voucher.permitId" name="voucherPermit" ng-options="voucherPermit.id as voucherPermit.alias for voucherPermit in vm.voucherPermits">
+                  <option value="">请选择发放条件</option>
+              </select>
+              <div ng-show="voucherForm.voucherPermit.$dirty && voucherForm.voucherPermit.$invalid">
+                  <span style=" color: red;"> <b>请选择发放条件</b></span>
+              </div>
+          </div>
+      </div>
+      <div class="form-group" ng-show="isBirth" >
+          <label  class="col-sm-2 control-label">生日前天数</label>
+          <div class="col-sm-10">
+              <input type="number" string-to-number ng-minlength="0" ng-maxlength="3" ng-pattern="/^[0-9]\d*$/" class="form-control" ng-model="vm.voucher.advanceDay" name="voucherAdvanceDay">
+          </div>
+      </div>
+      <div class="form-group" ng-show="isFestival" >
+          <label  class="col-sm-2 control-label">节日前天数</label>
+          <div class="col-sm-10">
+              <input type="number" string-to-number ng-minlength="0" ng-maxlength="3" ng-pattern="/^[0-9]\d*$/" class="form-control" ng-model="vm.voucher.advanceDay" name="voucherAdvanceDay">
+          </div>
+      </div>
+      <div class="form-group" ng-hide="isDatetimepicker">
+          <label  class="col-sm-2 control-label">开始时间：</label>
+          <div class="col-sm-10">
+              <input type="text" id="myStartTime" class="form-control" ng-model="vm.voucher.startTime" name="voucherStartTime">
+          </div>
+      </div>
+      <div class="form-group" ng-hide="isDatetimepicker">
+          <label  class="col-sm-2 control-label">结束时间：</label>
+          <div class="col-sm-10">
+              <input type="text" id="myEndTime" class="form-control" ng-model="vm.voucher.endTime" name="voucherEndTime">
+          </div>
+      </div>
+      <div class="form-group" ng-show="isBirth" >
+          <label  class="col-sm-2 control-label">生日后天数</label>
+          <div class="col-sm-10">
+              <input type="number" string-to-number ng-minlength="0" ng-maxlength="3" ng-pattern="/^[0-9]\d*$/" class="form-control" ng-model="vm.voucher.extendDay" name="voucherExtendDay">
+          </div>
+      </div>
+      <div class="form-group" ng-show="isFestival" >
+          <label  class="col-sm-2 control-label">节日后天数</label>
+          <div class="col-sm-10">
+              <input type="number" string-to-number ng-minlength="0" ng-maxlength="3" ng-pattern="/^[0-9]\d*$/" class="form-control" ng-model="vm.voucher.extendDay" name="voucherExtendDay">
+          </div>
+      </div>
+      <div class="form-group">
+          <label  class="col-sm-2 control-label">优惠券描述</label>
+          <div class="col-sm-10">
+              <textarea class="form-control" rows="3" ng-model="vm.voucher.description" name="voucherDescription" ></textarea>
+          </div>
+      </div>
+      <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-primary" ng-disabled="voucherForm.$invalid" ng-click="saveVoucher(voucher)">保存</button>
+          </div>
+      </div>
+      <div class="form-group" >
+          <div class="col-sm-offset-2 col-sm-10">
+              <span class="help-block">{{saveVoucherMsg}}</span>
+          </div>
+      </div>
+    </form>
+  </div>
+</div>

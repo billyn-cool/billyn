@@ -1,0 +1,158 @@
+<!-- This is the uib-accordion-group template -->
+<script type="text/ng-template" id="uib-accordion-group-template.html">
+  <div class="panel" ng-class="panelClass || 'panel-default'">
+    <div role="tab" id="{{::headingId}}" aria-selected="{{isOpen}}" class="panel-heading" ng-keypress="toggleOpen($event)">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" href aria-expanded="{{isOpen}}" aria-controls="{{::panelId}}" tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading"><span uib-accordion-header ng-class="{'text-muted': isDisabled}">{{heading}}</span></a>
+      </h4>
+    </div>
+    <div id="{{::panelId}}" aria-labelledby="{{::headingId}}" aria-hidden="{{!isOpen}}" role="tabpanel" class="panel-collapse collapse" uib-collapse="!isOpen">
+      <div class="" style="" ng-transclude></div>
+    </div>
+  </div>
+</script>
+
+<!-- uib-accordion -->
+<style type="text/css">
+  .accordion-toggle:focus {
+    outline: 0;
+  }
+  .header-label {
+    display: inline-block;
+    height: 20px;
+    margin-left: 10px
+  }
+  table.user-roles {
+    margin: 0;
+  }
+</style>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="btn-group btn-group-sm" role="group">
+          <a class="btn btn-default active">机构角色管理</a>
+          <a class="btn btn-default" ui-sref="pc.space.app.role.adminUserRole.home">用户角色管理</a>
+        </div>
+      </div>
+      <div class="panel-body">
+
+        <table class="table user-roles">
+          <thead>
+          <th>别名</th>
+          <th>角色</th>
+          <th>操作</th>
+          </thead>
+          <tbody>
+          <tr ng-repeat="role in vm.adminRoles">
+            <td>
+              <span class="label label-danger">{{role.alias}}</span>
+            </td>
+            <td>
+              <span class="badge">{{role.name}}</span>
+            </td>
+            <td>
+              <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#addRoleModal" ng-click="vm.currentRole=role">
+                添加子角色
+              </button>
+              <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteRoleModal" ng-click="vm.currentRole=role" ng-hide="role.fullname == 'root.role.admin'">
+                删除
+              </button>
+            </td>
+          </tr>
+          <tr ng-repeat="role in vm.memberRoles">
+            <td>
+              <span class="label label-warning">{{role.alias}}</span>
+            </td>
+            <td>
+              <span class="badge">{{role.name}}</span>
+            </td>
+            <td>
+              <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#addRoleModal" ng-click="vm.currentRole=role">
+                添加子角色
+              </button>
+              <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteRoleModal" ng-click="vm.currentRole=role" ng-hide="role.fullname == 'root.role.admin'">
+                删除
+              </button>
+            </td>
+          </tr>
+          <tr ng-repeat="role in vm.customerRoles">
+            <td>
+              <span class="label label-success">{{role.alias}}</span>
+            </td>
+            <td>
+              <span class="badge">{{role.name}}</span>
+            </td>
+            <td>
+              <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#addRoleModal" ng-click="vm.currentRole=role">
+                添加子角色
+              </button>
+              <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteRoleModal" ng-click="vm.currentRole=role" ng-hide="role.fullname == 'root.role.admin'">
+                删除
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteRoleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+  style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">删除角色</h4>
+      </div>
+      <div class="modal-body">
+        确定要彻底删除&nbsp;<span class="label label-danger">{{vm.currentRole.name}}</span>&nbsp;这一角色吗？
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <a data-dismiss="modal" class="btn btn-danger" ng-click="vm.delete()">删除角色</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="addRoleModal" tabindex="-1" role="dialog" aria-labelledby="addRoleModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel1">添加角色</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="roleName" class="col-sm-2 control-label">角色名</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="roleName" ng-model="vm.newRole.name">
+            </div>
+            <label for="roleAlias" class="col-sm-2 control-label">别名</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="roleAlias" ng-model="vm.newRole.alias">
+            </div>
+          </div>
+          <!--<div class="form-group" style="margin-top: 30px;">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-primary" ng-click="vm.save()">保存</button>
+            </div>
+          </div>-->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <a data-dismiss="modal" class="btn btn-primary"  ng-click="vm.save()">保存</a>
+      </div>
+    </div>
+  </div>
+</div>

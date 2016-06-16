@@ -1,0 +1,53 @@
+<link href="http://tunnel.youth-dream.net/meituan/css/main.css" rel="stylesheet">
+<style>
+    @font-face {
+        font-family: 'cate_icon';
+        src: url(http://ms0.meituan.net/touch/css/i/fonts/cate4.woff?v4) format("woff"), url(http://ms0.meituan.net/touch/css/i/fonts/cate4.otf?v4); }
+    @font-face {
+        font-family: 'base_icon';
+        src: url(http://ms0.meituan.net/touch/css/i/fonts/base14.woff) format("woff"), url(http://ms0.meituan.net/touch/css/i/fonts/base14.otf); }
+</style>
+<style type="text/css">
+	body {
+		background: none !important;
+	    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.demo{
+        margin-left: 0.2rem;
+        font-size: 1.28em;
+        margin-top: 0.2rem;
+    }
+    .demo a{
+        margin-right: 0.2rem;
+        text-decoration: underline;
+        color: black;
+    }
+    footer {
+	    padding: .4rem .2rem;
+	}
+	dl.list{
+		margin-top:0px;
+	}
+</style>
+
+	<title>比邻企业云</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="format-detection" content="address=no">
+<div ui-view></div>
+<footer>
+    <div class="footer-copyright">
+        <div class="hr"></div>
+        <span class="footer-copyright-text">©2016 比邻企业云 <a href="http://www.billyn.net/" target="_blank"></a></span>
+    </div>
+</footer>
+<div class="demo">个人空间：
+	<a href="#">信息中心</a>
+	<a ui-sref="mobile.voucher.valid">代金券</a>
+	<a ui-sref="mobile.profile">个人信息修改</a>
+</div>
+<div class="demo"><a href="#">龙湖地产</a></div>
+<div class="demo"><a ui-sref="mobile.dashboard">机构书签</a></div>

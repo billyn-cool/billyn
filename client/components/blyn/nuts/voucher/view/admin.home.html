@@ -1,0 +1,63 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="btn-group btn-group-sm" role="group">
+      <a class="btn btn-default active" ui-sref="pc.space.app.voucher.admin.home">所有优惠券</a>
+      <a class="btn btn-default" ui-sref="pc.space.app.voucher.admin.typeList">优惠券类型</a>
+    </div>
+    <a class="btn btn-default btn-sm pull-right" ui-sref="pc.space.app.voucher.admin.addVoucher">新增优惠券</a>
+  </div>
+  <div class="panel-body">
+    <table class="table user-roles">
+      <thead>
+        <th>名称</th>
+        <th>别名</th>
+        <th>类型</th>
+        <th>状态</th>
+        <th>操作</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="voucher in vm.vouchers">
+          <td>
+            voucher1
+          </td>
+          <td>
+            优惠券1
+          </td>
+          <td>
+            1
+          </td>
+          <td>
+            0
+          </td>
+          <td>
+            <button type="button" class="btn btn-default btn-xs" ui-sref="pc.space.app.voucher.admin.addVoucher({voucherId:1})">
+            	修改
+            </button>
+            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal">
+            	删除
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">删除优惠券</h4>
+      </div>
+      <div class="modal-body">
+        确定要删除&nbsp;<span class="text-danger">优惠券1</span>&nbsp;这一优惠券吗？
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <a data-dismiss="modal" class="btn btn-danger" href="#">删除</a>
+      </div>
+    </div>
+  </div>
+</div>

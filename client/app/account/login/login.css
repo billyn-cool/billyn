@@ -1,0 +1,78 @@
+/* login page */
+.login-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+.login-main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 600px;
+  background-image: url(/assets/images/buildings.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+.login-header {
+  height: 100px;
+}
+.login-logo {
+  margin: 20px;
+  font-size: 30px;
+  color: white;
+}
+.login-body {
+  /*height: 400px;*/
+}
+.login-panel {
+  width: 300px;
+  /*height: 400px;*/
+  margin: 0 auto;
+  border-top: 5px solid #428bca;
+  /*border: 1px solid gray;*/
+  box-shadow: 0 0 5px  black;
+  background-color: white;
+}
+.login-panel h1 {
+  color: #100f0f;
+  font-size: 22px;
+  font-weight: 300;
+  margin-bottom: 15px;
+  margin: 0;
+  padding: 0;
+}
+.login-panel hr {
+  margin: 0px 0;
+}
+.login-box {
+  padding: 15px;
+}
+.login-form {
+  margin-top: 10px;
+}
+a.login-socialAccounts {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 30px;
+  line-height: 50px;
+  vertical-align: middle;
+  color: white;
+}
+.login-footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 50px;
+  background: url(/assets/images/footer_bg.png) repeat;
+  color: white;
+  line-height: 50px;
+  text-align: center;
+}

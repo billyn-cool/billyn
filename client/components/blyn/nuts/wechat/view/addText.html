@@ -1,0 +1,40 @@
+<form class="form-inline" novalidate name="addTextForm">
+  <table class="table table-hover">
+    <colgroup>
+      <col class="span1">
+      <col class="span7">
+    </colgroup>
+    <thead>
+    <tr>
+      <th>属性</th>
+      <th>内容</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td> 关键词</td>
+      <td>
+        <input placeholder="关键词..." required class="form-control" type="text" ng-model="text.name" name="textName">
+      </td>
+    </tr>
+    <tr>
+      <td> 关键词类型</td>
+      <td>
+        <select required class="form-control" ng-model="text.tyle" name="textType">
+          <option value="completeMatching">完全匹配</option>
+          <option value="fuzzyMatching">模糊匹配</option>
+        </select></td>
+    </tr>
+    <tr>
+      <td> 内容</td>
+      <td>
+        <textarea ols="30" rows="5" placeholder="内容..." required class="form-control" ng-model="text.content"
+                  name="textContent"></textarea>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</form>
+<div class="row-fluid">
+  <button class="btn btn-info" ng-click="keyWords.saveText(text)">保存设置</button>
+</div>

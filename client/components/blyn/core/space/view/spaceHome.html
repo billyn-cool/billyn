@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-sm-4">
+        <div class="userSection">
+            <div class="userSection-content">
+                <div class="userSection-head">
+                    <img src="components/navbar/view/img/avatar.jpg" class="img-rounded" alt="avatar">
+                </div>
+                <div class="userSection-body">
+                    <div class="userSection-info">
+                        <span class="userSection-hello">嗨，</span>
+                        <a class="userSection-userLink" href="#">Jane Devoops</a>
+                    </div>
+                    <div class="userSection-info">
+                        当前机构：{{vm.space.alias}}
+                    </div>
+                    <div class="userSection-info">
+                        在机构中的角色：管理员
+                    </div>
+                    <div class="userSection-info">
+                        机构创建者：<a href="#">Jane Devoops</a>
+                    </div>
+                    <div class="userSection-info">
+                        机构类型：{{vm.space.typeId}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="row">
+            <div class="col-sm-6" ng-repeat="app in vm.space.apps" style="margin-bottom: 20px;">
+                <div class="functionSection">
+                    <div class="functionSection-content">
+                        <div class="functionSection-head">
+                            <div class="functionSection-icon">
+                                <span class="fa fa-gear"></span>
+                            </div>
+                        </div>
+                        <div class="functionSection-body">
+                            <div class="functionSection-body-content">
+                                <div class="functionSection-top">
+                                    <a class="functionSection-title" ui-sref="pc.space.app.home({appId:app._id})">{{app.alias|translate}}</a>
+                                </div>
+                                <div class="functionSection-middle">
+                                    功能类型，机构管理，所属角色，系统管理员
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

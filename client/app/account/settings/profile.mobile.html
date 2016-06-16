@@ -1,0 +1,42 @@
+<style>
+    .btn-wrapper {
+        margin: .2rem .2rem;
+        padding: 0;
+    }
+
+    dd>label.react {
+        padding: .28rem .2rem;
+    }
+
+    .kv-line h6 {
+    	width: 1.2rem;
+    }
+</style>
+<header class="navbar">
+    <span class="nav-header h1">我的信息</span>
+</header>
+<dl class="list">
+        <dl class="list list-in">
+        	<dd>
+        		<dl>
+                    <dd class="dd-padding kv-line"><h6>登录名:</h6>
+                    	<input type="text" class="kv-v input-weak" placeholder="姓名..." value="{{current.user.loginId}}" readonly>  
+                    </dd>
+                    <dd class="dd-padding kv-line"><h6>姓&nbsp;&nbsp;&nbsp;名:</h6>
+                    	<input type="text" class="kv-v input-weak" placeholder="姓名...">  
+                    </dd>
+                    <dd class="dd-padding kv-line"><h6>电&nbsp;&nbsp;&nbsp;话:</h6>
+                    	<input type="number" class="kv-v input-weak" id="mobile" placeholder="手机号..."> 
+                    </dd>
+                    <dd class="dd-padding kv-line">
+                        <h6>生&nbsp;&nbsp;&nbsp;日:</h6>
+                        <input type="date" class="kv-v input-weak" placeholder="1995-03-15">
+                        
+                    </dd>
+                </dl>
+            </dd>
+        </dl>
+        <div class="btn-wrapper">
+        	<button class="btn btn-block btn-larger">保存信息</button> 
+        </div>
+</dl>

@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-sm-12" style="margin-bottom: 20px;">
+        <div class="rowTitle">
+            <span style="display: inline-block;" class="animated flipInY">
+                <img src="components/blyn/core/space/view/img/icon64_appwx_logo.png" class="img-rounded" width="50" height="50">
+                &nbsp;
+                <!--{{vm.app.alias}}&#45;&#45;设置功能权限-->
+                {{vm.nut.alias}} - 设置功能权限
+            </span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <table st-table="vm.list" class="table" style="background-color: #fff; border: 1px solid rgb(221, 221, 221);">
+            <thead>
+                <tr>
+                    <th>角色</th>
+                    <th>访问权限</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in vm.list">
+                    <!--<td>{{vm.nut.name}}</td>-->
+                    <td>
+                        <span class="label" ng-class="vm.getLabelClassByRole(row.role.name)">{{row.role.name}}</span>
+                    </td>
+                    <td>
+                        <div class="checkbox checkbox-inline" ng-repeat="item in row.permits">
+                            <label>
+                                <input type="checkbox" id='{{item._id}}' name="{{item._id}}" ng-model="item.checked" ng-change="vm.changePermit(item,row.role)">
+                                {{item.name}}
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

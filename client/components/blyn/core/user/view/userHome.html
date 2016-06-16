@@ -1,0 +1,183 @@
+<!-- This is the uib-accordion-group template -->
+<script type="text/ng-template" id="uib-accordion-group-template.html">
+  <div class="panel" ng-class="panelClass || 'panel-default'">
+    <div role="tab" id="{{::headingId}}" aria-selected="{{isOpen}}" class="panel-heading" ng-keypress="toggleOpen($event)">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" href aria-expanded="{{isOpen}}" aria-controls="{{::panelId}}" tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading"><span uib-accordion-header ng-class="{'text-muted': isDisabled}">{{heading}}</span></a>
+      </h4>
+    </div>
+    <div id="{{::panelId}}" aria-labelledby="{{::headingId}}" aria-hidden="{{!isOpen}}" role="tabpanel" class="panel-collapse collapse" uib-collapse="!isOpen">
+      <div class="" style="" ng-transclude></div>
+    </div>
+  </div>
+</script>
+
+<!-- uib-accordion -->
+<style type="text/css">
+  .accordion-toggle:focus {
+    outline: 0;
+  }
+  .header-label {
+    display: inline-block;
+    height: 20px;
+    margin-left: 10px
+  }
+  table.user-roles {
+    margin: 0;
+  }
+  .label .btn-link {
+    color: #fff;
+  }
+</style>
+
+<!--<div class="panel panel-default">
+  <div class="panel-heading">用户管理</div>
+  <div class="panel-body">
+    <uib-accordion close-others="true">
+      <uib-accordion-group is-open="true" template-url="uib-accordion-group-template.html">
+        <uib-accordion-heading>
+          Jianfeng@qq.com
+          <div class="header-label">
+            <span class="label label-danger">管理员</span>
+          </div>
+        </uib-accordion-heading>
+        <table class="table user-roles">
+          <tr>
+            <th>角色</th>
+            <th>功能</th>
+            <th>操作</th>
+          </tr>
+          <tr>
+            <td>
+              <span class="label label-danger">管理员<button type="button" class="btn btn-link btn-xs" data-toggle="modal" data-target="#myModal">X</button></span>
+            </td>
+            <td>
+              <span class="badge">管理机构</span>
+              <span class="badge">应用商店</span>
+              <span class="badge">管理成员</span>
+              <span class="badge">...</span>
+            </td>
+            <td rowspan="4" style="border-left: 1px solid #ddd">
+              <button type="button" class="btn btn-default btn-sm" ui-sref="pc.space.app.user.assignRole">分配角色</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="label label-warning">成员<button type="button" class="btn btn-link btn-xs" data-toggle="modal" data-target="#myModal">X</button></span>
+            </td>
+            <td>
+              <span class="badge">门店管理</span>
+              <span class="badge">微信配置</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="label label-success">客户<button type="button" class="btn btn-link btn-xs" data-toggle="modal" data-target="#myModal">X</button></span>
+            </td>
+            <td>
+              <span class="badge">访问主页</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="label label-info">自定义角色<button type="button" class="btn btn-link btn-xs" data-toggle="modal" data-target="#myModal">X</button></span>
+            </td>
+            <td>
+              <span class="badge">访问主页</span>
+            </td>
+          </tr>
+        </table>
+      </uib-accordion-group>
+
+      <uib-accordion-group is-open="false" template-url="uib-accordion-group-template.html">
+        <uib-accordion-heading>
+          jiang@qq.com
+          <div class="header-label">
+            <span class="label label-warning">成员</span>
+          </div>
+        </uib-accordion-heading>
+        <table class="table user-roles">
+          <tr>
+            <th>角色</th>
+            <th>功能</th>
+            <th>操作</th>
+          </tr>
+          <tr>
+            <td>
+              <span class="label label-warning">成员<button type="button" class="btn btn-link btn-xs" data-toggle="modal" data-target="#myModal">X</button></span>
+            </td>
+            <td>
+              <span class="badge">门店管理</span>
+              <span class="badge">微信配置</span>
+            </td>
+            <td rowspan="2" style="border-left: 1px solid #ddd">
+              <button type="button" class="btn btn-default btn-sm" ui-sref="pc.space.app.user.assignRole">分配角色</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="label label-success">客户<button type="button" class="btn btn-link btn-xs" data-toggle="modal" data-target="#myModal">X</button></span>
+            </td>
+            <td>
+              <span class="badge">访问主页</span>
+            </td>
+          </tr>
+        </table>
+      </uib-accordion-group>
+    </uib-accordion>
+  </div>
+</div>-->
+<div class="panel panel-default">
+  <div class="panel-heading">用户管理</div>
+  <div class="panel-body">
+    <table class="table user-roles">
+      <thead>
+        <th>用户名</th>
+        <th>用户角色</th>
+        <th>操作</th>
+      </thead>
+      <tbody>
+        <tr data-ng-repeat="user in vm.spaceUsers">
+          <td> {{user.loginId}} </td>
+          <td> 
+            <table>
+             <tr data-ng-repeat="role in user.roles">
+                <td>{{role.alias}}</td>
+             </tr> 
+             </table>
+          </td>
+                  
+          <td>
+            <button type="button" class="btn btn-default btn-xs" ui-sref="pc.space.app.user.assignRole({currentUser: user})">
+            	分配角色
+            </button>
+            <!--<button type="button" class="btn btn-danger btn-xs" ui-sref="pc.space.app.user.deleteRole({currentUser: user})">
+            	删除角色
+            </button>-->
+          </td>
+        </tr>
+      
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">删除角色</h4>
+      </div>
+      <div class="modal-body">
+        确定要删除<b class="text-primary">Jiangfeng@qq.com</b>的&nbsp;<span class="label label-danger">管理员</span>&nbsp;角色吗？
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <a data-dismiss="modal" class="btn btn-danger" href="#">删除角色</a>
+      </div>
+    </div>
+  </div>
+</div>

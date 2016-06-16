@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-sm-12" style="margin-bottom: 20px;">
+        <div class="rowTitle">
+            <span style="display: inline-block;" class="animated flipInY">
+                <img src="components/blyn/core/space/view/img/icon64_appwx_logo.png" class="img-rounded" width="50" height="50">
+                &nbsp;
+                设置机构圈
+            </span>
+        </div>
+    </div>
+</div>
+<div class="dashboard row">
+    <div class="col-sm-12">
+        <!-- dashboard-header -->
+
+        <!-- /dashboard-header -->
+        <!-- dashboard-body -->
+        <div class="dashboard-body">
+            <div class="dashboard-title">
+                <b>已关注的机构</b>
+                <span style="float: right; padding-left:5px">                    
+                    <a style="cursor: pointer" ui-sref="pc.space.app.collab.joinCollabs.joinable"><i class="fa fa-list"></i> 关注更多</a>
+                </span>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="space in vm.joinedSpaces">
+                    <div class="dashboard-space">
+                        <div>
+                            <a style="cursor: pointer" ui-sref="pc.space.app.collab.joinCollabs">
+                                <i class="fa fa-windows"></i> {{space.alias}}
+                            </a>
+                        </div>
+                        <div class="appBookmark">机构描述：{{space.description}}</div>
+                        <!-- <div style="min-height: 258px"> -->
+                        <div class="appBookmark" ng-repeat="(index, collab) in space.collabs">
+                            <div style="margin-bottom: 10px">
+                                {{collab.alias}}
+                                <span style="float: right" ng-show="!vm.isJoinedCollab(collab,space)"><i class="fa fa-plus"></i> 
+                                    <a style="cursor: pointer" ui-sref="pc.space.app.collab.joinCollabs.join({collabId: collab._id})">关注</a>
+                                </span>
+                                <span style="float: right" ng-show="vm.isJoinedCollab(collab,space)"><i class="fa fa-times"></i> 
+                                    <a style="cursor: pointer" ui-sref="pc.space.app.collab.joinCollabs.exit({collabId: collab._id})">取消</a>
+                                </span>
+                            </div>
+                            <div>
+                                关系描述： {{collab.description}}
+                            </div>
+                            <div class="appBookmark-link">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /dashboard-body -->
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-sm-12" style="margin-bottom: 20px;">
+        <div class="rowTitle">
+            <span style="display: inline-block;" class="animated flipInY">
+                <img src="components/blyn/core/space/view/img/icon64_appwx_logo.png" class="img-rounded" width="50" height="50">
+                &nbsp;
+                设置机构圈
+            </span>
+        </div>
+    </div>
+</div>
+<div class="dashboard row">
+    <div class="col-sm-12">
+        <!-- dashboard-header -->
+
+        <!-- /dashboard-header -->
+        <!-- dashboard-body -->
+        <div class="dashboard-body">
+            <div class="dashboard-title">
+                <b>所有机构圈</b>
+                <span class="pull-right">
+            <a ui-sref="pc.space.app.circle.adminCircle.addCircle">创建机构圈</a>
+          </span>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="circle in vm.localCircles">
+                    <div class="dashboard-space">
+                        <div>
+                            <a style="cursor: pointer" ui-sref="pc.space.app.circle({circleId: circle._id})">
+                                <i class="fa fa-windows"></i> {{circle.alias}}
+                            </a>
+                            <span style="float:right">
+                                <i class="fa fa-gear"></i>
+                                <a ui-sref="pc.space.app.circle.adminCircle.change({permitId:circle.userNutPermits.adminCircle._id})">
+                                    修改
+                                </a>
+                            </span>
+                        </div>
+
+                        <div class="appBookmark">描述：{{circle.description}}</div>
+
+                        <!-- <div style="min-height: 258px"> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /dashboard-body -->
+    </div>
+</div>

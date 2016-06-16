@@ -1,0 +1,115 @@
+<!-- This is the uib-accordion-group template -->
+<script type="text/ng-template" id="uib-accordion-group-template.html">
+  <div class="panel" ng-class="panelClass || 'panel-default'">
+    <div role="tab" id="{{::headingId}}" aria-selected="{{isOpen}}" class="panel-heading" ng-keypress="toggleOpen($event)">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" href aria-expanded="{{isOpen}}" aria-controls="{{::panelId}}" tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading"><span uib-accordion-header ng-class="{'text-muted': isDisabled}">{{heading}}</span></a>
+      </h4>
+    </div>
+    <div id="{{::panelId}}" aria-labelledby="{{::headingId}}" aria-hidden="{{!isOpen}}" role="tabpanel" class="panel-collapse collapse" uib-collapse="!isOpen">
+      <div class="" style="" ng-transclude></div>
+    </div>
+  </div>
+</script>
+
+<!-- uib-accordion -->
+<style type="text/css">
+  .accordion-toggle:focus {
+    outline: 0;
+  }
+  .header-label {
+    display: inline-block;
+    height: 20px;
+    margin-left: 10px
+  }
+  table.user-roles {
+    margin: 0;
+  }
+  .label .btn-link {
+    color: #fff;
+  }
+</style>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="btn-group btn-group-sm" role="group">
+          <a class="btn btn-default" ui-sref="pc.space.app.role.adminSpaceRole.home">机构角色管理</a>
+          <a class="btn btn-default active">用户角色管理</a>
+        </div>
+      </div>
+      <div class="panel-body">
+
+        <uib-accordion close-others="true">
+          <uib-accordion-group is-open="$first" template-url="uib-accordion-group-template.html" ng-repeat="user in vm.spaceUsers">
+            <uib-accordion-heading>
+              {{user.loginId}}
+              <div class="header-label">
+                <span class="label" ng-class="vm.getLabelClassByRole(user.roles[0].name)">{{user.roles[0].alias}}</span>
+              </div>
+            </uib-accordion-heading>
+            <table class="table user-roles">
+              <tr>
+                <th>别名</th>
+                <th>角色</th>
+                <th>操作</th>
+              </tr>
+              <tr ng-repeat="role in user.roles track by $index">
+                <td>
+                  <span class="label" ng-class="vm.getLabelClassByRole(role.name)">{{role.alias}}</span>
+                </td>
+                <td>
+                  <span class="badge">{{role.name}}</span>
+                </td>
+                <td rowspan="{{user.roles.length}}" style="border-left: 1px solid #ddd" ng-if="$first">
+                  <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#assignRoleModal" ng-mousedown="vm.startDialog(user)">
+                    分配角色
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </uib-accordion-group>
+        </uib-accordion>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="assignRoleModal" tabindex="-1" role="dialog" aria-labelledby="assignRoleLabel" aria-hidden="true"
+  style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">分配用户角色:  {{vm.currentUser.loginId}}</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <!--<div class="form-group">
+            <label for="" class="col-sm-2 control-label">用户</label>
+            <div class="col-sm-10">
+              <b>{{vm.currentUser.loginId}}</b>
+            </div>
+          </div>-->
+          <div class="form-group">
+            <!--<label for="" class="col-sm-2 control-label">分配角色</label>-->
+            <div class="col-sm-offset-1 col-sm-10">
+              <div class="list-group">
+                <label class="list-group-item" ng-repeat="role in vm.roles track by $index">
+                <input type="checkbox" data-ng-model="role.checked">   {{role.alias}} 
+              </label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <a data-dismiss="modal" class="btn btn-danger" ng-click="vm.assignRole()">保存</a>
+      </div>
+    </div>
+  </div>
+</div>

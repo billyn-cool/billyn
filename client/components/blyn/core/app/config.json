@@ -1,0 +1,142 @@
+{
+	"type": "nut.core",
+	"permits": {
+		"appStore": {
+			"alias": "appStore"
+		}
+	},
+	"apps": {
+		"appEngine": {
+			"alias": "appEngine",
+			"type": "app.core",
+			"cores": {
+				"role": {
+					"preload": true,
+					"grants": {
+						"admin": "adminSpaceRole|管理机构角色,adminUserRole|管理用户角色"					
+					}
+				},
+				"space": {
+					"preload": true,
+					"grants": {
+						"admin": [
+							{
+								"name": "adminSpace",
+								"alias": "机构设置"
+							},
+							{
+								"name": "appStore",
+								"alias": "应用商店"
+							}
+						]
+					}
+				},
+				"collab": {
+					"preload": true,
+					"grants": {
+						"admin": ["adminCollab|设置合作"],
+						"everyone": "collabNuts|合作功能"
+					}
+				},
+				"circle": {
+					"grants": {
+						"admin": ["adminCircle|设置机构圈"],
+						"manager":["manageCircle|管理机构圈"],
+						"everyone": ["circleMember|机构圈主页"]				
+					}
+				}
+			}
+		},
+		"userApp": {
+			"alias": "User App",
+			"type": "app.core",
+			"cores": {
+				"user": {
+					"preload": true,
+					"grants": {
+						"admin": "adminUser",
+						"member": "userMember",
+						"customer": "userCustomer"
+					}
+				}
+			}
+		},
+		"weMember": {
+			"alias": "微会员",
+			"type": "app.normal",
+			"nuts": {
+				"voucher": {
+					"preload": true,
+					"grants": {
+						"admin": "adminVoucher",
+						"member": "manageVoucher",
+						"customer": "useVoucher"
+					}
+				},
+				"point": {
+					"preload": true,
+					"grants": {
+						"admin": "adminPoint",
+						"member": "managePoint",
+						"customer": "pointCustomer"
+					}
+				},
+				"card": {
+					"preload": true,
+					"grants": {
+						"admin": "adminCard",
+						"member": "manageCard",
+						"customer": "cardCustomer"
+					}
+				}
+			}
+		},
+		"propertyManagement": {
+			"alias": "置业管理",
+			"type": "app.normal",
+			"nuts": {
+				"propertyOwner": {
+					"alias": "个人置业",
+					"grants": {
+						"admin": [
+							"manageOwnerProperty|管理个人资产"
+						],
+						"propertyManager": "manageOwnerProperty|管理个人资产",
+						"client": [
+							"ownerProfile|个人档案",
+							"propertyEvaluation|资产评估",
+							"propertyReport|资产报告"
+						]
+					}
+				},
+				"propertyInfo": {
+					"alias": "置业信息",
+					"grants": {
+						"admin": [
+							"managePropertyInfo|管理置产信息"
+						],
+						"propertyManager": [
+							"managePropertyInfo|管理置产信息"
+						],
+						"client": [
+							"search|查找置业信息",
+							"classifyProperty|分类置业信息",
+							"propertyInfoFeeder|最新置业信息"
+						]
+					}
+				},
+				"propertyProduct": {
+					"alias": "置业产品",
+					"grants": {
+						"admin": "managePropertyProduct|管理置业产品",
+						"propertyManager": "managePropertyProduct|管理置业产品",
+						"client": [
+							"searchProduct｜查找置业",
+							"classifyProduct|置业产品分类"
+						]
+					}
+				}
+			}
+		}
+	}
+}

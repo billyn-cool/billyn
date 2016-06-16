@@ -1,0 +1,46 @@
+<form class="form-inline" novalidate name="addSlideForm">
+  <table class="table table-hover">
+    <colgroup>
+      <col class="span1">
+      <col class="span7">
+    </colgroup>
+    <thead>
+    <tr>
+      <th>属性</th>
+      <th>内容</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td> 标题</td>
+      <td>
+        <input placeholder="标题..." required class="form-control" type="text" ng-model="slide.name"
+               name="slideName">
+      </td>
+    </tr>
+    <tr>
+      <td> 图片</td>
+      <td>
+        <input required class="form-control" id="cover" type="file" ng-model="slide.cover" name="slideCover">
+      </td>
+    </tr>
+    <tr>
+      <td> 链接地址</td>
+      <td>
+        <input placeholder="标题..." required class="form-control" type="text" ng-model="slide.url"
+               name="slideUrl">
+      </td>
+    </tr>
+    <tr>
+      <td> 排序号</td>
+      <td>
+        <input placeholder="排序号..." required class="form-control" type="text" ng-model="slide.sort"
+               name="slideSort">
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</form>
+<div class="row-fluid">
+  <button class="btn btn-success" ng-click="site.saveSlide(slide)">保存设置</button>
+</div>

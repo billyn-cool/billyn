@@ -1,0 +1,14 @@
+{
+	"type":"nut.core",
+	"permits": {
+		"adminDash": {
+			"alias": "admin"
+		},
+		"dashMember": {
+			"alias": "member"
+		},
+		"dashCustomer": {
+			"alias": "customer"
+		}
+	}
+}

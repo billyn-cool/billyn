@@ -1,0 +1,173 @@
+<div class="row" ng-hide="listMessage.spaces.length">
+  <div class="firstWelcome">
+    <p class="firstWelcome-title">您还没有加入任何机构，您可以：</p>
+    <div class="row">
+      <div class="col-xs-4">
+        <img src="components/blyn/core/dash/view/img/empty_inbox_dark.png" width="150"/>
+      </div>
+      <div class="col-xs-8">
+        <div class="firstWelcome-operation row">
+          <div class="col-xs-4 col-xs-offset-1">
+            <a class="btn btn-info" ui-sref="pc.createSpace">
+              <i class="fa fa-plus"></i> 创建机构</a>
+          </div>
+          <div class="col-xs-4">
+            <a class="btn btn-info" ui-sref="pc.joinSpace">
+              <i class="fa fa-group"></i> 加入机构</a>
+          </div>
+        </div>
+        <div class="firstWelcome-description">
+          <p class="text-muted">如果您创建了一个机构，您将是该机构的管理员。</p>
+          <p class="text-muted">如果您加入了别人创建的机构，在该机构中您将是普通用户。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="listMessage.spaces.length">
+ <!--  <div class="row well well-sm" style="position: absolute; top: 40px; left: 0; right: 0; height: 40px; z-index: 100; padding-bottom: 7px;padding-top: 7px">
+    <div class="col-xs-9">
+    </div>
+    <div class="col-xs-3">
+      <a ui-sref="pc.createSpace">创建机构</a> | <a ui-sref="pc.joinSpace">加入机构</a>
+    </div>
+  </div>
+  <div style="height: 35px;"></div> -->
+  <div class="dashboard row">
+    <div class="col-sm-9">
+      <!-- dashboard-header -->
+      <div class="dashboard-header row">
+        <div class="col-sm-4">
+          <div class="dashboard-user">
+            <div class="dashboard-user-avatar">
+                <img src="components/navbar/view/img/avatar.jpg" alt="avatar">
+            </div>  
+            <div class="dashboard-user-desc">
+              <span class="dashboard-user-hello">嗨，</span>
+              <a class="dashboard-user-name" href="#">Jane Devoops</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="dashboard-infoboard">
+            <h5>我创建的代金券：</h5>
+            <div><b class="dashboard-infoboard-num">269</b> <b class="dashboard-infoboard-unit">张</b></div>
+            <div class="dashboard-infoboard-operation">
+              <button type="button" class="btn btn-default">查看我的代金券</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="dashboard-infoboard">
+            <h5>收集的代金券：</h5>
+            <div><b class="dashboard-infoboard-num">893</b> <b class="dashboard-infoboard-unit">张</b></div>
+            <div class="dashboard-infoboard-operation">
+              <button type="button" class="btn btn-default">查看所有代金券</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /dashboard-header -->
+      <!-- dashboard-body -->
+      <div class="dashboard-body">
+        <div class="dashboard-title">
+          <b>机构列表</b>
+          <span class="pull-right">
+            <a ui-sref="pc.createSpace">创建机构</a> | <a ui-sref="pc.joinSpace">加入机构</a>
+          </span>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" ng-repeat="space in listMessage.spaces">
+            <div class="dashboard-space">
+              <div>
+                <a style="cursor: pointer" ui-sref="pc.space.home({spaceId: space._id})">
+                  <i class="fa fa-windows"></i> {{space.alias}}
+                </a>
+                <span style="float: right"><i class="fa fa-power-off"></i> 
+                    <a href="#" data-toggle='modal' data-target='#exitSapceModal' ng-click="listMessage.currentSpace=space">退出角色</a>
+                </span>
+                    
+              </div>
+              <!-- <div style="min-height: 258px"> -->
+              <div class="appBookmark" ng-repeat="(index, app) in space.apps">
+                <a class="appBookmark-show" ui-sref="pc.space.app.home({spaceId:space._id,appId:app._id})">
+                  <div class="appBookmark-icon">
+                    <i class="fa fa-bookmark txt-info"> </i>
+                  </div>
+                  <div class="appBookmark-text">
+                    <div class="appBookmark-name">
+                      {{app.alias|translate}}
+                    </div>
+                  </div>
+                </a>
+                <div class="appBookmark-link">
+                  <a ng-repeat="(index, permitNut) in app.permitNuts" ui-sref="pc.space.app.{{permitNut.nut.name}}({spaceId:space._id,appId:app._id,nutId:permitNut.nut._id})">{{permitNut.nut.name}}</a>
+                </div>
+              </div>
+              <div class="appBookmark">
+                <a class="appBookmark-show" href="#">
+                  <div class="appBookmark-icon">
+                    <i class="fa fa-bookmark txt-info"> </i>
+                  </div>
+                  <div class="appBookmark-text">
+                    <div class="appBookmark-name">
+                      微信
+                    </div>
+                  </div>
+                </a>
+                <div class="appBookmark-link">
+                <a ui-sref="mobile.dashboardboard" target="_blank">手机端功能</a>
+                  <!-- <a ui-sref="weChat.home">功能测试</a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /dashboard-body -->
+    </div>
+    <div class="col-sm-3">
+      <!-- dashboard-right -->
+      <div class="dashboard-right">
+        <div class="dashboard-title"><b>机构推荐：</b></div>
+        <div class="dashboard-recommend-space" ng-repeat="recommend in listMessage.recommends">
+          <div class="dashboard-recommend-space-pic">
+            <img src="components/blyn/core/space/view/img/member_225x225.png" class="img-rounded" alt="avatar">
+          </div>
+          <div class="dashboard-recommend-space-detail">
+            <div class="dashboard-recommend-space-name">
+              太平洋国际餐厅
+            </div>
+            <p class="dashboard-recommend-space-operation">
+              <button type="button" class="btn btn-xs btn-default"><i class="fa fa-plus"></i> 关注</button>
+              <a href="#">查看 <i class="fa fa-share-square-o"></i></a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- /dashboard-right -->
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exitSapceModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">确认退出机构</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <h5 class="col-md-5">机构名称: <span ng-bind="listMessage.currentSpace.name"></span></h5>
+          <h5 class="col-md-5">机构ID: <span ng-bind="listMessage.currentSpace._id"></span></h5>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary" href="#" data-dismiss="modal" ng-click="listMessage.exitSpace()">确认退出机构</a>
+      </div>
+    </div>
+  </div>
+</div>

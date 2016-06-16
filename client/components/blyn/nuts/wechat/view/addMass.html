@@ -1,0 +1,64 @@
+<form class="form-inline" novalidate name="addMassForm">
+  <div class="row">
+    <div class="col-md-11">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <a style="color: white" ui-sref="weChat.home">功能列表</a>\
+          <a style="color: white" ui-sref="weChat.menu">群发列表\</a>设置群发内容
+        </div>
+        <div class="panel-body">
+          <div class="tabbable tabs-right" style="margin-top: 15px;">
+            <ul class="nav nav-tabs" style="margin-bottom: 15px">
+              <li class="active"><a href="/#tab1" data-toggle="tab">基本设置</a></li>
+              <li class=""><a href="/#tab2" data-toggle="tab">群发内容</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab1">
+                <table class="table table-hover">
+                  <colgroup>
+                    <col class="span2">
+                    <col class="span6">
+                    <col class="span2">
+                  </colgroup>
+                  <thead>
+                  <tr>
+                    <th>属性</th>
+                    <th>内容</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>
+                      群发标题
+                    </td>
+                    <td>
+                      <input placeholder="群发标题..." class="form-control" required ng-model="mass.title" name="massTitle"
+                             type="text">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      群发简介
+                    </td>
+                    <td>
+                      <input placeholder="群发简介..." class="form-control" required ng-model="mass.desc" name="massDesc"
+                             type="text"></td>
+                  </tr>
+                  </tbody>
+                </table>
+
+              </div>
+              <div class="tab-pane" id="tab2">
+                <div class="well"><h5 class="text-warning">需要先保存群发内容，然后再添加图文信息</h5></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="row-fluid">
+  <button class="btn btn-primary" ng-click="mass.save(mass)">保存</button>
+</div>
+

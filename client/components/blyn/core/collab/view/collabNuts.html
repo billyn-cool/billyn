@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-sm-12" style="margin-bottom: 20px;">
+        <div class="rowTitle">
+            <span style="display: inline-block;" class="animated flipInY">
+                <img src="components/blyn/core/space/view/img/icon64_appwx_logo.png" class="img-rounded" width="50" height="50">
+                &nbsp;
+                协作功能
+            </span>
+        </div>
+    </div>
+</div>
+<div class="dashboard row">
+    <div class="col-sm-12">
+        <!-- dashboard-header -->
+
+        <!-- /dashboard-header -->
+        <!-- dashboard-body -->
+        <div class="dashboard-body">
+            <div class="dashboard-title">
+                <b>协作功能</b>
+            </div>
+            <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" ng-repeat="space in vm.spaces">
+            <div class="dashboard-space">
+              <div>
+                <a style="cursor: pointer" ui-sref="pc.space.app.collab.collabNuts.showSpace({spaceId: space._id})">
+                  <i class="fa fa-windows"></i> {{space.alias}}
+                </a>
+                <span style="float: right"><i class="fa fa-power-off"></i> 
+                    <a href="#" data-toggle='modal' data-target='#exitSapceModal' ng-click=""></a>
+                </span>
+                    
+              </div>
+              <!-- <div style="min-height: 258px"> -->
+              <div class="appBookmark" ng-repeat="(index, collab) in space.collabs">
+                <a class="appBookmark-show" ui-sref="pc.space.app.collab.collabNuts.showCollab({collabId:collab._id})">
+                  <div class="appBookmark-icon">
+                    <i class="fa fa-bookmark txt-info"> </i>
+                  </div>
+                  <div class="appBookmark-text">
+                    <div class="appBookmark-name">
+                      {{collab.alias}}
+                    </div>
+                  </div>
+                </a>
+                <div class="appBookmark-link">
+                  <a ng-repeat="(index, permitNut) in collab.nutPermits" ui-sref="pc.space.app.{{permitNut.nut.name}}.{{permitNut.permit.name}}({nutId:permitNut.nut._id})">{{permitNut.nut.name}}.{{permitNut.permit.name}}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        <!-- /dashboard-body -->
+    </div>
+</div>

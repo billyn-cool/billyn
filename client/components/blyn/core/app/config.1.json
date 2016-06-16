@@ -1,0 +1,132 @@
+{
+	"type": "nut.core",
+	"permits": {
+		"appStore": {
+			"alias": "appStore"
+		}
+	},
+	"apps": {
+		"appEngine": {
+			"alias": "appEngine",
+			"type": "app.core",
+			"cores": {
+				"role": {
+					"preload": true,
+					"grants": {
+						"admin": "adminSpaceRole|管理机构角色,adminUserRole|管理用户角色"					
+					}
+				},
+				"space": {
+					"preload": true,
+					"grants": {
+						"admin": [
+							{
+								"name": "adminSpace",
+								"alias": "机构设置"
+							},
+							{
+								"name": "appStore",
+								"alias": "应用商店"
+							}
+						]
+					}
+				},
+				"collab": {
+					"preload": true,
+					"grants": {
+						"admin": ["adminCollab|设置合作"],
+						"everyone": "collabNuts|合作功能"
+					}
+				}
+			}
+		},
+		"userApp": {
+			"alias": "User App",
+			"type": "app.core",
+			"cores": {
+				"user": {
+					"preload": true,
+					"grants": {
+						"admin": "adminUser",
+						"member": "userMember",
+						"customer": "userCustomer"
+					}
+				}
+			}
+		},
+		"weMember": {
+			"alias": "We member",
+			"type": "app.normal",
+			"nuts": {
+				"voucher": {
+					"preload": true,
+					"grants": {
+						"admin": "adminVoucher",
+						"member": "manageVoucher",
+						"customer": "useVoucher"
+					}
+				},
+				"point": {
+					"preload": true,
+					"grants": {
+						"admin": "adminPoint",
+						"member": "managePoint",
+						"customer": "pointCustomer"
+					}
+				},
+				"card": {
+					"preload": true,
+					"grants": {
+						"admin": "adminCard",
+						"member": "manageCard",
+						"customer": "cardCustomer"
+					}
+				}
+			}
+		},
+		"propertyManagement": {
+			"alias": "propertyManagement",
+			"type": "app.normal",
+			"nuts": {
+				"propertyOwner": {
+					"grants": {
+						"admin": [
+							"manageOwnerProperty"
+						],
+						"propertyManager": "manageOwnerProperty|manage property for owner",
+						"client": [
+							"ownerProfile",
+							"propertyEvaluation",
+							"propertyReport"
+						]
+					}
+				},
+				"propertyInfo": {
+					"grants": {
+						"admin": [
+							"managePropertyInfo"
+						],
+						"propertyManager": [
+							"managePropertyInfo"
+						],
+						"client": [
+							"search",
+							"classifyProperty",
+							"propertyInfoFeeder"
+						]
+					}
+				},
+				"propertyProduct": {
+					"grants": {
+						"admin": "managePropertyProduct",
+						"propertyManager": "managePropertyProduct",
+						"client": [
+							"searchProduct",
+							"classifyProduct"
+						]
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,46 @@
+<div class="panel panel-info">
+  <div class="panel-heading">加入机构</div>
+  <div class="panel-body">
+    <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>机构名称</th>
+      <th>机构说明</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="space in joinSpace.joinSpaces">
+      <td> {{space.name}}</td>
+      <td ng-show="space.description"> {{space.description}}</td>
+      <td ng-hide="space.description"> 暂无描述</td>
+      <td>
+        <div class="row-fluid">
+          <a href="#" data-toggle='modal' data-target='#myModal' ng-click="joinSpace.currentSpace=space">关注机构</a></div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">确认加入机构</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <h5 class="col-md-5">机构名称: <span ng-bind="joinSpace.currentSpace.name"></span></h5>
+          <h5 class="col-md-5">机构ID: <span ng-bind="joinSpace.currentSpace._id"></span></h5>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary" href="#" data-dismiss="modal" ng-click="joinSpace.join()">确认加入机构</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+{
+	"type":"nut.normal",
+	"permits": {
+		"adminCard": {
+			"alias": "admin card"
+		},
+		"manageCard": {
+			"alias": "manage card"
+		},
+		"cardCustomer": {
+			"alias": "card customer"
+		}
+	}
+}

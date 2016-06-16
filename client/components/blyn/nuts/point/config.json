@@ -1,0 +1,14 @@
+{
+	"type":"nut.normal",
+	"permits": {
+		"adminPoint": {
+			"alias": "admin point"
+		},
+		"managePoint": {
+			"alias": "manage point"
+		},
+		"pointCustomer": {
+			"alias": "point customer"
+		}
+	}
+}

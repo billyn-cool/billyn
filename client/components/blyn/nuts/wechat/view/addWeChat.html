@@ -1,0 +1,92 @@
+<form class="form-inline" novalidate name="addWeChatForm">
+  <div class="row">
+    <div class="col-md-11">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <a style="color: white" ui-sref="weChat.home">功能列表</a>\添加公众号
+        </div>
+        <div class="panel-body">
+          <div class="tabbable tabs-right" style="margin-top: 15px;"> <!-- Only required for left/right tabs -->
+            <ul class="nav nav-tabs" style="margin-bottom: 15px">
+              <li class="active"><a href="#tab1" data-toggle="tab">基本信息</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab1" style="min-height: 180px">
+                <table class="table table-hover">
+                  <colgroup>
+                    <col class="span1">
+                    <col class="span7">
+                  </colgroup>
+                  <thead>
+                  <tr>
+                    <th>属性</th>
+                    <th>内容</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td> 公众号名称</td>
+                    <td>
+                      <input placeholder="公众号名称..." required ng-model="weChat.name" name="weChatName"
+                             class="form-control" type="text">
+                      <div ng-show="addWeChatForm.weChatName.$dirty && addWeChatForm.weChatName.$invalid">
+                        <span style=" color: red;"> <b>请填写公众号名称</b></span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td> 原始ID</td>
+                    <td>
+                      <input placeholder="原始ID..." required ng-model="weChat.id" name="weChatId"
+                             class="form-control" type="text">
+                      <div ng-show="addWeChatForm.weChatId.$dirty && addWeChatForm.weChatId.$invalid">
+                        <span style=" color: red;"> <b>请填写公众号原始ID</b></span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td> 公众号类型</td>
+                    <td>
+                      <select ng-options="type.value as type.name for type in config.types"
+                              ng-model="weChat.type" name="weChatType" class="form-control" required>
+                        <option value="">请选择公众号类型</option>
+                      </select>
+                      <div ng-show="addWeChatForm.weChatType.$dirty && addWeChatForm.weChatType.$invalid">
+                        <span style=" color: red;"> <b>请选择公众号类型</b></span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td> AppID</td>
+                    <td>
+                      <input placeholder="AppID..." ng-model="weChat.appId" name="weChatAppId" required
+                             class="form-control" type="text">
+                      <div ng-show="addWeChatForm.weChatAppId.$dirty && addWeChatForm.weChatAppId.$invalid">
+                        <span style=" color: red;"> <b>请填写AppID</b></span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td> AppSecret</td>
+                    <td>
+                      <input placeholder="AppSecret..." ng-model="weChat.appSecret" name="weChatAppSecret"
+                             required  class="form-control" type="text">
+                      <div ng-show="addWeChatForm.weChatAppSecret.$dirty && addWeChatForm.weChatAppSecret.$invalid">
+                        <span style=" color: red;"> <b>请填写AppSecret</b></span>
+                      </div>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</form>
+<div class="row-fluid">
+  <button class="btn btn-primary" ng-disabled="addWeChatForm.$invalid"  ng-click="config.save(weChat)">保存设置</button>
+</div>

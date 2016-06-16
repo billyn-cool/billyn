@@ -1,0 +1,85 @@
+
+<div class="panel panel-default" ng-hide="vm.isInit">
+    <div class="panel-heading">
+        <a class="btn btn-default btn-sm" ui-sref="pc.space.app.voucher.home"><i class="fa fa-chevron-left"></i>优惠券管理</a>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-md-8">
+                <form class="form-horizontal">
+                     <table st-table="vm.defaultVouchers" class="table table-striped">
+                       
+                        <thead>
+                            <tr>
+                                <th st-sort="alias">优惠券</th>
+                                <th>操作</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="voucher in vm.defaultVouchers">
+                                <td> {{voucher.alias}} </td>
+
+                                <td>
+                                   <label>
+                                    <input type="checkbox"  ng-model="voucher.checked">                                  
+                                   </label>
+                                 
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <div class="form-group" style="margin-top: 30px;">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary" ng-click="vm.save()">提交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="panel panel-default" ng-show="vm.isInit">
+    <div class="panel-heading">
+        <a class="btn btn-default btn-sm" ui-sref="pc.space.app.voucher.home"><i class="fa fa-chevron-left"></i>优惠券管理</a>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-md-8">
+                <form class="form-horizontal">
+                     <table st-table="vm.allVouchers" class="table table-striped">
+                       
+                        <thead>
+                            <tr>
+                                <th st-sort="alias">优惠券</th>
+                                <th>操作</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="voucher in vm.allVouchers">
+                                <td> {{voucher.alias}} </td>
+
+                                <td>
+                                    <a ng-click="vm.delete(voucher)">删除</a> |  <a ng-click="vm.updateVoucher(voucher)">更改</a>
+                                 
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <div class="form-group" style="margin-top: 30px;">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary" ng-click="vm.newVoucher()">新优惠券</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

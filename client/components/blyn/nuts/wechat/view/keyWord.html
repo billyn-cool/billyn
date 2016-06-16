@@ -1,0 +1,29 @@
+<style>
+  .col-lg-8 p {
+    float: left;
+    margin-right: 20px;
+  }
+</style>
+<div class="row">
+  <div class="col-md-11">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <a style="color: white" ui-sref="weChat.home">功能列表</a>\关键词类型列表
+      </div>
+      <div class="panel-body">
+        <div class="well">当前公众号是：【测试公众号】</div>
+        <div class="col-lg-8" style="padding: 0px;">
+          <p>
+            <a class="btn btn-primary" ui-sref="weChat.keyWord.single">单图文回复</a></p>
+          <p>
+            <a class="btn btn-success" ui-sref="weChat.keyWord.mult">多图文回复</a></p>
+          <p>
+            <a class="btn btn-info" ui-sref="weChat.keyWord.text">文本回复</a></p>
+        </div>
+        <div class="col-lg-12" style="padding: 0px;">
+          <div ui-view></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

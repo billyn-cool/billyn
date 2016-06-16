@@ -1,0 +1,18 @@
+diff a/fullstack/billyn/client/app/account/login/login.controller.js b/fullstack/billyn/client/app/account/login/login.controller.js	(rejected hunks)
+@@ -1,14 +1,14 @@
+ 'use strict';
+ 
+ class LoginController {
+-  constructor(Auth, $state, $translate) {
++  constructor(Auth, $state, $rootScope) {
+     this.user = {};
+     this.errors = {};
+     this.submitted = false;
+ 
+     this.Auth = Auth;
+     this.$state = $state;
+-    this.$translate = $translate;
++    this.$rootScope = $rootScope;
+ 
+     Auth.isLoggedIn() && $state.go('pc.dashboard');
+   }

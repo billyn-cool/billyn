@@ -1,0 +1,56 @@
+<div class="panel panel-default">
+  <div class="panel-heading">创建机构圈</div>
+  <div class="panel-body">
+    <form novalidate name="form" ng-submit="vm.createCircle(form)">
+      <div class="form-group">
+        <label>定义机构圈ID:</label>
+        <input ng-model="vm.circle.name" name="circleName" placeholder="输入ID..." class="form-control" required style="min-height:30px" type="text">
+        <div ng-show="form.circleName.$dirty && form.circleName.$invalid">
+          <span style="color: red;"><b>请定义机构圈ID</b></span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label> 定义机构圈名称:</label>
+        <input ng-model="vm.circle.alias" name="circleAlias" placeholder="输入名称..." class="form-control" required style="min-height:30px" type="text">
+        <div ng-show="form.circleAlias.$dirty && form.circleAlias.$invalid">
+          <span style="color: red;"> <b>请定义机构圈名称</b></span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label> 机构圈描述:</label>
+        <input ng-model="vm.circle.description" name="circleDescription" placeholder="输入描述..." class="form-control" required style="min-height:30px" type="text">
+        <div ng-show="form.circleDescription.$dirty && form.circleDescription.$invalid">
+          <span style="color: red;"> <b>请定义机构圈名称</b></span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label> 选择机构圈分类 :</label>
+        <select ng-model="vm.circle.type" name="circleType" class="form-control" ng-options="circleType.name as circleType.alias for circleType in vm.circleTypes" required>
+          <!--<option value="">请选择机构圈分类</option>-->
+        </select>
+        <div ng-show="form.circleType.$dirty && form.circleType.$invalid">
+          <span style=" color: red;"> <b>请选择机构圈分类</b></span>
+        </div>
+      </div>
+      <!--<div class="form-group">-->
+        <!--<label> 选择数据云 :</label>-->
+        <!--<select-->
+          <!--ng-options="circleDb.id as circleDb.alias for circleDb in vm.circleDbs"-->
+          <!--ng-model="circle.db" name="circleDb" class="form-control" required>-->
+          <!--<option value="">请选择数据云</option>-->
+        <!--</select>-->
+        <!--<div ng-show="form.circleDb.$dirty && form.circleDb.$invalid">-->
+          <!--<span style=" color: red;"> <b>请选择数据云</b></span>-->
+        <!--</div>-->
+      <!--</div>-->
+      <div class="form-group">
+        <button class="btn btn-primary" ng-disabled="form.$invalid || vm.creating" type="submit">
+          <bil-waitword waiting="创建中" active="vm.creating">创建</bil-waitword>
+        </button>
+        <button class="btn btn-default" type="reset">重置</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
