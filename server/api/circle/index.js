@@ -19,7 +19,8 @@ router.delete('/collabs/:id', controller.destroyCollab);
 */
 
 router.get('/user', controller.findUserCircles);
-router.get('/join', controller.findCirclesForJoin);
+router.get('/joinable', controller.findCirclesForJoin);
+router.get('/joined', controller.findJoinedCircles);
 router.get('/', controller.index);
 //router.get('/nuts/user', controller.findUserCircleNuts);
 router.get('/:id', controller.show);
