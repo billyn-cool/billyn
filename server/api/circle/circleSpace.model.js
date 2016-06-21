@@ -2,7 +2,7 @@
 
 import _ from 'lodash';
 
-export default function(sequelize, DataTypes) {
+export default function (sequelize, DataTypes) {
   return sequelize.define('CircleSpace', {
     _id: {
       type: DataTypes.INTEGER,
@@ -10,17 +10,21 @@ export default function(sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
-	circleId: {
-		type: DataTypes.INTEGER,
-		defaultValue: -1
-	}, 
-	spaceId: {
-		type: DataTypes.INTEGER,
-		defaultValue: -1
-	},
+    circleId: {
+      type: DataTypes.INTEGER,
+      defaultValue: -1
+    },
+    spaceId: {
+      type: DataTypes.INTEGER,
+      defaultValue: -1
+    },
+    joinStatus: {
+      type: DataTypes.STRING,
+      defaultValue: 'none'
+    },
     active: DataTypes.BOOLEAN
-  },{
-	  classMethods: {
-	  },
-  });
+  }, {
+      classMethods: {
+      },
+    });
 }
