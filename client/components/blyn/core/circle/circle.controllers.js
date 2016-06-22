@@ -21,6 +21,7 @@
                 return angular.isObject(circle.userNutPermits);
             }
 
+            /*
             BCircle.findUserJoinedCircles({ spaceId: $rootScope.current.space._id }).then(function (circles) {
                 ctrl.joinedCircles = circles;
                 ctrl.circles = [];
@@ -35,6 +36,7 @@
                     })
                 })
             });
+            */
         }
     }
 
@@ -50,6 +52,7 @@
     class JoinCircleController {
         constructor($rootScope, BCircle, $state) {
             var ctrl = this;
+            ctrl.$state = $state;
             BCircle.findCirclesForJoin().then(function(circles){
                 ctrl.joinableCircles = circles;
                 BCircle.findJoinedCircles().then(function(jCircles){
@@ -67,7 +70,8 @@
                         ctrl.joinableCircles.slice(index,1);
                         ctrl.joinedCircles.push(theCircle);
                     }
-                })
+                });
+                
             })
         }
     }
@@ -116,9 +120,9 @@
                 this.circle.type = this.circleTypes[this.circle.type];
                 this.circle.spaceId = this.current.space._id;
                 this.BCircle.createCircle(this.circle).then(function (res) {
-                    var path = 'pc.space.app.circle'
+                    var path = 'pc.space.app.circle.adminCircle'
                     //console.log('path:',path);
-                    ctrl.$state.go(path);
+                    that.$state.go(path);
                 }, function (err) {
                     that.creating = false;
                     console.log('err:', err);

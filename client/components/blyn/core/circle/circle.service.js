@@ -350,7 +350,7 @@
 			if (angular.isObject(space)) {
 				spaceId = space._id;
 			}
-			
+
 			return resCircle.joinCircle({
 				circleId: circle._id,
 				spaceId: spaceId

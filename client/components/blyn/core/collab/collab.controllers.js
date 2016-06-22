@@ -85,7 +85,7 @@
                     this.collab.parentRoles = parentRoles;
                 }
                 this.BCollab.createCollab(this.collab).then(function (res) {
-                    ctrl.$state.go('pc.space.app.collab.adminCollab');
+                    that.$state.go('pc.space.app.collab.adminCollab');
                 }, function (err) {
                     that.creating = false;
                     console.log('err:', err);
