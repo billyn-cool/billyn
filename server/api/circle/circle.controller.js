@@ -685,57 +685,109 @@ export function addType(req, res) {
 }
 
 /**
- * req.body format: 
- * {
- *  roleId: xxx,
- *  circleId: xxx
- * }
- * this function will add role into circleMember collab in circle
+ * 
  */
 export function joinCircle(req, res) {
 
-  if (!req.body.spaceId) {
-    res.status(500).send('please provide spaceId');
-  }
+  var spaceId = req.query.spaceId || undefined;
+  var circleId = req.query.circleId || undefined;
+  var status = req.query.joinStatus || 'applying';
 
-  if (!req.body.circleId) {
-    res.status(500).send('please provide circleId');
-  }
+  if (spaceId && circleId && status) {
 
-  CircleCollab.belongsTo(Circle, { as: 'circle' });
-  CircleCollab.belongsTo(Collab, { as: 'collab' });
-
-  CircleCollab.find({
-    include: [
+    CircleSpace.findOrCreate(
       {
-        model: Circle, as: 'circle',
         where: {
-          _id: req.body.circleId
-        }
-      },
-      {
-        model: Collab, as: 'collab',
-        where: {
-          name: 'circleMember'
+          spaceId: spaceId,
+          circleId: circleId
+        },
+        defaults: {
+          joinStatus: status
         }
       }
-    ]
-  }).then(function (circleCollab) {
-    var collab = circleCollab.collab;
-    //add default client manger role for joining space
-    var roleData = {
-      name: 'member.circle.client.manager',
-      spaceId: req.body.spaceId
-    };
-    return Role.add(roleData).then(function (role) {
-      return collab.addRole({
-        childRoleId: role._id,
-        collabId: collab._id
-      }).then(function () {
-        return Collab.findById(collab._id);
-      });
-    });
-  })
-    .then(respondWithResult(res, 201))
-    .catch(handleError(res));
+    )
+      .spread(respondWithResult(res, 201))
+      .catch(handleError(res));
+  } else {
+    res.status(500).send('please check input!');
+  }
+
+}
+
+/**
+ * add collab into circle
+ */
+export function addCircleCollab(req, res) {
+
+  var collabId = req.query.collab || undefined;
+  var circleId = req.query.circleId || undefined;
+  var status = req.query.joinStatus || 'applying';
+
+  if (spaceId && circleId && status) {
+
+    CircleCollab.findOrCreate(
+      {
+        where: {
+          collabId: collabId,
+          circleId: circleId
+        },
+        defaults: {
+          joinStatus: status
+        }
+      }
+    )
+      .spread(respondWithResult(res, 201))
+      .catch(handleError(res));
+  } else {
+    res.status(500).send('please check input!');
+  }
+
+
+}
+
+/**
+ * this function return all spaces in circle with collabs
+ * circle manager will use these data to perform tasks like:
+ * 1)approve/reject apply for join
+ * 2)approve/reject apply for join collab
+ */
+export function findCircleSpacesForManage(req, res) {
+
+  var spaceId = req.query.spaceId || undefined;
+  var circleId = req.query.circleId || undefined;
+
+  Space.hasMany(CircleSpace);
+  Space.hasMany(Collab, { as: 'collabs' });
+  Collab.hasMany(CircleCollab);
+
+  if (spaceId && spaceId > 0 && circleId && circleId > 0) {
+
+    Space.findAll(
+      {
+        include: [
+          {
+            model: CircleSpace,
+            where: {
+              circleId: circleId
+            }
+          },
+          {
+            model: Collab, as: 'collabs',
+            include: [
+              {
+                model: CircleCollab,
+                where: {
+                  circleId: circleId //only list collabs belongsTo current circle
+                }
+              }
+            ]
+          }
+        ]
+      }
+    )
+      .then(respondWithResult(res, 201))
+      .catch(handleError(res));
+  } else {
+    res.status(500).send('please check input!');
+  }
 }
