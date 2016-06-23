@@ -96,5 +96,22 @@ angular.module('billynApp.core')
         ncyBreadcrumb: { skip: true },
         authenticate: true
       })
+      .state('pc.space.app.circle.circleMemberAdmin', {
+        url: '/circleMemberAdmin',
+        template: '<div ui-view=""></div>',
+        //templateUrl: 'components/blyn/core/circle/view/adminCircle.html',
+        controller: 'CircleMemberAdminController',
+        controllerAs: 'vm',
+        ncyBreadcrumb: { label: '管理机构关注' },
+        authenticate: true
+      })
+      .state('pc.space.app.circle.circleMemberAdmin.home', {
+        url: '/home',
+        templateUrl: 'components/blyn/core/circle/view/circleMemberAdmin.html',
+        controller: 'CircleMemberAdminController',
+        controllerAs: 'vm',
+        ncyBreadcrumb: { skip: true },
+        authenticate: true
+      })
 
   });
