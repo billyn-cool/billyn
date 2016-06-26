@@ -12,6 +12,9 @@ angular.module('billynApp.core')
     $urlRouterProvider.when(
       '/pc/space/:spaceId/app/:appId/circle/:nutId/manageCircle',
       '/pc/space/:spaceId/app/:appId/circle/:nutId/manageCircle/home');
+    $urlRouterProvider.when(
+      '/pc/space/:spaceId/app/:appId/circle/:nutId/circleMemberAdmin',
+      '/pc/space/:spaceId/app/:appId/circle/:nutId/circleMemberAdmin/home');
 
     $stateProvider
       .state('pc.space.app.circle', {
@@ -71,14 +74,6 @@ angular.module('billynApp.core')
         ncyBreadcrumb: { label: '创建机构圈' },
         authenticate: true
       })
-      .state('pc.space.app.circle.adminCircle.joinCircle', {
-        url: '/joinCircle',
-        templateUrl: 'components/blyn/core/circle/view/joinCircle.html',
-        controller: 'JoinCircleController',
-        controllerAs: 'vm',
-        ncyBreadcrumb: { label: '关注机构圈' },
-        authenticate: true
-      })
       .state('pc.space.app.circle.manageCircle', {
         url: '/manageCircle',
         template: '<div ui-view=""></div>',
@@ -96,6 +91,14 @@ angular.module('billynApp.core')
         ncyBreadcrumb: { skip: true },
         authenticate: true
       })
+      .state('pc.space.app.circle.manageCircle.spaces', {
+        url: '/spaces/:circleId',
+        templateUrl: 'components/blyn/core/circle/view/manageCircleSpaces.html',
+        controller: 'ManageCircleSpacesController',
+        controllerAs: 'vm',
+        ncyBreadcrumb: { label: '管理圈子机构' },
+        authenticate: true
+      })
       .state('pc.space.app.circle.circleMemberAdmin', {
         url: '/circleMemberAdmin',
         template: '<div ui-view=""></div>',
@@ -111,6 +114,14 @@ angular.module('billynApp.core')
         controller: 'CircleMemberAdminController',
         controllerAs: 'vm',
         ncyBreadcrumb: { skip: true },
+        authenticate: true
+      })
+      .state('pc.space.app.circle.circleMemberAdmin.joinCircle', {
+        url: '/joinCircle',
+        templateUrl: 'components/blyn/core/circle/view/joinCircle.html',
+        controller: 'CircleMemberAdminController',
+        controllerAs: 'vm',
+        ncyBreadcrumb: { label: '关注机构圈' },
         authenticate: true
       })
 

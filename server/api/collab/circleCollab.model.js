@@ -22,6 +22,10 @@ export default function (sequelize, DataTypes) {
 			type: DataTypes.INTEGER,
 			defaultValue: -1
 		},
+		joinStatus: {
+			type: DataTypes.STRING,
+			defaultValue: 'none'
+		},
     active: DataTypes.BOOLEAN
   }, {
 			classMethods: {
