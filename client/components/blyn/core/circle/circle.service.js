@@ -18,13 +18,20 @@
 					method: 'GET',
 					isArray: true,
 					params: {
-						id: 'join'
+						id: 'joinable'
 					}
 				},
 				joinCircle: {
 					method: 'POST',
 					params: {
-						id: 'spaceJoinCircle'
+						id: 'joinCircle'
+					}
+				},
+				findJoinedCircles: {
+					method: 'GET',
+					isArray: true,
+					params: {
+						id: 'joined'
 					}
 				}
 			});
@@ -53,16 +60,44 @@
 
 		service.findCircle = function (circleData) {
 
-			if (angular.isNumber(circleData) && circleData > 0) {
-				return resCircle.get({ id: circleData }).$promise;
+			if ((angular.isNumber(circleData) && circleData > 0) || angular.isNumber(parseInt(circleData))) {
+				return resCircle.get({ id: circleData }).$promise.then(function(circle) {
+					var spaces = circle.spaces;
+					var collabs = circle.collabs;
+					collabs.forEach(function (collab) {
+						spaces.forEach(function(space){
+							if(collab.spaceId === space._id){
+								space.collabs = space.collabs || [];
+								space.collabs.push(collab);
+							}
+						})
+					})
+					return $q.when(circle);
+				})
 			}
 
 			if (angular.isObject(circleData)) {
-				return resCircle.get(circleData).$promise;
+				return resCircle.get(circleData).$promise.then(function(circle){
+					var spaces = circle.spaces;
+					var collabs = circle.collabs;
+					collabs.forEach(function (collab) {
+						spaces.forEach(function(space){
+							if(collab.spaceId === space._id){
+								space.collabs = space.collabs || [];
+								space.collabs.push(collab);
+							}
+						})
+					})
+					return $q.when(circle);
+				})
 			}
 
 			//otherwise return error
 			$q.reject('fail to find circle, please provide valide params!');
+		}
+
+		service.find = function (circleData) {
+			return this.findCircle(circleData);
 		}
 
 		service.findAllCircle = function (circleData) {
@@ -342,10 +377,18 @@
 			return resCircle.findCirclesForJoin({ spaceId: spaceId }).$promise;
 		}
 
+		service.findJoinedCircles = function (findData) {
+			var spaceId = $rootScope.current.space._id;
+			if (findData && findData.spaceId && findData.spaceId > 0) {
+				spaceId = findData.spaceId;
+			}
+			return resCircle.findJoinedCircles({ spaceId: spaceId }).$promise;
+		}
+
 		/**
 		 * add space into circle
 		 */
-		service.joinCircle = function (circle) {
+		service.joinCircle = function (circle,space) {
 			var spaceId = $rootScope.current.space._id;
 			if (angular.isObject(space)) {
 				spaceId = space._id;

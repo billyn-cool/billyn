@@ -26,18 +26,16 @@
                             <a style="cursor: pointer" ui-sref="pc.space.app.circle({circleId: circle._id})">
                                 <i class="fa fa-windows"></i> {{circle.alias}}
                             </a>
-                            <span style="float:right">
-                                <i class="fa fa-gear"></i>
-                                <a ui-sref="pc.space.app.circle.manageCircle({permitId:circle.userNutPermits.manageCircle._id})">
-                                    管理
+                            <span style="float: right">
+                                <a ui-sref="pc.space.app.circle.manageCircle.spaces({circleId:circle._id})">
+                                    <i class="fa fa-gear"></i> 管理机构
                                 </a>
                             </span>
                         </div>
-
-                        <div class="appBookmark">描述：{{circle.description}}</div>
-                        <div class="appBookmark">机构数量：100</div>
-                        <div class="appBookmark">合作关系：10</div>
-
+                        
+                        <div class="appBookmark">描述：{{circle.description}}</div>                        
+                        <div class="appBookmark">加入机构：100</div>
+                        <div class="appBookmark">分享功能：10</div>
                         <!-- <div style="min-height: 258px"> -->
                     </div>
                 </div>

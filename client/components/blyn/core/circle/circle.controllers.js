@@ -48,10 +48,11 @@
             })
         }
     }
-    
+    /*
     class JoinCircleController {
         constructor($rootScope, BCircle, $state) {
             var ctrl = this;
+            ctrl.BCircle = BCircle;
             ctrl.$state = $state;
             BCircle.findCirclesForJoin().then(function(circles){
                 ctrl.joinableCircles = circles;
@@ -62,8 +63,8 @@
         }
         
         joinCircle(circle){
-            var that = this;
-            BCircle.joinCircle(circle).then(function(theCircle){
+            var ctrl = this;
+            ctrl.BCircle.joinCircle(circle).then(function(theCircle){
                 ctrl.joinableCircles.forEach(function(circle,index){
                     if(circle._id === theCircle._id){
                         //if joined, move the joined circle from joinableCircles
@@ -74,7 +75,7 @@
                 
             })
         }
-    }
+    }*/
     
     class ManageCircleController {
         constructor($rootScope, BCircle, $state) {
@@ -82,6 +83,19 @@
             BCircle.findUserLocalCircles({ spaceId: $rootScope.current.space._id }).then(function (lCircles) {
                 ctrl.localCircles = lCircles;
             })
+        }
+    }
+
+    class ManageCircleSpacesController{
+        constructor($rootScope, BCircle, $state, $stateParams) {
+            var ctrl = this;
+            ctrl.$state = $state;
+            ctrl.BCircle = BCircle;
+            if($stateParams.circleId){
+                BCircle.find($stateParams.circleId).then(function(circle){
+                    ctrl.circle = circle;
+                })
+            }
         }
     }
 
@@ -128,6 +142,34 @@
                     console.log('err:', err);
                 });
             }
+        }
+    }
+
+    class CircleMemberAdminController{
+        constructor($rootScope, BCircle, $state) {
+            var ctrl = this;
+            ctrl.$state = $state;
+            ctrl.BCircle = BCircle;
+            BCircle.findCirclesForJoin().then(function(circles){
+                ctrl.joinableCircles = circles;
+                BCircle.findJoinedCircles().then(function(jCircles){
+                    ctrl.joinedCircles = jCircles;
+                })
+            });          
+        }
+        
+        joinCircle(circle){
+            var ctrl = this;
+            ctrl.BCircle.joinCircle(circle).then(function(theCircle){
+                ctrl.joinableCircles.forEach(function(circle,index){
+                    if(circle._id === theCircle._id){
+                        //if joined, move the joined circle from joinableCircles
+                        ctrl.joinableCircles.slice(index,1);
+                        ctrl.joinedCircles.push(theCircle);
+                    }
+                });
+                
+            })
         }
     }
 
@@ -235,7 +277,8 @@
         .controller('CircleController', CircleController)
         .controller('CircleHomeController', CircleHomeController)
         .controller('AdminCircleController', AdminCircleController)
-        .controller('JoinCircleController', JoinCircleController)
+        .controller('ManageCircleSpacesController', ManageCircleSpacesController)
         .controller('ManageCircleController', ManageCircleController)
+        .controller('CircleMemberAdminController', CircleMemberAdminController)
         .controller('CreateCircleController', CreateCircleController);
 })();

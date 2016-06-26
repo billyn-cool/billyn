@@ -16,8 +16,10 @@
         <!-- /dashboard-header -->
         <!-- dashboard-body -->
         <div class="dashboard-body">
-            <div class="dashboard-title">
-                <b>所有机构圈</b>
+            <div class="dashboard-title">              
+                <a style="cursor: pointer" ui-sref="pc.space.app.circle.circleMemberAdmin">
+                    关注的机构圈
+                </a> | <b>寻找机构圈</b>
             </div>
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="circle in vm.joinableCircles">
@@ -28,7 +30,7 @@
                             </a>
                             <span style="float:right">
                                 
-                                <a ui-sref="" ng-click="vm.joinCircle(circle)">
+                                <a ng-click="vm.joinCircle(circle)">
                                    <i class="fa fa-plus"></i> 关注
                                 </a>
                             </span>

@@ -73,136 +73,35 @@ function handleError(res, statusCode) {
 // Gets a list of Circles
 export function index(req, res) {
 
-  Circle.belongsTo(Category, { as: 'type' });
-  Circle.belongsTo(Space, { as: 'space' });
-  Circle.belongsToMany(Collab, { through: 'CircleCollab', foreignKey: 'circleId', otherKey: 'collabId', as: 'collabs' });
-  Collab.belongsTo(Category, { as: 'type' });
-  //Collab.hasMany(CollabRole, { foreignKey: 'collabId', as: 'collabRoles' });
-  //CircleCollab.belongsTo(Collab, { as: 'collab' });
-  //that.hasMany(CollabRole,{foreignKey: 'collabId', as:'childRoles'});
-  //CollabRole.belongsTo(Role, { as: 'role' });
-  //Collab.belongsToMany(CollabRole,{as: 'collabRoles'});
-  Collab.belongsToMany(Role, { through: 'CollabRole', foreignKey: 'collabId', otherKey: 'roleId', as: 'parentRoles' });
-  Collab.belongsToMany(Role, { through: 'CollabRole', foreignKey: 'collabId', otherKey: 'roleId', as: 'childRoles' });
-  Role.hasMany(PermitRole, { as: 'nutPermits' });
-  PermitRole.belongsTo(Nut, { foreignKey: 'ownerId', as: 'nut' });
-  PermitRole.belongsTo(Permit, { as: 'permit' });
+  //console.log('wah');
 
-  var typeInclude = {
-    model: Category, as: 'type'
+  var spaceId = req.query.spaceId || undefined;
+  var whereData = {};
+
+  if (spaceId && spaceId > 0) {
+    whereData.spaceId = spaceId;
   }
 
-  var spaceInclude = {
-    model: Space, as: 'space'
-  }
+  Circle.belongsToMany(Space, { as: 'spaces', through: 'CircleSpace' });
+  Circle.belongsToMany(Collab, { as: 'collabs', through: 'CircleCollab' });
 
-  /*
-  var collabInclude = {
-    model: Collab, as: 'collabs',
-    include: {
-      model: Collab, as: 'collab',
+  Circle.findAll(
+    {
+      where: whereData,
       include: [
         {
-          model: Category, as: 'type'
+          model: Space, as: 'spaces'
         },
         {
-          model: CollabRole, as: 'collabRoles',
-          include: [
-            {
-              model: Role, as: 'role'
-            }
-          ]
+          model: Collab, as: 'collabs'
         }
       ]
     }
-  }
-  */
-  var collabInclude = {
-    model: Collab, as: 'collabs',
-    include: [
-      {
-        model: Role, as: 'parentRoles',
-        through: {
-          where: {
-            roleType: 'parent'
-          }
-        },
-        include: [
-          {
-            model: PermitRole, as: 'nutPermits',
-            include: [
-              {
-                model: Nut, as: 'nut'
-              },
-              {
-                model: Permit, as: 'permit'
-              }
-            ]
-          }
-        ]
-      },
-      {
-        model: Role, as: 'childRoles',
-        through: {
-          where: {
-            roleType: 'child'
-          }
-        }
-      }
-    ]
-  }
-
-  //console.log('collabInclude:', collabInclude);
-
-  //if provide type as name, find like types circles
-  if (req.query.type) {
-    typeInclude.where = {
-      fullname: {
-        $like: "%" + req.query.type + "%"
-      }
-    };
-    delete req.query.type;
-  }
-
-  if (req.query.typeName) {
-    typeInclude.where = {
-      $like: {
-        name: req.query.typeName
-      }
-    }
-  }
-
-  Circle.findAll({
-    where: req.query,
-    include: [typeInclude, spaceInclude, collabInclude]
-  })
+  )
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Gets a list of user circles as guest
-// must provide userId and spaceId
-// will return circles with collab
-/*
-  format for response:
-  [{
-    name: circleName,
-    ...
-    collabs: [
-      {
-        name: collabName
-        ...
-        nutPermitRoles: [
-          {
-            permit: {},
-            nut: {}
-          }
-        ]
-      }
-    ]
-
-  }]
-*/
 export function findUserCircles(req, res) {
   var userId = req.query.userId;
   var spaceId = req.query.spaceId;
@@ -400,8 +299,11 @@ export function findJoinedCircles(req, res) {
 
   Circle.hasMany(CircleSpace);
   Circle.belongsToMany(Space, { as: 'spaces', through: 'CircleSpace' });
-  Space.hasMany(Collab, { as: 'collabs' });
-  CircleCollab.belongsTo(Collab);
+  Circle.belongsToMany(Collab, { as: 'collabs', through: 'CircleCollab' });
+  //Collab.belongsTo(Space, {as: 'collabs', foreignKey: 'spaceId'});
+  //Space.hasMany(Collab, { as: 'collabs', foreignKey: 'spaceId' });
+  //CircleCollab.belongsTo(Collab);
+
 
   if (spaceId && spaceId > 0) {
 
@@ -413,23 +315,12 @@ export function findJoinedCircles(req, res) {
         include: [
           {
             model: CircleSpace,
-            where: { spaceId: spaceId } //joined circle by spaceId
+            where: {
+              spaceId: spaceId
+            }
           },
           {
-            model: Space, as: 'spaces',
-            include: [
-              {
-                model: Collab, as: 'collabs',
-                include: [
-                  {
-                    model: CircleCollab,
-                    where: {
-                      circleId: Circle._id //only retrieve collabs belongto circleId
-                    }
-                  }
-                ]
-              }
-            ]
+            model: Space, as: 'spaces'
           }
         ]
       },
@@ -444,46 +335,38 @@ export function findJoinedCircles(req, res) {
 
 // Gets a single Nut from the DB
 export function show(req, res) {
+
+  var circleId = req.params.id || undefined;
+
   Circle.belongsTo(Category, { as: 'type' });
   Circle.belongsTo(Space, { as: 'space' });
-  Circle.hasMany(CircleCollab, { foreignKey: 'circleId', as: 'circleCollabs' });
-  Collab.belongsTo(Category, { as: 'type' });
-  Collab.hasMany(CollabRole, { foreignKey: 'collabId', as: 'collabRoles' });
-  CircleCollab.belongsTo(Collab, { as: 'collab' });
-  //that.hasMany(CollabRole,{foreignKey: 'collabId', as:'childRoles'});
-  CollabRole.belongsTo(Role, { as: 'role' });
-  Circle.find({
-    where: { _id: req.params.id },
-    include: [
-      {
-        model: Category, as: 'type'
-      }, {
-        model: Space, as: 'space'
-      },
-      {
-        model: CircleCollab, as: 'circleCollabs',
-        include: {
-          model: Collab, as: 'collab',
-          include: [
-            {
-              model: Category, as: 'type'
-            },
-            {
-              model: CollabRole, as: 'collabRoles',
-              include: [
-                {
-                  model: Role, as: 'role'
-                }
-              ]
-            }
-          ]
+  Circle.belongsToMany(Space, { as: 'spaces', through: 'CircleSpace' });
+  Circle.belongsToMany(Collab, { through: 'CircleCollab', as: 'collabs' });
+
+  if (circleId && circleId > 0) {
+    Circle.find({
+      where: { _id: circleId},
+      include: [
+        {
+          model: Category, as: 'type'
+        }, {
+          model: Space, as: 'space'
+        },
+        {
+          model: Collab, as: 'collabs'
+        },
+        {
+          model: Space, as: 'spaces'
         }
-      }
-    ]
-  })
-    .then(handleEntityNotFound(res))
-    .then(respondWithResult(res))
-    .catch(handleError(res));
+      ]
+    })
+      .then(handleEntityNotFound(res))
+      .then(respondWithResult(res))
+      .catch(handleError(res));
+  } else {
+    res.status(500).send('please check input!');
+  }
+
 }
 
 // Creates a new Circle in the DB
@@ -689,9 +572,12 @@ export function addType(req, res) {
  */
 export function joinCircle(req, res) {
 
-  var spaceId = req.query.spaceId || undefined;
-  var circleId = req.query.circleId || undefined;
-  var status = req.query.joinStatus || 'applying';
+  var spaceId = req.query.spaceId || req.body.spaceId || undefined;
+  var circleId = req.query.circleId || req.body.circleId || undefined;
+  var status = req.query.joinStatus || req.body.joinStatus || 'applying';
+
+  console.log('spaceId:', spaceId);
+  console.log('req.body=', JSON.stringify(req.body));
 
   if (spaceId && circleId && status) {
 
