@@ -27,6 +27,12 @@
 						id: 'joinCircle'
 					}
 				},
+				addCollab: {
+					method: 'POST',
+					params: {
+						id: 'addCollab'
+					}
+				},
 				findJoinedCircles: {
 					method: 'GET',
 					isArray: true,
@@ -61,12 +67,12 @@
 		service.findCircle = function (circleData) {
 
 			if ((angular.isNumber(circleData) && circleData > 0) || angular.isNumber(parseInt(circleData))) {
-				return resCircle.get({ id: circleData }).$promise.then(function(circle) {
+				return resCircle.get({ id: circleData }).$promise.then(function (circle) {
 					var spaces = circle.spaces;
 					var collabs = circle.collabs;
 					collabs.forEach(function (collab) {
-						spaces.forEach(function(space){
-							if(collab.spaceId === space._id){
+						spaces.forEach(function (space) {
+							if (collab.spaceId === space._id) {
 								space.collabs = space.collabs || [];
 								space.collabs.push(collab);
 							}
@@ -77,12 +83,12 @@
 			}
 
 			if (angular.isObject(circleData)) {
-				return resCircle.get(circleData).$promise.then(function(circle){
+				return resCircle.get(circleData).$promise.then(function (circle) {
 					var spaces = circle.spaces;
 					var collabs = circle.collabs;
 					collabs.forEach(function (collab) {
-						spaces.forEach(function(space){
-							if(collab.spaceId === space._id){
+						spaces.forEach(function (space) {
+							if (collab.spaceId === space._id) {
 								space.collabs = space.collabs || [];
 								space.collabs.push(collab);
 							}
@@ -388,7 +394,7 @@
 		/**
 		 * add space into circle
 		 */
-		service.joinCircle = function (circle,space) {
+		service.joinCircle = function (circle, space) {
 			var spaceId = $rootScope.current.space._id;
 			if (angular.isObject(space)) {
 				spaceId = space._id;
@@ -398,6 +404,20 @@
 				circleId: circle._id,
 				spaceId: spaceId
 			}).$promise;
+		}
+
+		service.addCollab = function (circle, collab, joinStatus) {
+			var circle = circle || $rootScope.current.circle;
+			var joinStatus = joinStatus || 'applying';
+			if (angular.isObject(circle) && angular.isObject(collab)) {
+				return resCircle.addCollab({
+					circleId: circle._id,
+					collabId: collab._id,
+					joinStatus: joinStatus
+				}).$promise;
+			} else {
+				return $q.reject('fail to addCollab, please check input!');
+			}
 		}
 
 		return service;

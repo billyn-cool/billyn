@@ -73,7 +73,7 @@ function handleError(res, statusCode) {
 // Gets a list of Circles
 export function index(req, res) {
 
-  //console.log('wah');
+  //console.log('wah req.query:', JSON.stringify(req.query));
 
   var spaceId = req.query.spaceId || undefined;
   var whereData = {};
@@ -245,7 +245,7 @@ export function findCirclesForJoin(req, res) {
   Circle.hasMany(CircleSpace);
   Circle.belongsToMany(Space, { as: 'spaces', through: 'CircleSpace' });
   Space.hasMany(Collab, { as: 'collabs' });
-  Collab.belongsTo(CircleCollab);
+  CircleCollab.belongsTo(Circle);
 
   var spaceId = req.query.spaceId || undefined;
 
@@ -265,7 +265,7 @@ export function findCirclesForJoin(req, res) {
       },
     ).then(function (joinedCircles) {
 
-      console.log('joinedCircles:', JSON.stringify(joinedCircles));
+      //console.log('joinedCircles:', JSON.stringify(joinedCircles));
 
       var joinedList = [];
 
@@ -320,7 +320,10 @@ export function findJoinedCircles(req, res) {
             }
           },
           {
-            model: Space, as: 'spaces'
+            model: Space, as: 'spaces',
+          },
+          {
+            model: Collab, as: 'collabs'
           }
         ]
       },

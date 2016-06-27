@@ -91,6 +91,12 @@
 			//otherwise return error
 			$q.reject('fail to find collabs, please provide valide params!');
 		}
+
+		service.findSpaceCollabs = function(collabData){
+			collabData = angular.isObject(collabData)?collabData:{};
+			collabData.spaceId = collabData.spaceId || $rootScope.current.space._id;
+			return this.findAllCollab(collabData);
+		}
 		
 		service.findAll = function (collabData) {
 			return this.findAllCollab(collabData);
