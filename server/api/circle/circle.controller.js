@@ -348,7 +348,7 @@ export function show(req, res) {
 
   if (circleId && circleId > 0) {
     Circle.find({
-      where: { _id: circleId},
+      where: { _id: circleId },
       include: [
         {
           model: Category, as: 'type'
@@ -579,8 +579,8 @@ export function joinCircle(req, res) {
   var circleId = req.query.circleId || req.body.circleId || undefined;
   var status = req.query.joinStatus || req.body.joinStatus || 'applying';
 
-  console.log('spaceId:', spaceId);
-  console.log('req.body=', JSON.stringify(req.body));
+  //console.log('spaceId:', spaceId);
+  //console.log('req.body=', JSON.stringify(req.body));
 
   if (spaceId && circleId && status) {
 
@@ -608,11 +608,15 @@ export function joinCircle(req, res) {
  */
 export function addCircleCollab(req, res) {
 
-  var collabId = req.query.collab || undefined;
-  var circleId = req.query.circleId || undefined;
-  var status = req.query.joinStatus || 'applying';
+  //console.log('req.body:', JSON.stringify(req.body));
 
-  if (spaceId && circleId && status) {
+  var collabId = req.body.collabId || undefined;
+  var circleId = req.body.circleId || undefined;
+  var status = req.body.joinStatus || 'applying';
+
+  CircleCollab.belongsTo(Collab, { as: 'collab' });
+
+  if (collabId && circleId && status) {
 
     CircleCollab.findOrCreate(
       {
@@ -620,12 +624,27 @@ export function addCircleCollab(req, res) {
           collabId: collabId,
           circleId: circleId
         },
+        include: [
+          {
+            model: Collab, as: 'collab'
+          }
+        ],
         defaults: {
           joinStatus: status
         }
       }
-    )
-      .spread(respondWithResult(res, 201))
+    ).spread(function (entity, created) {
+      //console.log('entity:',JSON.stringify(entity));
+      //console.log('created:',created);
+      if (!created) {
+        entity.joinStatus = status;
+        var oCollab = JSON.stringify(entity.collab);
+        return entity.save();
+      } else {
+        return Promise.resolve(entity);
+      }
+    })
+      .then(respondWithResult(res, 201))
       .catch(handleError(res));
   } else {
     res.status(500).send('please check input!');

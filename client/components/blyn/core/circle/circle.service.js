@@ -406,7 +406,7 @@
 			}).$promise;
 		}
 
-		service.addCollab = function (circle, collab, joinStatus) {
+		service.addCollab = function (collab, circle, joinStatus) {
 			var circle = circle || $rootScope.current.circle;
 			var joinStatus = joinStatus || 'applying';
 			if (angular.isObject(circle) && angular.isObject(collab)) {
@@ -414,7 +414,11 @@
 					circleId: circle._id,
 					collabId: collab._id,
 					joinStatus: joinStatus
-				}).$promise;
+				}).$promise.then(function(circleCollab){
+					var oCollab = circleCollab.collab;
+					oCollab.CircleCollab = circleCollab;
+					return $q.when(oCollab);
+				});
 			} else {
 				return $q.reject('fail to addCollab, please check input!');
 			}

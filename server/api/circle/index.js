@@ -27,8 +27,9 @@ router.get('/', controller.index);
 //router.get('/nuts/user', controller.findUserCircleNuts);
 //router.post('/space', controller.addCircleSpace);
 router.post('/joinCircle', controller.joinCircle);
-router.post('/', controller.create);
 router.post('/types', controller.addType);
+router.post('/addCollab', controller.addCircleCollab);
+router.post('/', controller.create);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
 

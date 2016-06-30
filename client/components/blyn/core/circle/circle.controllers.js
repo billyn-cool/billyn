@@ -188,10 +188,10 @@
                 }).then(function (circle) {
                     BCollab.findSpaceCollabs().then(function (collabs) {
                         ctrl.collabs = collabs;
-                        collabs.forEach(function (oCollab) {
+                        collabs.forEach(function (oCollab,index) {
                             ctrl.circle.collabs.forEach(function (o) {
-                                if (o._id === oCollab.id) {
-                                    oCollab = o;
+                                if (o._id === oCollab._id) {
+                                    ctrl.collabs[index]= o;
                                 }
                             })
                         })
@@ -202,11 +202,11 @@
 
         shareCollab(collab, circle) {
             var ctrl = this;
-            circle = circle || $rootScope.current.circle;
-            ctrl.BCircle.addCollab(circle, collab).then(function (collab) {
-                ctrl.collabs.forEach(function (o) {
-                    if (o._id === collab._id) {
-                        o = collab;
+            circle = circle || ctrl.circle;
+            ctrl.BCircle.addCollab(collab, circle).then(function (oCollab) {
+                ctrl.collabs.forEach(function (o,index) {
+                    if (o._id === oCollab._id) {
+                        ctrl.collabs[index] = oCollab;
                     }
                 })
             })

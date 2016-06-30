@@ -29,6 +29,24 @@
 				"admin","manager","member","customer"
 			],
 			"apps": ["weMember","propertyManagement"]
+		},
+		"fangData": {
+			"name": "fangData",
+			"alias": "房地产数据中心",
+			"description": "专注于提供准确，全面，快速的房地产数据",
+			"roles": [
+				"admin","manager","member","customer"
+			],
+			"apps": ["fangData"]
+		},
+		"propertyEvaluation": {
+			"name": "propertyEvaluation",
+			"alias": "资产评估机构",
+			"description": "专注于提供权威的，全面的，及时的资产评估数据和报告",
+			"roles": [
+				"admin","manager","member","customer"
+			],
+			"apps": ["fangEvaluate"]
 		}
 	}
 }

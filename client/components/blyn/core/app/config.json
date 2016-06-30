@@ -137,6 +137,79 @@
 					}
 				}
 			}
+		},
+		"fangData": {
+			"alias": "不动产数据中心",
+			"type": "app.normal",
+			"nuts": {
+				"collectFangData": {
+					"alias": "数据采集",
+					"grants": {
+						"admin": [
+							"adminCollect|设置数据采集"
+						],
+						"manager": "adminCollect|管理数据采集"
+					}
+				},
+				"publishFangData": {
+					"alias": "数据发布",
+					"grants": {
+						"admin": [
+							"adminPublish|设置数据发布"
+						],
+						"manager": [
+							"managePublish|管理数据发布"
+						],
+						"client": [
+							"search|查找",
+							"classifyPublish|分类发布信息",
+							"usePublish|使用发布信息"
+						]
+					}
+				},
+				"manageFangData": {
+					"alias": "数据管理",
+					"grants": {
+						"admin": "adminManage|设置数据管理",
+						"manager": "manageFangData|管理数据",
+						"client": [
+							"search｜查找",
+							"classify|分类"
+						]
+					}
+				}
+			}
+		},
+		"fangEvaluate": {
+			"alias": "资产评估机构",
+			"type": "app.normal",
+			"nuts": {
+				"evaluateService": {
+					"alias": "评估服务",
+					"grants": {
+						"admin": [
+							"adminService|设置服务"
+						],
+						"manager": "manageService|管理服务"
+					}
+				},
+				"evaluateReport": {
+					"alias": "评估报告",
+					"grants": {
+						"admin": [
+							"adminReport|设置报告"
+						],
+						"manager": [
+							"manageReport|管理评估报告"
+						],
+						"client": [
+							"search|查找",
+							"classify|分类",
+							"usage|使用报告"
+						]
+					}
+				}
+			}
 		}
 	}
 }
