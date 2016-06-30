@@ -172,7 +172,11 @@ export function index(req, res) {
     }
 }
 
-// Gets a single Space from the DB
+/**
+ * get single space
+ * @method module:server/api/space.method:show
+ * @returns {Object} space object, format like: {_id: xxx, name: xxx, apps:[], roles:[], type:{},...}
+ */
 export function show(req, res) {
 
     console.log(req.params.id);
@@ -247,7 +251,13 @@ export function show(req, res) {
         .catch(handleError(res));
 }
 
-// Creates a new Space in the DB
+/**
+ * create a new space, this function call Space model add function to complete create of space
+ * please see Space.add function for more information of creating space
+ * @method module:server/api/space.method:create
+ * @param req.body {object}, format like: {name:xxx, alias:xxx, type:{name:xxx, alias:xxx}, roles: [{...}...]}
+ * @returns {Array} array of spaces, format like: [ {_id: xxx, name: xxx, apps:[], roles:[], type:{},...},...]
+ */
 export function create(req, res) {
     //console.log('space create req.body:', JSON.stringify(req.body));
     var spaceData = req.body;
@@ -328,8 +338,17 @@ export function destroy(req, res) {
         .catch(handleError(res));
 }
 
-//return all user's spaces
-/* GET	   /api/spaces/user/:id     ->  findUserSpaces */
+/**
+ * create a new space, this function call Space model add function to complete create of space
+ * please see Space.add function for more information of creating space
+ * @method module:server/api/space.method:findUserSpaces
+ * @param req.query.userId {int} userId to join
+ * @returns {Array} array of spaces under user, format like: [ 
+ * {_id: xxx, name: xxx, roles:[], type:{}, apps: [ {_id:xxx, name: xxx, nuts: [{_id: xxx, name: xxx, permitRoles: [{
+ *      permit: {}, nut: {}, role: {}
+ * }]}]} ]...},...]
+ * attention is: apps array only contain apps user can access, meanwhile roles only contain user's roles under space
+ */
 export function findUserSpaces(req, res) {
 
     //console.log('findUserSpaces req.params', JSON.stringify(req.params));
@@ -423,97 +442,28 @@ export function findUserSpaces(req, res) {
             .then(respondWithResult(res))
             .catch(handleError(res));
     }
-    //console.log('findUserSpaces:',JSON.stringify(req.query));
-    /*
-    return UserRole.findAll({
-        include: [{
-            model: Space, as: 'space',
-            include: [{
-                model: Category, as: 'type'
-            }]
-        }],
-        where: query,
-        group: 'UserRole.spaceId'
-    })
-        .then(function (rows) {
-            //console.log('1 rows:',JSON.stringify(rows));
-            var spaces = [];
-            //console.log('1');
-            return Promise.map(rows, function (row) {
-                //console.log('1 row:',JSON.stringify(row));
-                var oSpace = row.space;
-
-                return App.findAll({
-                    where: {
-                        spaceId: row.spaceId
-                    },
-                    include: [
-                        {
-                            model: Category,
-                            as: 'type'
-                        },
-                        {
-                            model: Nut, as: 'nuts',
-                            include: [
-                                {
-                                    model: Role,
-                                    include: [
-                                        {
-                                            model: User,
-                                            where: {
-                                                _id: query.id
-                                            }
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                }).then(function (sApps) {
-                    oSpace = JSON.parse(JSON.stringify(oSpace));
-                    oSpace.apps = sApps;
-                    spaces.push(oSpace);
-
-                    //return oSpace;
-                    //console.log('5 oSpace', JSON.stringify(oSpace));
-                    return Promise.resolve(oSpace);
-                });
-            }).then(function () {
-                return Promise.resolve(spaces);
-            });
-        })
-        .then(respondWithResult(res))
-        .catch(handleError(res));
-} else {
-    res.status(404).end();
-    return null;
-}*/
 }
 
+/**
+ * user join to space, by default, will add user as everyone role under space
+ * @method module:server/api/space.method:userJoin
+ * @param req.params.id {int} space id to join 
+ * @param req.query.userId {int} userId to join
+ * @returns {boolean} true -- created, otherwise error
+ */
 export function userJoin(req, res) {
     var spaceId = req.params.id;
     var userId = req.query.userId;
     //  console.log("User " + userId + " request to join space " + spaceId);
 
-    Role.find({
-        where: {
-            spaceId: spaceId,
-            fullname: "root.role.customer"
-        }
+    Role.add({
+        spaceId: spaceId,
+        name: "everyone"
     }).then(function (role) {
-        return UserRole.create({ userId: userId, roleId: role._id, spaceId: spaceId });
-    }).then(function () {
+        return UserRole.findOrCreate({ userId: userId, roleId: role._id, spaceId: spaceId });
+    }).spread(function (created, entity) {
         return Promise.resolve(true);
     }).then(respondWithResult(res))
         .catch(handleError(res));
 }
 
-
-export function test(req, res) {
-
-    return findUserSpaces({
-        params: {
-            id: 4
-        }
-    }, res);
-}
