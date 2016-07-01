@@ -124,5 +124,13 @@ angular.module('billynApp.core')
         ncyBreadcrumb: { label: '关注机构圈' },
         authenticate: true
       })
+      .state('pc.space.app.circle.circleMemberAdmin.shareCollab', {
+        url: '/shareCircle/:circleId',
+        templateUrl: 'components/blyn/core/circle/view/shareCollab.html',
+        controller: 'ShareCollabController',
+        controllerAs: 'vm',
+        ncyBreadcrumb: { label: '申请机构分享' },
+        authenticate: true
+      })
 
   });

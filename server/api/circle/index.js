@@ -22,13 +22,14 @@ router.get('/user', controller.findUserCircles);
 router.get('/joinable', controller.findCirclesForJoin);
 router.get('/joined', controller.findJoinedCircles);
 router.get('/spaces/manage', controller.findCircleSpacesForManage);
+router.get('/:id', controller.show);
 router.get('/', controller.index);
 //router.get('/nuts/user', controller.findUserCircleNuts);
-router.get('/:id', controller.show);
 //router.post('/space', controller.addCircleSpace);
 router.post('/joinCircle', controller.joinCircle);
-router.post('/', controller.create);
 router.post('/types', controller.addType);
+router.post('/addCollab', controller.addCircleCollab);
+router.post('/', controller.create);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
 

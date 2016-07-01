@@ -70,6 +70,8 @@ function handleError(res, statusCode) {
 
 // Gets a list of collab
 export function index(req, res) {
+
+  console.log('index req.body:',JSON.stringify(req.body));
   var spaceId, type;
 
   if (req.body.spaceId) {

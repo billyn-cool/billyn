@@ -64,135 +64,94 @@ function handleError(res, statusCode) {
   };
 }
 
-// Gets a list of Apps
+/**
+ * get apps according to condition, usually we use 
+ * this function to find apps under some space, in case
+ * we need provide spaceId as params, format like: {spaceId=xxx},
+ * if provide userId, it will navigate to findUserApps
+ * @method module:server/api/app.method:index
+ * @param req.query {object} condition for finding apps
+ * @returns {array} return array of app object, and in each app it
+ * contain nuts under app, format like: [{_id:xxx,name:xxx, nuts: [...]}]
+ */
 export function index(req, res) {
-  App.findAll()
-    .then(respondWithResult(res))
-    .catch(handleError(res));
+
+  App.hasMany(Nut, { as: 'nuts' });
+  App.belongsTo(Category, { as: 'type' });
+
+  var spaceId = req.query.spaceId || undefined;
+  var userId = req.query.userId || undefined;
+
+  if (userId) {
+    return findUserApps(req.res);
+  }
+
+  if (spaceId) {
+    return App.findAll({
+      where: req.query,
+      include: [
+        {
+          model: Nut, as: 'nuts',
+          where: {
+            spaceId: spaceId
+          }
+        },
+        {
+          model: Category, as: 'type'
+        }
+      ]
+    })
+      .then(respondWithResult(res))
+      .catch(handleError(res));
+  }
+
+  //otherwise, send error message
+  return res.status(500).send('please check input!');
 }
 
-// Gets a single App from the DB
-//if url like : /api/apps/:id?spaceId=sId
-//will return nuts for space too
+/**
+ * get one app. mention: if want find app by query, 
+ * please use index function to find all expected apps and then 
+ * get first one from array
+ * @method module:server/api/app.method:show
+ * @param req.params.id {int} if provide id param, then get by id
+ * @returns {object} app object, contain nuts array for app
+ */
 export function show(req, res) {
 
   App.belongsTo(Category, { as: 'type' });
   Nut.belongsTo(Category, { as: 'type' });
+  App.hasMany(Nut, { as: 'nuts' });
 
-  var param = req.params.id;
+  var appId = req.params.id || undefined;
 
-  if (param && param.toLowerCase() === 'space') {
-    return findAppsInSpace(req, res);
-  }
-
-  var spaceId;
-  if (req.query) {
-    spaceId = req.query.spaceId ? req.query.spaceId : undefined;
-  }
-
-  var whereData = {};
-  if (req.params.id) {
-    whereData._id = req.params.id;
-  }
-  if (req.query.name) {
-    whereData.name = req.query.name;
-  }
-
-  App.find({
-    where: whereData,
-    include: {
-      model: Category, as: 'type'
-    }
-  }).then(function (app) {
-    if (spaceId !== undefined) {
-      return Nut.findAll({
-        where: {
-          appId: app._id,
-          spaceId: spaceId
-        },
-        include: {
+  if (appId) {
+    return App.find({
+      where: {
+        _id: appId
+      },
+      include: [
+        {
           model: Category, as: 'type'
+        },
+        {
+          model: Nut, as: 'nuts',
+          include: [
+            {
+              model: Category, as: 'type'
+            }
+          ]
         }
-      }).then(function (rows) {
-        app = JSON.parse(JSON.stringify(app));
-        app.nuts = rows;
-        return Promise.resolve(app);
-      });
-    } else {
-      return Promise.resolve(app);
-    }
-  })
-    .then(handleEntityNotFound(res))
-    .then(respondWithResult(res))
-    .catch(handleError(res));
-}
-
-// Gets a single App from the DB
-export function getAppByName(req, res) {
-  var param = req.params.name;
-
-  App.find({
-    where: {
-      name: req.params.name
-    }
-  })
-    .then(handleEntityNotFound(res))
-    .then(respondWithResult(res))
-    .catch(handleError(res));
-}
-
-// Creates a new App in the DB, it will use findOrCreate
-/*
-export function create(req, res) {
-    //console.log('App create req.body:', JSON.stringify(req.body));
-    var appData = req.body;
-    var typeName;
-    for(var key in appData){
-     if(key.toLowerCase() === 'type' || key.toLowerCase() === 'typename'){
-      typeName = appData[key];
-      delete appData[key]; 
-    }
-  }
-
-  if(appData.name){
-    var appName = appData.name;
-    delete appData.name;
-  }
-
-	//console.log('create app appData:',JSON.stringify(appData));
-
-  if(typeName && appName){
-   App.addType(typeName).then(function(type){
-    appData.typeId = type._id;
-    App.findOrCreate({
-     where: {name: appName},
-     defaults:appData
-   }).spread(function(result,created){
-     var data = {};
-     data.data = result;
-     data.created = created;
-     return Promise.resolve(data);
-   })
-   .then(respondWithResult(res, 201))
-   .catch(handleError(res));
- })
- } else {
-   App.findOrCreate({
-    where: {name: appName},
-    defaults:appData
-  })
-		  //because response only accept object, so have to handle it
-		  //before send out
-		  .spread(function(result,created){
-        var data = {};
-        data.data = result;
-        data.created = created;
-        return Promise.resolve(data);
-      })
-      .then(respondWithResult(res, 201))
+      ]
+    })
+      .then(handleEntityNotFound(res))
+      .then(respondWithResult(res))
       .catch(handleError(res));
-    } 
-  }*/
+  }
+
+  //otherwise, return error
+  return res.status(500).send('please check input!');
+}
 
 // Updates an existing App in the DB
 export function update(req, res) {
@@ -225,36 +184,20 @@ export function destroy(req, res) {
 export function joinSpace(req, res) {
 
   if (req.body.spaceId && req.body.appId) {
-    //var spaceId = req.body.spaceId;
-    //var appId = req.body.appId;
 
-		/*
-		Space.findById(spaceId).then(function(space){
-			console.log('joinSpace space:', JSON.stingify(space));
-			return App.findById(appId).then(function(app){
-				console.log('joinSpace app:', JSON.stingify(app));
-				return space.addApp(app);
-			})
-		})*/
     SpaceApp.findOrCreate({
       where: req.body
     })
-      .spread(function (result, created) {
+      .spread(function (entity, created) {
         var data = {
-          data: result,
+          data: entity,
           created: created
         };
-
         return Promise.resolve(data);
       })
       .then(respondWithResult(res, 201))
       .catch(handleError(res));
   }
-
-}
-
-//get app by id or by name
-export function getApp(req, res) {
 
 }
 
@@ -302,197 +245,52 @@ export function findAppsInSpace(req, res) {
     .catch(handleError(res));
 }
 
+/**
+ * create app
+ * @method module:server/api/app.method:create
+ * @param req.body {object} must provide spaceId, name as appName, typeId or type
+ * @returns {object} return app object
+ */
 export function create(req, res) {
 
   //console.log('req.body:', JSON.stringify(req.body));
 
-  var appData = req.body;
-  var spaceId = appData.spaceId;
-  var app;
-  var typeId;
+  var spaceId = req.body.spaceId || undefined;
+  var appName = req.body.name || undefined;
+  var typeId = req.body.name || undefined;
+  var type = req.body.name || undefined;
 
-  if (!spaceId) {
-    return Promise.reject('Please provide spaceId in create app!');
+  if (spaceId && appName && (typeId || type)) {
+    return App.add(appData, spaceId)
+      .then(respondWithResult(res, 201))
+      .catch(handleError(res));
+  } else {
+    return Promise.reject('Please provide spaceId && name && type when create app!');
   }
 
-  //console.log('0');
-  /*
-  new Promise(function(resolve, reject){
 
-    //console.log('1 appData:', JSON.stringify(appData));
-
-    var typeName;
-
-    for(var key in appData){
-      if(key.toLowerCase()==='type'||key.toLowerCase()==='typename'){
-        typeName = appData[key];
-      }
-    }
-
-    if ( appData.typeId ){
-      return resolve(appData.typeId);
-    } else if (typeName) {
-      return App.addType({
-        name: typeName,
-        spaceId: spaceId
-      }).then(function(type){
-        //console.log('after get type:', JSON.stringify(type));
-        return resolve(type._id);
-      });
-    } else {
-      return reject('fail to get typeId in create app!');
-    }
-
-  }).then(function(typeId){
-
-    //console.log('2: typeId:',typeId);
-
-    var appName = appData.name;
-    appData.typeId = typeId;
-
-    if ( !appName ){
-      return Promise.reject('fail to find appName in create app!');
-    } else {
-      appData.alias = appData.alias || appName;
-
-      //console.log("createApp appData before created app:", JSON.stringify(appData));
-
-      App.belongsTo(Category, {as: 'type'});
-
-      return App.findOrCreate({
-        where: {
-          name: appName,
-          spaceId: spaceId
-        },
-        defaults: appData
-      }).spread(function(result,created){
-        //console.log('created:',created);
-        //console.log('result:',JSON.stringify(result));
-        if (created){
-          return Promise.resolve(result);
-        } else {
-          //console.log('not create app result:',result);
-          return new Promise(function(resolve,reject){
-            return resolve(result);
-          })
-            .then(respondWithResult(res, 201))
-            .catch(handleError(res));
-          //statusCode = statusCode || 200;
-          //res.status(statusCode).json(result);
-          //return Promise.reject('app exist already!');
-        }       
-      });
-    }
-  }).then(function(newApp){
-    app = newApp;
-    var nuts;
-    var type;
-    if(appData.nuts){
-      nuts = appData.nuts;
-      type = 'nut.normal';
-    }
-    if(appData.cores){
-      nuts = appData.cores;
-      type = 'nut.core';
-    }
-
-    if( !nuts){
-      return Promise.reject('fail to find nuts data in create app!');
-    }
-
-    var nutArray = [];
-
-    //console.log('nuts:', JSON.stringify(nuts));
-
-    for( var key in nuts ){
-      var nutData = nuts[key];
-      var nut = {};
-      nut.name = key;
-      nut.alias = nutData.alias || key;
-      nut.description = nutData.description || key;
-      nut.type = nutData.type || type;
-      nut.spaceId = spaceId,
-      nut.appId = app._id;
-      nutArray.push(nut);
-    }
-
-    return Nut.addBulkNut(nutArray);
-
-  })
-  .then(function(){
-    //console.log('000');
-    return Nut.findAll({
-      where: {
-        spaceId: spaceId,
-        appId: app._id
-      }
-    }).then(function(nuts){
-      //add nut permits
-      var permitRoleList = [];
-      //console.log('nuts:',JSON.stringify(nuts));
-      //console.log('appData:',JSON.stringify(appData));
-      nuts.forEach(function(nut){
-        var nutName = nut.name;
-        var appName = app.name;
-        var grants;
-        if(appData['cores'] && appData['cores'][nutName]['grants']){
-          grants = appData['cores'][nutName]['grants'];
-        }
-        if(appData['nuts'] && appData['nuts'][nutName]['grants']){
-          grants = appData['nuts'][nutName]['grants'];
-        }
-        //console.log('grants:',JSON.stringify(grants));
-        for(var key in grants){
-          var permits = grants[key];
-          var permitList = [];
-          //console.log('typeof permits:',typeof permits);
-          if(typeof permits === 'object'){
-            permitList = permits;
-          }
-          if(typeof permits === 'string'){
-            permitList = permits.split(",");
-          }
-          permitList.forEach(function(permit){
-            var oPermit = {};
-            oPermit.role = key;
-            oPermit.permit = permit;
-            oPermit.spaceId = spaceId;
-            oPermit.owner = 'nut';
-            oPermit.ownerId = nut._id;
-            permitRoleList.push(oPermit);
-          });         
-        }
-      });
-
-      //console.log('permitRoleList:', JSON.stringify(permitRoleList));
-      return PermitRole.addBulkPermitRole(permitRoleList);
-    })
-  }).then(function(){
-    App.belongsTo(Category,{as: 'type'});
-    return App.find({
-      where: {
-        _id: app._id
-      },
-      include: [{
-        model: Category, as: 'type'
-      }]
-    });
-  })*/
-  App.add(appData, spaceId)
-    .then(respondWithResult(res, 201))
-    .catch(handleError(res));
 }
 
+/**
+ * create apps in same time
+ * @method module:server/api/app.method:bulkCreate
+ * @param req.body {object} must provide spaceId and appDataList or appDataCollection
+ * format like: {spaceId: xxx, appDataList(appDataCollection): []}
+ * @returns {array} return array of app object
+ */
 export function bulkCreate(req, res) {
 
-  var appDataCollection = req.body.appDataCollection;
-  var spaceId = req.body.spaceId;
+  var appDataCollection = req.body.appDataCollection || undefined;
+  var appDataList = req.body.appDataList || undefined;
+  var spaceId = req.body.spaceId || undefined;
 
-  if (!spaceId || !appDataCollection) {
+  if (spaceId || (appDataCollection || appDataList)) {
+    App.bulkAdd(appDataCollection, spaceId)
+      .then(respondWithResult(res, 201))
+      .catch(handleError(res));
+  } else {
     res.status(500).send('please provide spaceId and appDataCollection!');
   }
 
-  App.bulkAdd(appDataCollection, spaceId)
-    .then(respondWithResult(res, 201))
-    .catch(handleError(res));
+
 }
