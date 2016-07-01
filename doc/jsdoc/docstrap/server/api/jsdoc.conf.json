@@ -36,7 +36,8 @@
   },
   "source": {
     "include": [
-      "../../../../../server/api/space"
+      "../../../../../server/api/space",
+      "../../../../../server/api/app"
     ],
     "includePattern": ".+\\.js(doc)?$",
     "excludePattern": "(^|\\/|\\\\)_"

@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Billyn Restful API Index</title>
+	<title>Billyn Restful API Source: app/index.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -58,36 +58,54 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
 			
 
-	
-	
+		<h1 class="page-title">Source: app/index.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">'use strict';
 
+var express = require('express');
+var controller = require('./app.controller');
 
+var router = express.Router();
 
+/**
+ * Provides the base sever side restful api under app module
+ * 
+ * Using Rails-like standard naming convention for endpoints.
+ * 
+ * GET     /api/apps              ->  index
+ * POST    /api/apps              ->  create
+ * POST    /api/apps/bulk         ->  bulk create apps
+ * GET     /api/apps/:id          ->  get app by id
+ * PUT     /api/apps/:id          ->  update
+ * DELETE  /api/apps/:id          ->  destroy
+ * 
+ * @module server/api/app
+ */
 
+router.get('/', controller.index);
+//router.get('/byname', controller.show);
+router.get('/:id', controller.show);
+//router.get('/byname/:name', controller.getAppByName);
+router.post('/bulk', controller.bulkCreate);
+//router.post('/joinSpace', controller.joinSpace);
+router.post('/', controller.create);
+//router.post('/app', controller.createApp);
+router.put('/:id', controller.update);
+router.patch('/:id', controller.update);
+router.delete('/:id', controller.destroy);
 
-
-
-
-
-
-
-	
-	
-
-
-
-
-
-    <section class="readme-section">
-        <article><h1>server api</h1><p>List all restful api </p></article>
-    </section>
-
-
+module.exports = router;
+</pre>
+    </article>
+</section>
 
 
 
@@ -98,10 +116,6 @@
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>
