@@ -21,10 +21,10 @@
 						id: 'joinable'
 					}
 				},
-				joinCircle: {
+				addSpace: {
 					method: 'POST',
 					params: {
-						id: 'joinCircle'
+						id: 'addSpace'
 					}
 				},
 				addCollab: {
@@ -388,21 +388,32 @@
 			if (findData && findData.spaceId && findData.spaceId > 0) {
 				spaceId = findData.spaceId;
 			}
-			return resCircle.findJoinedCircles({ spaceId: spaceId }).$promise;
+			return resCircle.findJoinedCircles({ spaceId: spaceId }).$promise.then(function(circles){
+				circles.forEach(function(oCircle){
+					oCircle.CircleSpace = oCircle.CircleSpaces[0]
+				})
+				return $q.when(circles);
+			});
 		}
 
 		/**
 		 * add space into circle
 		 */
-		service.joinCircle = function (circle, space) {
-			var spaceId = $rootScope.current.space._id;
+		service.addCircleSpace = function (space,circle, joinStatus) {
+			var space = space || $rootScope.current.space;
+			var circle = circle || $rootScope.current.circle;
+			var joinStatus = joinStatus || "applying";
 			if (angular.isObject(space)) {
-				spaceId = space._id;
+				var spaceId = space._id;
+			}
+			if (angular.isObject(circle)) {
+				var circleId = circle._id;
 			}
 
-			return resCircle.joinCircle({
-				circleId: circle._id,
-				spaceId: spaceId
+			return resCircle.addSpace({
+				circleId: circleId,
+				spaceId: spaceId,
+				joinStatus: joinStatus
 			}).$promise;
 		}
 
@@ -414,11 +425,7 @@
 					circleId: circle._id,
 					collabId: collab._id,
 					joinStatus: joinStatus
-				}).$promise.then(function(circleCollab){
-					var oCollab = circleCollab.collab;
-					oCollab.CircleCollab = circleCollab;
-					return $q.when(oCollab);
-				});
+				}).$promise
 			} else {
 				return $q.reject('fail to addCollab, please check input!');
 			}

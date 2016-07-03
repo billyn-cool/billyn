@@ -92,12 +92,21 @@ angular.module('billynApp.core')
         authenticate: true
       })
       .state('pc.space.app.circle.manageCircle.spaces', {
-        url: '/spaces/:circleId',
+        url: '/:circleId/spaces',
         templateUrl: 'components/blyn/core/circle/view/manageCircleSpaces.html',
         controller: 'ManageCircleSpacesController',
         controllerAs: 'vm',
         ncyBreadcrumb: { label: '管理圈子机构' },
-        authenticate: true
+        authenticate: true,
+        resolve: {
+          currentCircle: function ($q, $stateParams, $rootScope, BCircle) {
+            return $stateParams.circleId ?
+              BCircle.find($stateParams.circleId).then(function (circle) {
+                $rootScope.current.circle = circle;
+              }) :
+              $q.resolve('No circleId.');
+          }
+        }
       })
       .state('pc.space.app.circle.circleMemberAdmin', {
         url: '/circleMemberAdmin',
@@ -125,12 +134,21 @@ angular.module('billynApp.core')
         authenticate: true
       })
       .state('pc.space.app.circle.circleMemberAdmin.shareCollab', {
-        url: '/shareCircle/:circleId',
+        url: '/:circleId/shareCollab',
         templateUrl: 'components/blyn/core/circle/view/shareCollab.html',
         controller: 'ShareCollabController',
         controllerAs: 'vm',
-        ncyBreadcrumb: { label: '申请机构分享' },
-        authenticate: true
+        ncyBreadcrumb: { label: '申请功能分享' },
+        authenticate: true,
+        resolve: {
+          currentCircle: function ($q, $stateParams, $rootScope, BCircle) {
+            return $stateParams.circleId ?
+              BCircle.find($stateParams.circleId).then(function (circle) {
+                $rootScope.current.circle = circle;
+              }) :
+              $q.resolve('No circleId.');
+          }
+        }
       })
 
   });

@@ -573,7 +573,7 @@ export function addType(req, res) {
 /**
  * 
  */
-export function joinCircle(req, res) {
+export function addSpace(req, res) {
 
   var spaceId = req.query.spaceId || req.body.spaceId || undefined;
   var circleId = req.query.circleId || req.body.circleId || undefined;
@@ -594,8 +594,15 @@ export function joinCircle(req, res) {
           joinStatus: status
         }
       }
-    )
-      .spread(respondWithResult(res, 201))
+    ).spread(function (entity, created) {
+      if (entity.joinStatus === status) {
+        return Promise.resolve(entity);
+      } else {
+        entity.joinStatus = status;
+        return entity.save();
+      }
+    })
+      .then(respondWithResult(res, 201))
       .catch(handleError(res));
   } else {
     res.status(500).send('please check input!');

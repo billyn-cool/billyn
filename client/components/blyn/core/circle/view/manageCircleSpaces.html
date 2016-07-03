@@ -26,29 +26,30 @@
                             <a style="cursor: pointer" ui-sref="pc.space.app.circle.manageCircle.spaces({spaceId: space._id})">
                                 <i class="fa fa-windows"></i> {{space.alias}}
                             </a>
+                            <span style="float: right">
+                                <a href="#" ng-click="vm.approveJoinCircle(space)">批准</a> ｜ 
+                                <a href="#" ng-click="vm.rejectJoinCircle(space)">拒绝</a>
+                            </span>
                         </div>
                         <div>
                             
                         </div>
                         <div class="appBookmark">
-                            申请状态：{{space.CircleSpace.joinStatus}}
-                            <span style="float: right">
-                                <a href="#" data-toggle='modal' data-target='#exitSapceModal' ng-click="">批准</a> ｜ 
-                                <a href="#" data-toggle='modal' data-target='#exitSapceModal' ng-click="">拒绝</a>
-                            </span>
+                            申请状态：{{space.CircleSpace.joinStatus}}                         
                         </div>
 
                         <div class="appBookmark" ng-repeat="(index, collab) in space.collabs">
-                            <a class="appBookmark-show" ui-sref="pc.space.app.home({spaceId:space._id,appId:app._id})">
-                                <div class="appBookmark-icon">
-                                    <i class="fa fa-bookmark txt-info"> </i>
+                            <div class="appBookmark-link" style="margin-left:10px; padding-bottom:10px">
+                                <div>
+                                    {{collab.alias}}
+                                    <span style="float: right">
+                                        {{collab.CircleCollab.joinStatus}}
+                                    </span>
                                 </div>
-                            </a>
-                            <div class="appBookmark-link">
-                                {{collab.alias}}
-                                <span style="float: right"><i class="fa fa-gear"></i> 
-                                    <a href="#">批准</a> ｜ <a href="#">拒绝</a>
-                                </span>
+                                <div style="padding-top:10px; float: right">
+                                    <a href="#" ng-click="vm.approveShareCollab(collab)"><i class="fa fa-check"></i>批准</a> ｜  <a href="#" ng-click="vm.rejectShareCollab(collab)"><i class="fa fa-times"></i>拒绝</a>
+                                </div>
+
                             </div>
                         </div>
 

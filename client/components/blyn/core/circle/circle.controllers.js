@@ -89,13 +89,40 @@
     class ManageCircleSpacesController {
         constructor($rootScope, BCircle, $state, $stateParams) {
             var ctrl = this;
+            ctrl.$rootScope = $rootScope;
             ctrl.$state = $state;
             ctrl.BCircle = BCircle;
+            ctrl.circle = $rootScope.current.circle;
+            /*
             if ($stateParams.circleId) {
                 BCircle.find($stateParams.circleId).then(function (circle) {
                     ctrl.circle = circle;
                 })
-            }
+            }*/
+        }
+
+        approveJoinCircle(space) {
+            var ctrl = this;
+            var circle = ctrl.$rootScope.current.circle;
+            ctrl.BCircle.addCircleSpace(space, circle, "approved").then(function (circleSpace) {
+                space.CircleSpace.joinStatus = circleSpace.joinStatus;
+            })
+        }
+
+        rejectJoinCircle(space) {
+            var ctrl = this;
+            var circle = ctrl.$rootScope.current.circle;
+            ctrl.BCircle.addCircleSpace(space, circle, "rejected").then(function (circleSpace) {
+                space.CircleSpace.joinStatus = circleSpace.joinStatus;
+            })
+        }
+
+        approveShareCollab(collab, circle) {
+            var ctrl = this;
+            circle = circle || ctrl.circle;
+            ctrl.BCircle.addCollab(collab, circle, 'approved').then(function (circleCollab) {
+                collab.CircleCollab = circleCollab;
+            })
         }
     }
 
@@ -160,7 +187,8 @@
 
         joinCircle(circle) {
             var ctrl = this;
-            ctrl.BCircle.joinCircle(circle).then(function (theCircle) {
+            var space = $rootScope.current.space;
+            ctrl.BCircle.addCircleSpace(space, circle).then(function (theCircle) {
                 ctrl.joinableCircles.forEach(function (circle, index) {
                     if (circle._id === theCircle._id) {
                         //if joined, move the joined circle from joinableCircles
@@ -179,36 +207,34 @@
             ctrl.$state = $state;
             ctrl.BCircle = BCircle;
             ctrl.space = $rootScope.current.space;
+            ctrl.circle = $rootScope.current.circle;
 
-            if ($state.params.circleId) {
-                BCircle.find($state.params.circleId).then(function (circle) {
-                    $rootScope.current.circle = circle;
-                    ctrl.circle = $rootScope.current.circle;
-                    return $q.when(circle);
-                }).then(function (circle) {
-                    BCollab.findSpaceCollabs().then(function (collabs) {
-                        ctrl.collabs = collabs;
-                        collabs.forEach(function (oCollab,index) {
-                            ctrl.circle.collabs.forEach(function (o) {
-                                if (o._id === oCollab._id) {
-                                    ctrl.collabs[index]= o;
-                                }
-                            })
-                        })
-                    });
+            BCollab.findSpaceCollabs().then(function (collabs) {
+                ctrl.collabs = collabs;
+                collabs.forEach(function (oCollab, index) {
+                    ctrl.circle.collabs.forEach(function (o) {
+                        if (o._id === oCollab._id) {
+                            ctrl.collabs[index] = o;
+                        }
+                    })
                 })
-            }
+            });
+
         }
 
-        shareCollab(collab, circle) {
+        applyShareCollab(collab, circle) {
             var ctrl = this;
             circle = circle || ctrl.circle;
-            ctrl.BCircle.addCollab(collab, circle).then(function (oCollab) {
-                ctrl.collabs.forEach(function (o,index) {
-                    if (o._id === oCollab._id) {
-                        ctrl.collabs[index] = oCollab;
-                    }
-                })
+            ctrl.BCircle.addCollab(collab, circle).then(function (circleCollab) {
+                collab.CircleCollab = circleCollab;
+            })
+        }
+
+        exitShareCollab(collab, circle) {
+            var ctrl = this;
+            circle = circle || ctrl.circle;
+            ctrl.BCircle.addCollab(collab, circle, 'exit').then(function (circleCollab) {
+                collab.CircleCollab = circleCollab;
             })
         }
     }
