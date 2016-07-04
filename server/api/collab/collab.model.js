@@ -179,17 +179,24 @@ export default function (sequelize, DataTypes) {
 						//console.log('2 collabData:',JSON.stringify(collabData));
 						collabData.typeId = type._id;
 						//return that.getCollabRoot(collabData).addChild(collabData);
-						return that.getCollabRoot(collabData).then(function (collabRoot) {
-							return collabRoot.addChild(collabData);
-						});
-						/*
+						//return that.getCollabRoot(collabData).then(function (collabRoot) {
+						//return collabRoot.addChild(collabData);
+						//});
+
+						collabData.fullname = collabData.fullname || collabData.name;
+
 						return that.findOrCreate({
 							where: {
-								name: collabData.name,
+								fullname: collabData.name,
 								spaceId: collabData.spaceId
 							},
 							defaults: collabData
-						});*/
+						}).spread(function (collab, created) {
+							if (created) { return Promise.resolve(collab); }
+							else {
+								return collab.update(collabData);
+							}
+						});
 						//}).spread(function (collab, created) {
 					}).then(function (collab) {
 						//console.log('created:', created);
@@ -361,7 +368,7 @@ export default function (sequelize, DataTypes) {
 				 * 4. organize all NutPermit
 				 */
 				findAllUserNutPermit: function (userId, spaceId) {
-										
+
 					var Collab = sqldb.Collab;
 					var Role = sqldb.Role;
 					var PermitRole = sqldb.PermitRole;

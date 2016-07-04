@@ -71,7 +71,7 @@ function handleError(res, statusCode) {
 // Gets a list of collab
 export function index(req, res) {
 
-  console.log('index req.body:',JSON.stringify(req.body));
+  console.log('index req.body:', JSON.stringify(req.body));
   var spaceId, type;
 
   if (req.body.spaceId) {
@@ -349,131 +349,64 @@ export function findAllJoinableSpace(req, res) {
   Space.hasMany(Collab, { as: 'collabs' });
   Space.hasMany(Role, { as: 'roles' });
   Role.hasMany(CollabRole, { as: 'collabRoles' });
+  Role.belongsTo(Space);
   Role.belongsToMany(Collab, { through: 'CollabRole', foreignKey: 'roleId', as: 'collabs' });
   Collab.belongsToMany(Role, { through: 'CollabRole', foreignKey: 'collabId', as: 'roles' });
 
-  Space.findAll({
+  return Space.findAll({
+    where: {
+      _id: {
+        $ne: spaceId
+      }
+    },
     include: [
       {
         model: Collab, as: 'collabs',
-        where: {
-          spaceId: {
-            $ne: spaceId
-          },
-          name: {
-            $ne: 'collabRoot'
-          }
-        },/*
         include: [
           {
             model: Role, as: 'roles',
             where: {
-              spaceId: {
-                $eq: spaceId
-              }
+              spaceId: spaceId
             },
             through: {
               where: {
-                roleType: 'child'
+                roleType: "child"
               }
             }
-            
           }
-        ]*/
+        ]
       }
     ]
-  }).then(function (spaces) {
-    var allSpaces = spaces;
+  }).then(function (joinedSpaces) {
+    var jIdList = [];
+    joinedSpaces.forEach(function (o) {
+      jIdList.push(o._id);
+    });
+
+    var whereData = {
+      _id: {
+        $ne: spaceId
+      }
+    };
+
+    if(jIdList.length > 0){
+      whereData._id[$notIn] = jIdList;
+    }
+
     return Space.findAll({
+      where: whereData,
       include: [
         {
           model: Collab, as: 'collabs',
-          where: {
-            spaceId: {
-              $ne: spaceId
-            }
-          },
           include: [
             {
-              model: Role, as: 'roles',
-              where: {
-                spaceId: {
-                  $eq: spaceId
-                }
-              },
-              through: {
-                where: {
-                  roleType: 'child'
-                }
-              }
-
+              model: Role, as: 'roles'
             }
           ]
         }
       ]
-    }).then(function (joinedSpaces) {
-
-      //console.log('joinedSpaces:', JSON.stringify(joinedSpaces));
-
-      var theSpaces = allSpaces.slice();
-
-      joinedSpaces.forEach(function (o) {
-        //console.log('space:',JSON.stringify(space));
-        //console.log('o',JSON.stringify(o));
-        allSpaces.forEach(function (space, index) {
-          if (o._id === space._id) {
-            theSpaces.splice(index, 1);
-          }
-        });
-        allSpaces = theSpaces.slice();
-      })
-      return Promise.resolve(theSpaces);
     })
   })
-    /*
-    CollabRole.findAll({
-      include: [
-        {
-          model: Role, as: 'role',
-          where: {
-            spaceId: {
-              $ne: spaceId
-            }
-          }
-        },
-        {
-          model: Collab, as: 'collab',
-          include: {
-            model: Space, as: 'space',
-            include: [
-              {
-                model: Category, as: 'type'
-              },
-              {
-                model: Collab, as: 'collabs',
-                where: {
-                  name: {
-                    $ne: 'collabRoot'
-                  }
-                }
-              }
-            ]
-          }
-        }
-      ]
-    }).then(function(collabRoles){
-      var oSpaces = {};
-      collabRoles.forEach(function (cRole) {
-        oSpaces[cRole.collab.space._id] = cRole.collab.space;
-      });
-      //console.log('oSpaces:', JSON.stringify(oSpaces));
-      var spaces = [];
-      for(var key in oSpaces){
-        spaces.push(oSpaces[key]);
-      }   
-      //console.log('spaces:', JSON.stringify(spaces));
-      return Promise.resolve(spaces);
-    })*/
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
@@ -508,23 +441,20 @@ export function findAllJoinedSpace(req, res) {
   Space.hasMany(Role, { as: 'roles' });
   Role.hasMany(CollabRole, { as: 'collabRoles' });
   Role.belongsToMany(Collab, { through: 'CollabRole', foreignKey: 'roleId', as: 'collabs' });
-  Collab.belongsToMany(Role, { through: 'CollabRole', foreignKey: 'collabId', as: 'roles' });
+  Collab.belongsToMany(Role, { through: 'CollabRole', foreignKey: 'collabId', as: 'childRoles' });
 
   Space.findAll({
+    where: {
+      _id: {
+        $ne: spaceId
+      }
+    },
     include: [
-      {
+      {//find joinedCollab
         model: Collab, as: 'joinedCollabs',
-        where: {
-          spaceId: {
-            $ne: spaceId
-          },
-          name: {
-            $ne: 'collabRoot'
-          }
-        },
         include: [
           {
-            model: Role, as: 'roles',
+            model: Role, as: 'childRoles',
             where: {
               spaceId: {
                 $eq: spaceId
@@ -538,16 +468,8 @@ export function findAllJoinedSpace(req, res) {
           }
         ]
       },
-      {
-        model: Collab, as: 'collabs',
-        where: {
-          spaceId: {
-            $ne: spaceId
-          },
-          name: {
-            $ne: 'collabRoot'
-          }
-        }
+      {//find all collabs for space,it is useful for continuing apply
+        model: Collab, as: 'collabs'
       }
     ]
   })
@@ -555,7 +477,6 @@ export function findAllJoinedSpace(req, res) {
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
-
 
 export function findAllUserNutPermit(req, res) {
   var userId, spaceId;
@@ -598,11 +519,11 @@ export function findAllUserNutPermitByCollab(req, res) {
   var spaceId = req.query.spaceId;
   var userId = req.query.userId;
   var collabId = req.query.collabId;
-  
-  if(!spaceId || !userId){
+
+  if (!spaceId || !userId) {
     res.status(500).send('please provide spaceId and userId');
   }
-  
+
   PermitRole.belongsTo(Role, { as: 'role' });
   PermitRole.belongsTo(Permit, { as: 'permit' });
   PermitRole.belongsTo(Nut, { as: 'nut', foreignKey: 'ownerId' });
@@ -628,25 +549,25 @@ export function findAllUserNutPermitByCollab(req, res) {
       userInclude
     ]
   }
-  
+
   var collabInclude = {
     model: Collab, as: 'collabs',
     include: [
       childRoleInclude
     ]
   }
-  
-  if(collabId){
+
+  if (collabId) {
     collabInclude.where = {
       _id: collabId
     }
   }
-  
+
   var nutInclude = {
     model: Nut, as: 'nut'
   }
-  
-  if(nutId){
+
+  if (nutId) {
     nutInclude.where = {
       _id: nutId
     }
@@ -670,4 +591,13 @@ export function findAllUserNutPermitByCollab(req, res) {
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
+}
+
+export function findAllChildRole(req, res) {
+
+
+}
+
+export function findAllParentRole(req, res) {
+
 }

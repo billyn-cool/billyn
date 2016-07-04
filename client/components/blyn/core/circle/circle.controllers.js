@@ -177,6 +177,7 @@
             var ctrl = this;
             ctrl.$state = $state;
             ctrl.BCircle = BCircle;
+            ctrl.$rootScope = $rootScope;
             BCircle.findCirclesForJoin().then(function (circles) {
                 ctrl.joinableCircles = circles;
                 BCircle.findJoinedCircles().then(function (jCircles) {
@@ -185,9 +186,9 @@
             });
         }
 
-        joinCircle(circle) {
+        joinCircle(circle,space) {
             var ctrl = this;
-            var space = $rootScope.current.space;
+            var space = space || ctrl.$rootScope.current.space;
             ctrl.BCircle.addCircleSpace(space, circle).then(function (theCircle) {
                 ctrl.joinableCircles.forEach(function (circle, index) {
                     if (circle._id === theCircle._id) {
@@ -220,6 +221,46 @@
                 })
             });
 
+        }
+
+        applyShareCollab(collab, circle) {
+            var ctrl = this;
+            circle = circle || ctrl.circle;
+            ctrl.BCircle.addCollab(collab, circle).then(function (circleCollab) {
+                collab.CircleCollab = circleCollab;
+            })
+        }
+
+        exitShareCollab(collab, circle) {
+            var ctrl = this;
+            circle = circle || ctrl.circle;
+            ctrl.BCircle.addCollab(collab, circle, 'exit').then(function (circleCollab) {
+                collab.CircleCollab = circleCollab;
+            })
+        }
+    }
+
+    class JoinCollabController {
+        constructor($rootScope, BCircle, $state, BCollab, $q) {
+            var ctrl = this;
+            ctrl.$state = $state;
+            ctrl.BCircle = BCircle;
+            ctrl.space = $rootScope.current.space;
+            ctrl.circle = $rootScope.current.circle;
+
+            //add child roles for collab, use to manage collab role for current space
+            ctrl.circle.collabs.forEach(function(collab){
+                BCollab.findChildRoles(collab,space).then(function(collabRoles){
+                    collab.ChildRoles = collabRoles;
+                    ctrl.space.collabs.forEach(function(o){
+                        if(o._id === collab._id){
+                            o.ChildRoles = collabRoles;
+                        }
+                    })
+                })
+            })
+
+            
         }
 
         applyShareCollab(collab, circle) {
@@ -347,5 +388,6 @@
         .controller('ManageCircleController', ManageCircleController)
         .controller('CircleMemberAdminController', CircleMemberAdminController)
         .controller('ShareCollabController', ShareCollabController)
+        .controller('JoinCollabController', JoinCollabController)
         .controller('CreateCircleController', CreateCircleController);
 })();

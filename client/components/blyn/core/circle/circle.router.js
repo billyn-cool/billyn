@@ -150,5 +150,22 @@ angular.module('billynApp.core')
           }
         }
       })
+      .state('pc.space.app.circle.circleMemberAdmin.joinCollab', {
+        url: '/:circleId/joinCollab',
+        templateUrl: 'components/blyn/core/circle/view/joinCollab.html',
+        controller: 'JoinCollabController',
+        controllerAs: 'vm',
+        ncyBreadcrumb: { label: '关注圈子功能' },
+        authenticate: true,
+        resolve: {
+          currentCircle: function ($q, $stateParams, $rootScope, BCircle) {
+            return $stateParams.circleId ?
+              BCircle.find($stateParams.circleId).then(function (circle) {
+                $rootScope.current.circle = circle;
+              }) :
+              $q.resolve('No circleId.');
+          }
+        }
+      })
 
   });
