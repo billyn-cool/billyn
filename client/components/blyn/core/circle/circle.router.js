@@ -15,6 +15,9 @@ angular.module('billynApp.core')
     $urlRouterProvider.when(
       '/pc/space/:spaceId/app/:appId/circle/:nutId/circleMemberAdmin',
       '/pc/space/:spaceId/app/:appId/circle/:nutId/circleMemberAdmin/home');
+    $urlRouterProvider.when(
+      '/pc/space/:spaceId/app/:appId/circle/:nutId/circleMemberAdmin/:circleId/listCollab',
+      '/pc/space/:spaceId/app/:appId/circle/:nutId/circleMemberAdmin/:circleId/listCollab/home'),
 
     $stateProvider
       .state('pc.space.app.circle', {
@@ -150,12 +153,13 @@ angular.module('billynApp.core')
           }
         }
       })
-      .state('pc.space.app.circle.circleMemberAdmin.joinCollab', {
-        url: '/:circleId/joinCollab',
-        templateUrl: 'components/blyn/core/circle/view/joinCollab.html',
-        controller: 'JoinCollabController',
+      .state('pc.space.app.circle.circleMemberAdmin.listCollab', {
+        url: '/:circleId/listCollab',
+        template: '<div ui-view=""></div>',
+        //templateUrl: 'components/blyn/core/circle/view/adminCircle.html',
+        controller: 'CircleMemberAdminController',
         controllerAs: 'vm',
-        ncyBreadcrumb: { label: '关注圈子功能' },
+        ncyBreadcrumb: { label: '圈子功能' },
         authenticate: true,
         resolve: {
           currentCircle: function ($q, $stateParams, $rootScope, BCircle) {
@@ -166,6 +170,22 @@ angular.module('billynApp.core')
               $q.resolve('No circleId.');
           }
         }
+      })
+      .state('pc.space.app.circle.circleMemberAdmin.listCollab.home', {
+        url: '/home',
+        templateUrl: 'components/blyn/core/circle/view/listCollab.html',
+        controller: 'ListCircleCollabController',
+        controllerAs: 'vm',
+        ncyBreadcrumb: { skip: true },
+        authenticate: true,      
+      })
+      .state('pc.space.app.circle.circleMemberAdmin.listCollab.joinCollab', {
+        url: '/joinCollab/:joinedSpaceId/:collabId',
+        templateUrl: 'components/blyn/core/circle/view/joinCollab.html',
+        controller: 'JoinCircleCollabController',
+        controllerAs: 'vm',
+        ncyBreadcrumb: { label: '关注功能' },
+        authenticate: true,
       })
 
   });

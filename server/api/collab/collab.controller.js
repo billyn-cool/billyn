@@ -86,12 +86,12 @@ export function index(req, res) {
     res.status(500).send('please provide spaceId!');
   }
 
-  /*
-
   Collab.belongsTo(Category, { as: 'type' });
-  Collab.hasMany(CollabRole, { foreignKey: 'collabId', as: 'collabRoles' });
+  //Collab.hasMany(CollabRole, { foreignKey: 'collabId', as: 'collabRoles' });
   //that.hasMany(CollabRole,{foreignKey: 'collabId', as:'childRoles'});
-  CollabRole.belongsTo(Role, { as: 'role' });
+  //CollabRole.belongsTo(Role, { as: 'role' });
+  Collab.belongsToMany(Role, { as: 'roles', through: 'CollabRole' });
+  Role.belongsTo(Space, { as: 'space' });
 
   var findData = {
     spaceId: spaceId
@@ -102,10 +102,10 @@ export function index(req, res) {
       model: Category, as: 'type'
     },
     {
-      model: CollabRole, as: 'collabRoles',
+      model: Role, as: 'roles',
       include: [
         {
-          model: Role, as: 'role'
+          model: Space, as: 'space'
         }
       ]
     }
@@ -113,14 +113,15 @@ export function index(req, res) {
   Collab.findAll({
     where: findData,
     include: includeData
-  })*/
-  Collab.getCollabRoot().then(function (collabRoot) {
-    //console.log('collab.controller collabRoot:', JSON.stringify(collabRoot));
-    return collabRoot.getChildren({
-      spaceId: spaceId,
-      mode: 'all'
-    })
   })
+    /*
+    Collab.getCollabRoot().then(function (collabRoot) {
+      //console.log('collab.controller collabRoot:', JSON.stringify(collabRoot));
+      return collabRoot.getChildren({
+        spaceId: spaceId,
+        mode: 'all'
+      })
+    })*/
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
@@ -389,7 +390,7 @@ export function findAllJoinableSpace(req, res) {
       }
     };
 
-    if(jIdList.length > 0){
+    if (jIdList.length > 0) {
       whereData._id[$notIn] = jIdList;
     }
 

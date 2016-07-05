@@ -352,7 +352,7 @@
 
 			console.log('in find space: ');
 
-			if (angular.isNumber(findData) && findData > 0) {
+			if ((angular.isNumber(findData) && findData > 0) || (parseInt(findData) && parseInt(findData) > 0)) {
 				return resSpace.get({
 					id: findData
 				}).$promise;
