@@ -253,6 +253,9 @@
     class JoinCircleCollabController {
         constructor($rootScope, BCircle, $state, $stateParams, BCollab, BSpace, $q) {
             var ctrl = this;
+            this.$state = $state;
+            this.creating = false;
+            this.BCollab = BCollab;
             ctrl.joinData = {};
 
             if ($stateParams.collabId) {
@@ -267,7 +270,44 @@
                 });
             }
 
-            ctrl.joinData.roles = $rootScope.current.space.roles;
+            ctrl.joinData.roles = $rootScope.current.space.roles;           
+        }
+
+        joinCollab(form) {
+            var that =  this;
+            var ctrl = this;
+            if (form.$valid) {
+                this.creating = true;
+                // 暂存this对象
+                
+                
+                var collabRoleData =[];
+                
+                ctrl.joinData.roles.forEach(function (r) {
+                    if (r.selected) {
+                        var collabRole = {};
+                        collabRole.collabId = ctrl.joinData.collab._id;
+                        collabRole.childRoleId = r._id;
+                        collabRoleData.push(collabRole);
+                    }
+                })
+                var inputRole = this.inputRole || null;
+
+                if (angular.isObject(inputRole)) {
+                    var collabRole = {};
+                    collabRole.childRole = inputRole;
+                    collabRole.spaceId = ctrl.joinData.space._id;
+                    collabRole.collabId = ctrl.joinData.collab._id;
+                    collabRoleData.push(collabRole);
+                }
+
+                this.BCollab.bulkAddCollabRole(collabRoleData).then(function (res) {
+                    ctrl.$state.go('pc.space.app.circle.circleMemberChief.listCollab.home');
+                }, function (err) {
+                    that.creating = false;
+                    console.log('err:', err);
+                });
+            }
         }
     }
 

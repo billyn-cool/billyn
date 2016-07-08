@@ -21,11 +21,18 @@
 	"circleTypes": {
 		"normal": {
 			"name": "normal",
-			"alias": "normal circle"
-		},
-		"spacePrivateCircle": {
-			"name": "spacePrivateCircle",
-			"alias": "space private circle"
+			"alias": "normal circle",
+			"defaultCollabs": [
+				{
+					"type": "normal",
+					"name": "circleMember",
+					"alias": "circle member",
+					"description": "collab for all circle member",
+					"parentRoles": [
+						"member.circle"
+					]
+				}
+			]
 		}
 	}
 }

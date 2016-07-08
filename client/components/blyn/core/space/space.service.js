@@ -2,7 +2,7 @@
 
 (function () {
 
-	function SpaceService($resource, User, $q, Util, BApp, $rootScope, BRole, $http) {
+	function SpaceService($resource, User, $q, Util, BApp, $rootScope, BRole, BCircle, $http) {
 		var safeCb = Util.safeCb;
 		var resSpace = $resource('/api/spaces/:id/:controller', {
 			id: '@_id'
@@ -253,10 +253,17 @@
 							roleId: adminRole._id,
 							spaceId: newSpace._id
 						});
-					})
-					.then(function () {
-						return newSpace;
 					});
+			}).then(function(){
+				//add default circle
+				return BCircle.create({
+					spaceId: newSpace._id,
+					name: newSpace.name+"_"+"circle",
+					type: 'spacePrivateCircle',
+					alias: newSpace.name+"_"+"circle"
+				}).then(function(){
+					return newSpace;
+				})
 			})
 		}
 

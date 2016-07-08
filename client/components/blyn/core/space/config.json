@@ -17,7 +17,7 @@
 			"alias": "普通机构",
 			"description": "普通机构",
 			"roles": [
-				"admin","manager","member","customer"
+				"admin"
 			],
 			"apps": ["weMember"]			
 		},
@@ -26,16 +26,16 @@
 			"alias": "固定资产管理公司",
 			"description": "专注于客户固定资产项目管理的置业管理公司",
 			"roles": [
-				"admin","manager","member","customer"
+				"admin"
 			],
-			"apps": ["weMember","propertyManagement"]
+			"apps": ["propertyManagement"]
 		},
 		"fangData": {
 			"name": "fangData",
 			"alias": "房地产数据中心",
 			"description": "专注于提供准确，全面，快速的房地产数据",
 			"roles": [
-				"admin","manager","member","customer"
+				"admin"
 			],
 			"apps": ["fangData"]
 		},
@@ -44,7 +44,7 @@
 			"alias": "资产评估机构",
 			"description": "专注于提供权威的，全面的，及时的资产评估数据和报告",
 			"roles": [
-				"admin","manager","member","customer"
+				"admin"
 			],
 			"apps": ["fangEvaluate"]
 		}

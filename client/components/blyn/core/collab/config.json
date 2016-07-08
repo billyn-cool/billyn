@@ -1,18 +1,18 @@
 {
-	"alias": "InterSpace",
+	"alias": "collab",
 	"type": "nut.core",
 	"permits": {
 		"adminCollab": {
 			"alias": "admin collab"
 		},
-		"shareCollabs": {
-			"alias": "manage share collab"
+		"manageCollab": {
+			"alias": "manage collab"
 		},
-		"joinCollabs": {
-			"alias": "manage join collab"
+		"collabClientChief": {
+			"alias": "collab client chief"
 		},
-		"collabNuts": {
-			"alias": "collab nuts"
+		"collabClient": {
+			"alias": "collab client"
 		}
 	},
 	"types": {
