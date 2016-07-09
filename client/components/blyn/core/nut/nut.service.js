@@ -79,8 +79,22 @@
 					nutData.appId = $rootScope.current.app._id;
 				}
 				//find first one meet condition
-				return resNut.query(nutData).$promise;
-			} else {
+				return resNut.query(nutData).$promise.then(function (nuts) {
+					return $q.when(nuts[0]);
+				});
+			}
+			if (typeof nutData === 'string') {
+				var nutData = {
+					name: nutData,
+					spaceId: $rootScope.current.space._id,
+					appId: $rootScope.current.app._id
+				}
+
+				return resNut.query(nutData).$promise.then(function (nuts) {
+					return $q.when(nuts[0]);
+				});				
+			}
+			else {
 				//otherwise, return error
 				return $q.reject('fail to find nut!');
 			}
@@ -165,8 +179,8 @@
 			//otherwise, return error
 			//return $q.reject('fail to add nut into app!');
 		}
-		
-		service.getNutConfig = function(nutName, isCore){
+
+		service.getNutConfig = function (nutName, isCore) {
 			var configPath;
 			//first get nutData from config file
 			if (typeof nutName === 'string') {
@@ -346,12 +360,12 @@
 		}
 
 		service.findUserNuts = function (appId, spaceId, userId) {
-			
+
 			return this.findAllUserPermitNut(appId, spaceId, userId).then(function (permitNuts) {
 				var nuts = {};
 				angular.forEach(permitNuts, function (o) {
 					var permit = o.permit;
-					var nut = nuts[o.nut.name]?nuts[o.nut.name]:o.nut;
+					var nut = nuts[o.nut.name] ? nuts[o.nut.name] : o.nut;
 					if (!nut.permits) {
 						nut.permits = {};
 					}
@@ -370,7 +384,7 @@
 				var theNut = nut;
 				return that.findUserNuts(nut.appId, nut.spaceId).then(function (userNuts) {
 					var retList = [];
-					angular.forEach(userNuts,function (o) {
+					angular.forEach(userNuts, function (o) {
 						if (o._id === theNut._id) {
 							retList = o.permits;
 						}
@@ -379,10 +393,41 @@
 				});
 			})
 		}
-		
+
+		service.userHasPermit = function (nutData, permitData) {
+			return this.findUserNutPermits(nutData).then(function (permits) {
+				var ret = false;
+				if (angular.isString(permitData)) {					
+					angular.forEach(permits, function (permit) {
+						if (permit.name === permitData) {
+							ret = true;
+						}
+					})
+				}
+
+				if (angular.isObject(permitData)) {
+					var permitId = permitData._id || permitData.id || permitData.permitId || undefined;
+					if (permitId) {						
+						angular.forEach(permits, function (permit) {
+							if (permit._id === permit.id) {
+								ret = true;
+							}
+						})
+					}
+				}
+				//return ret;
+				return $q.when(ret);
+
+				//otherwise return false
+				//return $q.when(false);
+			}, function (error) {
+				return $q.when(false);//by default, return false
+			})
+		}
+
 		//this function use to find nut permit by role
 		service.findAllNutPermitByRole = function (roleId) {
-			return this.findAllPermitRole({roleId: roleId});
+			return this.findAllPermitRole({ roleId: roleId });
 		}
 
 		return service;

@@ -78,11 +78,24 @@
     }*/
 
     class ManageCircleController {
-        constructor($rootScope, BCircle, $state) {
+        constructor($rootScope, BCircle, $state, BNut, $q) {
             var ctrl = this;
+            ctrl.BNut = BNut;
             BCircle.findUserLocalCircles({ spaceId: $rootScope.current.space._id }).then(function (lCircles) {
                 ctrl.localCircles = lCircles;
             })
+
+            ctrl.allowManageCollab = false;
+            ctrl.allowCreateCollab = false;
+
+            ctrl.BNut.userHasPermit('Collab', 'manageCollab').then(function (result) {
+                ctrl.allowManageCollab = result;
+            })
+
+            ctrl.BNut.userHasPermit('Collab', 'adminCollab').then(function (result) {
+                ctrl.allowCreateCollab = result;
+            });
+
         }
     }
 
@@ -270,19 +283,19 @@
                 });
             }
 
-            ctrl.joinData.roles = $rootScope.current.space.roles;           
+            ctrl.joinData.roles = $rootScope.current.space.roles;
         }
 
         joinCollab(form) {
-            var that =  this;
+            var that = this;
             var ctrl = this;
             if (form.$valid) {
                 this.creating = true;
                 // 暂存this对象
-                
-                
-                var collabRoleData =[];
-                
+
+
+                var collabRoleData = [];
+
                 ctrl.joinData.roles.forEach(function (r) {
                     if (r.selected) {
                         var collabRole = {};

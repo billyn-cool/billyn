@@ -71,11 +71,35 @@ function handleError(res, statusCode) {
 //
 export function index(req, res) {
 
-  Nut.findAll({
-    where: req.query
-  })
-    .then(respondWithResult(res))
-    .catch(handleError(res));
+  Nut.belongsTo(Category, { as: 'type' });
+
+  //console.log('req.query:',JSON.stringify(req.query));
+
+  var nutName = req.query.name || req.query.nutName || undefined;
+  var spaceId = req.query.spaceId || req.query.spaceid || undefined;
+  var appId = req.query.appId || req.query.appid || undefined;
+
+  var nutData = {};
+  if (nutName) {
+    nutData.name = nutName.toLowerCase();
+  }
+
+  if (spaceId && appId) {
+    nutData.spaceid = spaceId;
+    nutData.appId = appId;
+    //console.log('nutData:',JSON.stringify(nutData));
+    Nut.findAll({
+      where: nutData,
+      include: [{
+        model: Category, as: 'type'
+      }]
+    })
+      .then(handleEntityNotFound(res))
+      .then(respondWithResult(res))
+      .catch(handleError(res));
+  } else {
+    res.status(500).send('please check input!');
+  }
 }
 
 // Gets a single Nut from the DB
@@ -83,19 +107,48 @@ export function show(req, res) {
 
   Nut.belongsTo(Category, { as: 'type' });
 
-  var param = req.params.id;
+  //console.log('req.query:',JSON.stringify(req.query));
 
-  Nut.find({
-    where: {
-      _id: req.params.id
-    },
-    include: [{
-      model: Category, as: 'type'
-    }]
-  })
-    .then(handleEntityNotFound(res))
-    .then(respondWithResult(res))
-    .catch(handleError(res));
+  var param = req.params.id;
+  var nutId = req.params.id || req.query.id || req.query.nutId || undefined;
+  var nutName = req.query.name || req.query.nutName || undefined;
+  var spaceId = req.query.spaceId || req.query.spaceid || undefined;
+  var appId = req.query.appId || req.query.appid || undefined;
+
+  //console.log('req.query:',JSON.stringify(req.query));
+
+  var nutData = {};
+  if (nutName) {
+    nutData.name = nutName.toLowerCase();
+  }
+
+  if (nutId) {
+    Nut.find({
+      where: {
+        _id: nutId
+      },
+      include: [{
+        model: Category, as: 'type'
+      }]
+    })
+      .then(handleEntityNotFound(res))
+      .then(respondWithResult(res))
+      .catch(handleError(res));
+  }
+
+  if (spaceId && appId) {
+    console.log('nutData:',JSON.stringify(nutData));
+    Nut.find({
+      where: nutData,
+      include: [{
+        model: Category, as: 'type'
+      }]
+    })
+      .then(handleEntityNotFound(res))
+      .then(respondWithResult(res))
+      .catch(handleError(res));
+  }
+
 }
 
 // Creates a new Nut in the DB
@@ -190,7 +243,7 @@ export function findAllUserPermitNut(req, res) {
     //delete query.spaceId;
 
     //console.log('query 2:', JSON.stringify(query));
-    
+
     var userRoleList = [];
 
     UserRole.findAll({
@@ -228,21 +281,21 @@ export function findAllUserPermitNut(req, res) {
       }
 
       //console.log('nutInclude:',nutInclude);
-      
+
       //console.log('req.query 5:', JSON.stringify(req.query));
 
       //add everyone role and add to user role list
       //it will make sure user have everyone permit nut
       return Role.addRole({
-          spaceId: req.query.spaceId,
-          name: 'everyone'
-        }
+        spaceId: req.query.spaceId,
+        name: 'everyone'
+      }
       ).then(function (eRole) {
         //console.log('everyone role:',JSON.stringify(eRole));
         userRoleList.push(eRole._id);
         or.push(eRole._id);
         query['$or'] = or;
-        console.log('userRoleList:',JSON.stringify(userRoleList));
+        console.log('userRoleList:', JSON.stringify(userRoleList));
         return PermitRole.findAll({
           //where: query,
           include: [

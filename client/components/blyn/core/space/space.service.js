@@ -262,7 +262,7 @@
 					type: 'spacePrivateCircle',
 					alias: newSpace.name+"_"+"circle"
 				}).then(function(){
-					return newSpace;
+					return $q.when(newSpace);
 				})
 			})
 		}

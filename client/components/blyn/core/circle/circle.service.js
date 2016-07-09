@@ -150,14 +150,14 @@
 				}
 
 				if(circleData.type && angular.isString(circleData.type)){
-					this.getConfig().then(function(config){
+					return this.getConfig().then(function(config){
 						var oType = config.circleTypes[circleData.type];
 						circleData.type = oType;
 						return resCircle.save(circleData).$promise;
 					})
+				} else {
+					return resCircle.save(circleData).$promise;
 				}
-
-				return resCircle.save(circleData).$promise;
 
 				/*
 				return resCircle.save(circleData).$promise.then(function (result) {
@@ -198,7 +198,7 @@
 			}
 
 			//otherwise return error
-			$q.reject('fail to create circle, please provide valide params!');
+			//$q.reject('fail to create circle, please provide valide params!');
 		}
 
 		service.create = function(circleData){
