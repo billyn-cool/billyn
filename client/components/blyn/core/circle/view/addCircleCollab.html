@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><h5>添加机构圈协作</h5></div>
+  <div class="panel-body">
+    <form novalidate name="form" ng-submit="vm.createCollab(form)">
+      <p>当前机构：{{}}</p>
+      <p>当前机构圈：{{}}</p>
+      <div class="form-group">
+        <label> 选择协作 :</label>
+        <div class="checkbox" ng-repeat="collab in vm.current.space.collabs">
+          <label>
+              <input type="checkbox" 
+              id="{{collab._id}}"
+              name="{{collab.name}}" 
+              ng-model="collab.selected" >
+              {{collab.name}}
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" ng-disabled="form.$invalid || vm.creating" type="submit">
+          <bil-waitword waiting="创建中" active="vm.creating">创建</bil-waitword>
+        </button>
+        <button class="btn btn-default" type="reset">重置</button>
+      </div>
+    </form>
+  </div>
+</div>

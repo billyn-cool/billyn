@@ -99,13 +99,31 @@
         }
     }
 
+    class ManageCircleCollabController {
+        constructor($rootScope, BCircle, $state, BNut, $q) {
+            var ctrl = this;
+            ctrl.BNut = BNut;
+            
+
+        }
+    }
+
     class ManageCircleSpacesController {
-        constructor($rootScope, BCircle, $state, $stateParams) {
+        constructor($rootScope, BCircle, $state, $stateParams, BCollab) {
             var ctrl = this;
             ctrl.$rootScope = $rootScope;
             ctrl.$state = $state;
             ctrl.BCircle = BCircle;
             ctrl.circle = $rootScope.current.circle;
+            ctrl.current = {};
+            var space = $rootScope.current.space;
+            
+            BCollab.findAll({
+                spaceId: space._id
+            }).then(function(collabs){
+                space.collabs = collabs;
+                ctrl.current.space = space;
+            })
             /*
             if ($stateParams.circleId) {
                 BCircle.find($stateParams.circleId).then(function (circle) {
@@ -185,7 +203,7 @@
         }
     }
 
-    class CircleMemberAdminController {
+    class CircleMemberChiefController {
         constructor($rootScope, BCircle, $state) {
             var ctrl = this;
             ctrl.$state = $state;
@@ -430,7 +448,7 @@
         .controller('AdminCircleController', AdminCircleController)
         .controller('ManageCircleSpacesController', ManageCircleSpacesController)
         .controller('ManageCircleController', ManageCircleController)
-        .controller('CircleMemberAdminController', CircleMemberAdminController)
+        .controller('CircleMemberChiefController', CircleMemberChiefController)
         .controller('ShareCollabController', ShareCollabController)
         .controller('ListCircleCollabController', ListCircleCollabController)
         .controller('JoinCircleCollabController', JoinCircleCollabController)

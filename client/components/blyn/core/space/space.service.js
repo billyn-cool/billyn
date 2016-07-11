@@ -254,16 +254,20 @@
 							spaceId: newSpace._id
 						});
 					});
-			}).then(function(){
+			}).then(function () {
 				//add default circle
-				return BCircle.create({
-					spaceId: newSpace._id,
-					name: newSpace.name+"_"+"circle",
-					type: 'spacePrivateCircle',
-					alias: newSpace.name+"_"+"circle"
-				}).then(function(){
+				if (newSpace.type.name.toLowerCase() !== 'space.person.normal') {
+					return BCircle.create({
+						spaceId: newSpace._id,
+						name: newSpace.name + "_" + "circle",
+						type: 'spacePrivateCircle',
+						alias: newSpace.name + "_" + "circle"
+					}).then(function () {
+						return $q.when(newSpace);
+					})
+				} else {
 					return $q.when(newSpace);
-				})
+				}
 			})
 		}
 

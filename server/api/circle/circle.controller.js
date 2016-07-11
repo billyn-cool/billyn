@@ -361,7 +361,8 @@ export function show(req, res) {
       include: [
         {
           model: Category, as: 'type'
-        }, {
+        }, 
+        {
           model: Space, as: 'space'
         },
         {

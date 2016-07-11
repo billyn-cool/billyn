@@ -16,8 +16,8 @@
 							space.appEngine = app;
 							var nuts = app.nuts;
 							nuts.forEach(function(nut){
-								if(nut.name === 'collab'){
-									space.appEngine.collabNut = nut;
+								if(nut.name === 'circle'){
+									space.appEngine.circle = nut;
 								}
 							})
 						}

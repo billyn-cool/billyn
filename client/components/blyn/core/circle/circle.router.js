@@ -111,11 +111,28 @@ angular.module('billynApp.core')
           }
         }
       })
+      .state('pc.space.app.circle.manageCircle.addCollab', {
+        url: '/:circleId/addCollab',
+        templateUrl: 'components/blyn/core/circle/view/addCircleCollab.html',
+        controller: 'ManageCircleCollabController',
+        controllerAs: 'vm',
+        ncyBreadcrumb: { label: '加协作' },
+        authenticate: true,
+        resolve: {
+          currentCircle: function ($q, $stateParams, $rootScope, BCircle) {
+            return $stateParams.circleId ?
+              BCircle.find($stateParams.circleId).then(function (circle) {
+                $rootScope.current.circle = circle;
+              }) :
+              $q.resolve('No circleId.');
+          }
+        }
+      })
       .state('pc.space.app.circle.circleMemberChief', {
         url: '/circleMemberChief',
         template: '<div ui-view=""></div>',
         //templateUrl: 'components/blyn/core/circle/view/adminCircle.html',
-        controller: 'CircleMemberAdminController',
+        controller: 'CircleMemberChiefController',
         controllerAs: 'vm',
         ncyBreadcrumb: { label: '管理机构关注' },
         authenticate: true
@@ -123,7 +140,7 @@ angular.module('billynApp.core')
       .state('pc.space.app.circle.circleMemberChief.home', {
         url: '/home',
         templateUrl: 'components/blyn/core/circle/view/circleMemberChief.html',
-        controller: 'CircleMemberAdminController',
+        controller: 'CircleMemberChiefController',
         controllerAs: 'vm',
         ncyBreadcrumb: { skip: true },
         authenticate: true
@@ -131,7 +148,7 @@ angular.module('billynApp.core')
       .state('pc.space.app.circle.circleMemberChief.joinCircle', {
         url: '/joinCircle',
         templateUrl: 'components/blyn/core/circle/view/joinCircle.html',
-        controller: 'CircleMemberAdminController',
+        controller: 'CircleMemberChiefController',
         controllerAs: 'vm',
         ncyBreadcrumb: { label: '关注机构圈' },
         authenticate: true
@@ -157,7 +174,7 @@ angular.module('billynApp.core')
         url: '/:circleId/listCollab',
         template: '<div ui-view=""></div>',
         //templateUrl: 'components/blyn/core/circle/view/adminCircle.html',
-        controller: 'CircleMemberAdminController',
+        controller: 'CircleMemberChiefController',
         controllerAs: 'vm',
         ncyBreadcrumb: { label: '圈子功能' },
         authenticate: true,
