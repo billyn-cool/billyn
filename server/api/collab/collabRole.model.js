@@ -24,6 +24,10 @@ export default function (sequelize, DataTypes) {
 		roleType: {
 			type: DataTypes.ENUM('parent', 'child')
 		},
+		joinStatus: {
+			type: DataTypes.STRING,
+			defaultValue: 'none'
+		},
 		active: DataTypes.BOOLEAN
 	}, {
 			classMethods: {

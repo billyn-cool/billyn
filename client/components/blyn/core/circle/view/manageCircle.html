@@ -26,16 +26,23 @@
                             <a style="cursor: pointer" ui-sref="pc.space.app.circle({circleId: circle._id})">
                                 <i class="fa fa-windows"></i> {{circle.alias}}
                             </a>
-                            <span style="float: right">
-                                <a ui-sref="pc.space.app.circle.manageCircle.spaces({circleId:circle._id})">
-                                    <i class="fa fa-gear"></i> 管理机构
-                                </a>
-                            </span>
                         </div>
-                        
-                        <div class="appBookmark">描述：{{circle.description}}</div>                        
-                        <div class="appBookmark">加入机构：100</div>
-                        <div class="appBookmark">分享功能：10</div>
+
+                        <div class="appBookmark">描述：{{circle.description}}</div>
+                        <div class="appBookmark">
+                            <div>
+                                <a style="margin-right: 10px" ui-sref="pc.space.app.circle.manageCircle.spaces({circleId:circle._id})">
+                                    <i class="fa fa-anchor"></i> 加入的机构: 100
+                                </a>
+                            </div>
+                            <div ng-show="vm.allowManageCollab">
+                                <a ui-sref="pc.space.app.circle.manageCircle.spaces({circleId:circle._id})">
+                                    <i class="fa fa-cloud"></i> 分享的协作: 10
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                        </div>
                         <!-- <div style="min-height: 258px"> -->
                     </div>
                 </div>

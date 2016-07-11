@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-sm-12" style="margin-bottom: 20px;">
+        <div class="rowTitle">
+            <span style="display: inline-block;" class="animated flipInY">
+                <img src="components/blyn/core/space/view/img/icon64_appwx_logo.png" class="img-rounded" width="50" height="50">
+                &nbsp;
+                圈子功能列表
+            </span>
+        </div>
+    </div>
+</div>
+<div class="dashboard row">
+    <div class="col-sm-12">
+        <!-- dashboard-header -->
+
+        <!-- /dashboard-header -->
+        <!-- dashboard-body -->
+        <div class="dashboard-body">
+            <div class="dashboard-title">
+                <b>机构圈机构</b>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" ng-repeat="space in vm.circle.spaces">
+                    <div class="dashboard-space">
+                        <div>
+                            <a style="cursor: pointer" ui-sref="pc.space.app.circle.manageCircle.spaces({spaceId: space._id})">
+                                <i class="fa fa-windows"></i> {{space.alias}}
+                            </a>
+                        </div>
+
+                        <div class="appBookmark" ng-repeat="(index, collab) in space.collabs">
+                            <p>{{collab.alias}}</p>
+                            <div class="appBookmark-link" style="margin-left:10px; padding-bottom:10px" 
+                            ng-repeat="(index, role) in collab.childRoles">
+                            关联角色：{{role.name}}
+                                <span class="pull-right">
+                                    <a href="#"><i class="fa fa-times"></i>取消关联</a>
+                                </span>         
+                            </div>
+                            <div class="appBookmark-link pull-right" style="margin-left:10px; padding-bottom:10px" >
+                                <a style="cursor: pointer" ui-sref="pc.space.app.circle.circleMemberAdmin.listCollab.joinCollab({joinedSpaceId: space._id, collabId: collab._id})"><i class="fa fa-plus"></i>添加关联角色</a>
+                            </div>
+                        </div>
+                        <!-- <div style="min-height: 258px"> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /dashboard-body -->
+    </div>
+</div>

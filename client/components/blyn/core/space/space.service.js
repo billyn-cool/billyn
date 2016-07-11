@@ -2,7 +2,7 @@
 
 (function () {
 
-	function SpaceService($resource, User, $q, Util, BApp, $rootScope, BRole, $http) {
+	function SpaceService($resource, User, $q, Util, BApp, $rootScope, BRole, BCircle, $http) {
 		var safeCb = Util.safeCb;
 		var resSpace = $resource('/api/spaces/:id/:controller', {
 			id: '@_id'
@@ -253,10 +253,21 @@
 							roleId: adminRole._id,
 							spaceId: newSpace._id
 						});
-					})
-					.then(function () {
-						return newSpace;
 					});
+			}).then(function () {
+				//add default circle
+				if (newSpace.type.name.toLowerCase() !== 'space.person.normal') {
+					return BCircle.create({
+						spaceId: newSpace._id,
+						name: newSpace.name + "_" + "circle",
+						type: 'spacePrivateCircle',
+						alias: newSpace.name + "_" + "circle"
+					}).then(function () {
+						return $q.when(newSpace);
+					})
+				} else {
+					return $q.when(newSpace);
+				}
 			})
 		}
 
@@ -352,7 +363,7 @@
 
 			console.log('in find space: ');
 
-			if (angular.isNumber(findData) && findData > 0) {
+			if ((angular.isNumber(findData) && findData > 0) || (parseInt(findData) && parseInt(findData) > 0)) {
 				return resSpace.get({
 					id: findData
 				}).$promise;

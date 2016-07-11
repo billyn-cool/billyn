@@ -24,6 +24,8 @@
   class SpaceHomeController {
     constructor($state, $stateParams, $rootScope, BNut) {
       var ctrl = this;
+      ctrl.space = $rootScope.current.space;
+      /*
       $rootScope.current.nut.permits = [];
       BNut.findAllUserPermitNut($rootScope.current.app._id).then(function (permitNuts) {
         for (var i = 0; i < permitNuts.length; i++) {
@@ -32,7 +34,7 @@
             ctrl.nut = $rootScope.current.nut;
           }
         }
-      });
+      });*/
     }
   }
 

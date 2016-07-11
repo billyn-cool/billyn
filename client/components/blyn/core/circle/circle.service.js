@@ -71,6 +71,16 @@
 					var spaces = circle.spaces;
 					var collabs = circle.collabs;
 					collabs.forEach(function (collab) {
+						collab.childRoles = [];
+						collab.parentRoles = [];
+						collab.roles.forEach(function(r){
+							if(r.CollabRole.roleType === 'child'){
+								collab.childRoles.push(r);
+							}
+							if(r.CollabRole.roleType === 'parent'){
+								collab.parentRoles.push(r);
+							}
+						})
 						spaces.forEach(function (space) {
 							if (collab.spaceId === space._id) {
 								space.collabs = space.collabs || [];
@@ -87,6 +97,16 @@
 					var spaces = circle.spaces;
 					var collabs = circle.collabs;
 					collabs.forEach(function (collab) {
+						collab.childRoles = [];
+						collab.parentRoles = [];
+						collab.roles.forEach(function(r){
+							if(r.CollabRole.roleType === 'child'){
+								collab.childRoles.push(r);
+							}
+							if(r.CollabRole.roleType === 'parent'){
+								collab.parentRoles.push(r);
+							}
+						})
 						spaces.forEach(function (space) {
 							if (collab.spaceId === space._id) {
 								space.collabs = space.collabs || [];
@@ -129,7 +149,15 @@
 					circleData.spaceId = $rootScope.current.space._id;
 				}
 
-				return resCircle.save(circleData).$promise;
+				if(circleData.type && angular.isString(circleData.type)){
+					return this.getConfig().then(function(config){
+						var oType = config.circleTypes[circleData.type];
+						circleData.type = oType;
+						return resCircle.save(circleData).$promise;
+					})
+				} else {
+					return resCircle.save(circleData).$promise;
+				}
 
 				/*
 				return resCircle.save(circleData).$promise.then(function (result) {
@@ -170,7 +198,11 @@
 			}
 
 			//otherwise return error
-			$q.reject('fail to create circle, please provide valide params!');
+			//$q.reject('fail to create circle, please provide valide params!');
+		}
+
+		service.create = function(circleData){
+			return this.createCircle(circleData);
 		}
 
 		service.updateCircle = function (updateData, findData) {
@@ -429,6 +461,13 @@
 			} else {
 				return $q.reject('fail to addCollab, please check input!');
 			}
+		}
+
+		service.getConfig = function (spaceData) {
+			var model = this;
+			return $http.get('/components/blyn/core/circle/config.json').then(function (res) {
+				return $q.when(res.data);
+			});
 		}
 
 		return service;

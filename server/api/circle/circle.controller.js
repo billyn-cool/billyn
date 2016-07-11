@@ -84,6 +84,8 @@ export function index(req, res) {
 
   Circle.belongsToMany(Space, { as: 'spaces', through: 'CircleSpace' });
   Circle.belongsToMany(Collab, { as: 'collabs', through: 'CircleCollab' });
+  Collab.belongsToMany(Role, {through: 'CollabRole', as: 'roles'});
+  //Collab.belongsToMany(Role, {through: 'CollabRole', as: 'parentRoles'});
 
   Circle.findAll(
     {
@@ -93,8 +95,13 @@ export function index(req, res) {
           model: Space, as: 'spaces'
         },
         {
-          model: Collab, as: 'collabs'
-        }
+          model: Collab, as: 'collabs',
+          include: [
+            {
+              model: Role, as: 'roles',
+            }
+          ]
+        },
       ]
     }
   )
@@ -345,6 +352,8 @@ export function show(req, res) {
   Circle.belongsTo(Space, { as: 'space' });
   Circle.belongsToMany(Space, { as: 'spaces', through: 'CircleSpace' });
   Circle.belongsToMany(Collab, { through: 'CircleCollab', as: 'collabs' });
+  Collab.belongsToMany(Role, {through: 'CollabRole', as: 'roles'});
+  //Collab.belongsToMany(Role, {through: 'CollabRole', as: 'parentRoles'});
 
   if (circleId && circleId > 0) {
     Circle.find({
@@ -352,11 +361,16 @@ export function show(req, res) {
       include: [
         {
           model: Category, as: 'type'
-        }, {
+        }, 
+        {
           model: Space, as: 'space'
         },
         {
-          model: Collab, as: 'collabs'
+          model: Collab, as: 'collabs',
+          include: [
+            {
+              model: Role, as: 'roles'},
+          ]
         },
         {
           model: Space, as: 'spaces'

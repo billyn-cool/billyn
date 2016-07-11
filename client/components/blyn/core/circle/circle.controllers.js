@@ -78,21 +78,52 @@
     }*/
 
     class ManageCircleController {
-        constructor($rootScope, BCircle, $state) {
+        constructor($rootScope, BCircle, $state, BNut, $q) {
             var ctrl = this;
+            ctrl.BNut = BNut;
             BCircle.findUserLocalCircles({ spaceId: $rootScope.current.space._id }).then(function (lCircles) {
                 ctrl.localCircles = lCircles;
             })
+
+            ctrl.allowManageCollab = false;
+            ctrl.allowCreateCollab = false;
+
+            ctrl.BNut.userHasPermit('Collab', 'manageCollab').then(function (result) {
+                ctrl.allowManageCollab = result;
+            })
+
+            ctrl.BNut.userHasPermit('Collab', 'adminCollab').then(function (result) {
+                ctrl.allowCreateCollab = result;
+            });
+
+        }
+    }
+
+    class ManageCircleCollabController {
+        constructor($rootScope, BCircle, $state, BNut, $q) {
+            var ctrl = this;
+            ctrl.BNut = BNut;
+            
+
         }
     }
 
     class ManageCircleSpacesController {
-        constructor($rootScope, BCircle, $state, $stateParams) {
+        constructor($rootScope, BCircle, $state, $stateParams, BCollab) {
             var ctrl = this;
             ctrl.$rootScope = $rootScope;
             ctrl.$state = $state;
             ctrl.BCircle = BCircle;
             ctrl.circle = $rootScope.current.circle;
+            ctrl.current = {};
+            var space = $rootScope.current.space;
+            
+            BCollab.findAll({
+                spaceId: space._id
+            }).then(function(collabs){
+                space.collabs = collabs;
+                ctrl.current.space = space;
+            })
             /*
             if ($stateParams.circleId) {
                 BCircle.find($stateParams.circleId).then(function (circle) {
@@ -172,11 +203,12 @@
         }
     }
 
-    class CircleMemberAdminController {
+    class CircleMemberChiefController {
         constructor($rootScope, BCircle, $state) {
             var ctrl = this;
             ctrl.$state = $state;
             ctrl.BCircle = BCircle;
+            ctrl.$rootScope = $rootScope;
             BCircle.findCirclesForJoin().then(function (circles) {
                 ctrl.joinableCircles = circles;
                 BCircle.findJoinedCircles().then(function (jCircles) {
@@ -185,9 +217,9 @@
             });
         }
 
-        joinCircle(circle) {
+        joinCircle(circle, space) {
             var ctrl = this;
-            var space = $rootScope.current.space;
+            var space = space || ctrl.$rootScope.current.space;
             ctrl.BCircle.addCircleSpace(space, circle).then(function (theCircle) {
                 ctrl.joinableCircles.forEach(function (circle, index) {
                     if (circle._id === theCircle._id) {
@@ -236,6 +268,77 @@
             ctrl.BCircle.addCollab(collab, circle, 'exit').then(function (circleCollab) {
                 collab.CircleCollab = circleCollab;
             })
+        }
+    }
+
+    class ListCircleCollabController {
+        constructor($rootScope, BCircle, $state, BCollab, $q) {
+            var ctrl = this;
+            ctrl.$state = $state;
+            ctrl.BCircle = BCircle;
+            ctrl.space = $rootScope.current.space;
+            ctrl.circle = $rootScope.current.circle;
+        }
+    }
+
+    class JoinCircleCollabController {
+        constructor($rootScope, BCircle, $state, $stateParams, BCollab, BSpace, $q) {
+            var ctrl = this;
+            this.$state = $state;
+            this.creating = false;
+            this.BCollab = BCollab;
+            ctrl.joinData = {};
+
+            if ($stateParams.collabId) {
+                BCollab.find($stateParams.collabId).then(function (collab) {
+                    ctrl.joinData.collab = collab;
+                });
+            }
+
+            if ($stateParams.joinedSpaceId) {
+                BSpace.find($stateParams.joinedSpaceId).then(function (space) {
+                    ctrl.joinData.space = space;
+                });
+            }
+
+            ctrl.joinData.roles = $rootScope.current.space.roles;
+        }
+
+        joinCollab(form) {
+            var that = this;
+            var ctrl = this;
+            if (form.$valid) {
+                this.creating = true;
+                // 暂存this对象
+
+
+                var collabRoleData = [];
+
+                ctrl.joinData.roles.forEach(function (r) {
+                    if (r.selected) {
+                        var collabRole = {};
+                        collabRole.collabId = ctrl.joinData.collab._id;
+                        collabRole.childRoleId = r._id;
+                        collabRoleData.push(collabRole);
+                    }
+                })
+                var inputRole = this.inputRole || null;
+
+                if (angular.isObject(inputRole)) {
+                    var collabRole = {};
+                    collabRole.childRole = inputRole;
+                    collabRole.spaceId = ctrl.joinData.space._id;
+                    collabRole.collabId = ctrl.joinData.collab._id;
+                    collabRoleData.push(collabRole);
+                }
+
+                this.BCollab.bulkAddCollabRole(collabRoleData).then(function (res) {
+                    ctrl.$state.go('pc.space.app.circle.circleMemberChief.listCollab.home');
+                }, function (err) {
+                    that.creating = false;
+                    console.log('err:', err);
+                });
+            }
         }
     }
 
@@ -345,7 +448,9 @@
         .controller('AdminCircleController', AdminCircleController)
         .controller('ManageCircleSpacesController', ManageCircleSpacesController)
         .controller('ManageCircleController', ManageCircleController)
-        .controller('CircleMemberAdminController', CircleMemberAdminController)
+        .controller('CircleMemberChiefController', CircleMemberChiefController)
         .controller('ShareCollabController', ShareCollabController)
+        .controller('ListCircleCollabController', ListCircleCollabController)
+        .controller('JoinCircleCollabController', JoinCircleCollabController)
         .controller('CreateCircleController', CreateCircleController);
 })();

@@ -15,7 +15,7 @@ angular.module('billynApp.core')
         controllerAs: 'vm',
         ncyBreadcrumb: {label: '{{breadcrumb.app}}'},
         resolve: {
-          currentApp: function($q, $stateParams, $rootScope, BApp, currentSpace) {
+          currentApp: function($q, $stateParams, $rootScope,$http, BApp, currentSpace) {
             return $stateParams.appId ? 
                     BApp.find($stateParams.appId).$promise.then(function (app) {
                       $rootScope.current.app = app;

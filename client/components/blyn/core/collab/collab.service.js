@@ -65,7 +65,7 @@
 		service.findCollab = function (collabData) {
 
 			if (!isNaN(collabData) && collabData > 0) {
-				return resCollab.get({ id: collabData }).$promise.then(function(collab){
+				return resCollab.get({ id: collabData }).$promise.then(function (collab) {
 					return $q.when(collab);
 				});
 			}
@@ -77,8 +77,8 @@
 			//otherwise return error
 			$q.reject('fail to find collab, please provide valide params!');
 		}
-		
-		service.find = function(collabData){
+
+		service.find = function (collabData) {
 			return this.findCollab(collabData);
 		}
 
@@ -86,18 +86,18 @@
 
 			if (angular.isObject(collabData)) {
 				return resCollab.query(collabData).$promise;
+			} else {
+				//otherwise return error
+				$q.reject('fail to find collabs, please provide valide params!');
 			}
-
-			//otherwise return error
-			$q.reject('fail to find collabs, please provide valide params!');
 		}
 
-		service.findSpaceCollabs = function(collabData){
-			collabData = angular.isObject(collabData)?collabData:{};
+		service.findSpaceCollabs = function (collabData) {
+			collabData = angular.isObject(collabData) ? collabData : {};
 			collabData.spaceId = collabData.spaceId || $rootScope.current.space._id;
 			return this.findAllCollab(collabData);
 		}
-		
+
 		service.findAll = function (collabData) {
 			return this.findAllCollab(collabData);
 		}
@@ -229,8 +229,8 @@
 			//otherwise return error
 			$q.reject('fail to create collab, please provide valide params!');
 		}
-		
-		service.bulkAddCollabRole = function(collabRoleData){
+
+		service.bulkAddCollabRole = function (collabRoleData) {
 			if (angular.isObject(collabRoleData)) {
 				return resCollabRole.bulkAdd(collabRoleData).$promise;
 			}
@@ -257,18 +257,18 @@
 		service.findAllUserCollabNut = function (findData) {
 			var userId = $rootScope.current.user._id;
 			var spaceId = $rootScope.current.space._id;
-			
+
 			//resource return nut and permits are organized by spaces
 			return resCollab.findAllUserCollabNut({
 				userId: userId,
 				spaceId: spaceId
-			}).$promise.then(function(spaces){
-				spaces.forEach(function(space){
+			}).$promise.then(function (spaces) {
+				spaces.forEach(function (space) {
 					var collabs = space.collabs;
-					collabs.forEach(function(collab){
+					collabs.forEach(function (collab) {
 						var nutPermits = [];
 						var parentRoles = collab.parentRoles;
-						parentRoles.forEach(function(r){
+						parentRoles.forEach(function (r) {
 							nutPermits = nutPermits.concat(r.nutPermits);
 						})
 						collab.nutPermits = nutPermits;
@@ -276,24 +276,24 @@
 				})
 				return $q.when(spaces);
 			})
-			
+
 		}
-		
-		service.findAllUserNutPermitWithCollab = function(findData){
-			this.findAllUserCollabNut().then(function(spaces){
-				spaces.forEach(function(space){
+
+		service.findAllUserNutPermitWithCollab = function (findData) {
+			this.findAllUserCollabNut().then(function (spaces) {
+				spaces.forEach(function (space) {
 					var collabs = space.collabs;
-					collabs.forEach(function(collab){
+					collabs.forEach(function (collab) {
 						var nutPermits = [];
 						var parentRoles = collab.parentRoles;
-						parentRoles.forEach(function(r){
+						parentRoles.forEach(function (r) {
 							nutPermits = nutPermits.concat(r.nutPermits);
 						})
 						collab.nutPermits = nutPermits;
 					})
 				})
 			})
-			
+
 		}
 
 		service.findUserJoinedCollabs = function (findData) {
@@ -312,27 +312,27 @@
 						nutId: $rootScope.current.nut._id
 					}
 				).then(function (nutPermits) {
-					collabs.forEach(function(collab){
+					collabs.forEach(function (collab) {
 						collab.userNutPermits = nutPermits;
 					})
 					return $q.when(collabs);
 				});
 			});
 		}
-		
-		service.findAllJoinableSpace = function(findData){
+
+		service.findAllJoinableSpace = function (findData) {
 			var data = {};
 			data.spaceId = $rootScope.current.space._id;
-			if(angular.isObject(findData) &&findData.spaceId){
+			if (angular.isObject(findData) && findData.spaceId) {
 				data.spaceId = findData.spaceId;
 			}
 			return resCollab.findAllJoinableSpace(data).$promise;
 		}
-		
-		service.findAllJoinedSpace = function(findData){
+
+		service.findAllJoinedSpace = function (findData) {
 			var data = {};
 			data.spaceId = $rootScope.current.space._id;
-			if(angular.isObject(findData) &&findData.spaceId){
+			if (angular.isObject(findData) && findData.spaceId) {
 				data.spaceId = findData.spaceId;
 			}
 			return resCollab.findAllJoinedSpace(data).$promise;
