@@ -17,7 +17,7 @@
         <!-- dashboard-body -->
         <div class="dashboard-body">
             <div class="dashboard-title">
-                <b>关注的机构圈</b> ｜ 
+                <b>关注的机构圈</b> ｜
                 <a style="cursor: pointer" ui-sref="pc.space.app.circle.circleMemberChief.joinCircle">
                     <i class="fa fa-search"></i>寻找机构圈
                 </a>
@@ -36,18 +36,23 @@
                             </span>
                         </div>
 
-                        <div class="appBookmark">描述：{{circle.description}}</div>
-                        <div class="appBookmark">加入状态：{{circle.CircleSpace.joinStatus}}</div>
                         <div class="appBookmark">
-                            <a ui-sref="pc.space.app.circle.circleMemberChief.shareCollab({circleId:circle._id})">
-                                <i class="fa fa-cloud"></i>申请功能分享
-                            </a>
-                            <span class="pull-right">
-                                <a ui-sref="pc.space.app.circle.circleMemberChief.listCollab({circleId:circle._id})">
-                                    <i class="fa fa-plus"></i>功能列表
+                            <div>圈子描述：{{circle.description}}</div>
+                            <div>加入状态：{{circle.CircleSpace.joinStatus}}</div>
+                        </div>
+                        <div class="appBookmark">
+                            <div>
+                                <a ui-sref="pc.space.app.circle.circleMemberChief.shareCollab({circleId:circle._id})">
+                                    <i class="fa fa-cloud"></i> 分享协作
                                 </a>
-                            </span>
-                            
+                            </div>
+                        </div>
+                        <div class="appBookmark">
+                            <div>
+                                <a ui-sref="pc.space.app.circle.circleMemberChief.listCollab({circleId:circle._id})">
+                                    <i class="fa fa-cutlery"></i> 参与协作
+                                </a>
+                            </div>
                         </div>
 
                         <!-- <div style="min-height: 258px"> -->

@@ -17,38 +17,39 @@
         <!-- dashboard-body -->
         <div class="dashboard-body">
             <div class="dashboard-title">
-                <b>机构圈机构</b>
+                <b>机构圈机构---当前机构圈：{{vm.circle.alias}}</b>
             </div>
+
             <div class="row">
+                <!-- 显示本机构-->
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                     <div class="dashboard-space">
                         <div>
                             <a style="cursor: pointer" ui-sref="pc.space.app.circle.manageCircle.spaces({spaceId: space._id})">
                                 <i class="fa fa-windows"></i> 本机构（{{vm.current.space.alias}}）
                             </a>
-                            <span class="pull-right">
-                                <a href="#" ng-click="vm.addCircleCollab(collab)"><i class="fa fa-plus"></i> 新增协作</a>
-                            </span>
                         </div>
-
-                        <div class="appBookmark" ng-repeat="(index, collab) in vm.current.space.collabs">
-                            <div class="appBookmark-link" style="margin-left:10px; padding-bottom:10px">
-                                <div>
+                        <div class="appBookmark">
+                            <div><a href="#" ng-click="vm.addCircleCollab(collab)"><i class="fa fa-plus"></i> 创建协作</a></div>
+                        </div>
+                        <div class="appBookmark">
+                            <div>
+                                <a href="#" ng-click="vm.toggleShowList('currentSpace')"><i class="fa fa-wrench"></i> 管理分享的协作</a>
+                            </div>
+                            <div ng-show="vm.showList['currentSpace']" ng-repeat="(index, collab) in vm.current.space.collabs">
+                                <div style="margin-top:10px;padding-right:10px;padding-left:10px">
                                     {{collab.alias}}
-                                    <span style="float: right">
-                                        {{collab.CircleCollab? collab.CircleCollab.joinStatus: '未分享'}}
-                                    </span>
-                                </div>
-                                <div style="padding-top:10px" class="pull-right">                                     
-                                    <a href="#" ng-click="vm.approveShareCollab(collab)"><i class="fa fa-check"></i>分享功能</a> |   
-                                    <a href="#" ng-click="vm.rejectShareCollab(collab)"><i class="fa fa-times"></i>退出分享</a>
+                                    <div class="pull-right">
+                                        <a href="#" ng-click="vm.approveShareCollab(collab)"></i>分享</a> |
+                                        <a href="#" ng-click="vm.rejectShareCollab(collab)"></i>退出</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                         <!-- <div style="min-height: 258px"> -->
                     </div>
                 </div>
+                <!-- 完成显示本机构-->
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="space in vm.circle.spaces">
                     <div class="dashboard-space">
                         <div>
@@ -57,30 +58,39 @@
                             </a>
                         </div>
                         <div>
-                            
+
                         </div>
                         <div class="appBookmark">
                             <div>
-                            关注状态：{{space.CircleSpace.joinStatus}}    
+                                <a href="#" ng-click="vm.toggleShowList('space'+space._id+'_j')"><i class="fa fa-question"></i> 已加入圈子</a>
                             </div>
-                            <div class="pull-right">
-                                <a href="#" ng-click="vm.approveJoinCircle(space)">批准</a> ｜ 
-                                <a href="#" ng-click="vm.rejectJoinCircle(space)">拒绝</a>
-                            </div>                     
+                            <div style="margin-top:10px;padding-right:10px;padding-left:10px" ng-show="vm.showList['space'+space._id+'_j']">
+                                状态：{{space.CircleSpace.joinStatus}}
+                                <div class="pull-right">
+                                    <a href="#" ng-show="space.CircleSpace.joinStatus === 'applying'" ng-click="vm.approveJoinCircle(space)">批准</a>
+                                    <a href="#" ng-show="space.CircleSpace.joinStatus === 'approved'" ng-click="vm.rejectJoinCircle(space)">拒绝</a>
+                                    <a href="#" ng-show="space.CircleSpace.joinStatus === 'rejected'" ng-click="vm.approveJoinCircle(space)">批准</a>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="appBookmark" ng-repeat="(index, collab) in space.collabs">
-                            <div class="appBookmark-link" style="margin-left:10px; padding-bottom:10px">
-                                <div>
+                        <div class="appBookmark">
+                            <div>
+                                <a href="#" ng-click="vm.toggleShowList('space'+space._id+'_m')"><i class="fa fa-wrench"></i> 管理分享的协作</a>
+                            </div>
+                            <div style="margin-top:10px;padding-right:10px;padding-left:10px;" ng-show="vm.showList['space'+space._id+'_m']">
+                                <div ng-show="space.collabs.length === 0" class="appBookmark">
+                                    没有协作分享请求！
+                                </div>
+                                <div ng-repeat="(index, collab) in space.collabs">
                                     {{collab.alias}}
-                                    <span style="float: right">
-                                        {{collab.CircleCollab.joinStatus}}
-                                    </span>
+                                    <div ng-show="collab.CircleCollab.joinStatus === 'applying'" class="pull-right">
+                                        {{collab.CircleCollab.joinStatus}}---><a href="#" ng-click="vm.approveShareCollab(collab)">批准</a>
+                                    </div>
+                                    <div ng-show="collab.CircleCollab.joinStatus === 'approved'" class="pull-right">
+                                        {{collab.CircleCollab.joinStatus}}---><a href="#" ng-click="vm.approveShareCollab(collab)">拒绝</a>
+                                    </div>
                                 </div>
-                                <div style="padding-top:10px; float: right">
-                                    <a href="#" ng-click="vm.approveShareCollab(collab)"><i class="fa fa-check"></i>批准</a> ｜  <a href="#" ng-click="vm.rejectShareCollab(collab)"><i class="fa fa-times"></i>拒绝</a>
-                                </div>
-
                             </div>
                         </div>
 

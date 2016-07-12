@@ -123,6 +123,7 @@
             }).then(function(collabs){
                 space.collabs = collabs;
                 ctrl.current.space = space;
+                ctrl.current.space.showManageCollab = false;
             })
             /*
             if ($stateParams.circleId) {
@@ -130,6 +131,21 @@
                     ctrl.circle = circle;
                 })
             }*/
+        }
+
+        toggleShowList(showId){
+            var ctrl = this;
+            ctrl.showList = ctrl.showList || {};
+            ctrl.showList[showId] ? ctrl.showList[showId] = ! ctrl.showList[showId]: ctrl.showList[showId] = true;
+            var tempShowId = ctrl.showList[showId];
+            //first toggle all showList to false
+            for(var key in ctrl.showList){
+                ctrl.showList[key] = false;
+            }
+            //change current
+            ctrl.showList[showId] = tempShowId;
+            
+            ctrl.showList;
         }
 
         approveJoinCircle(space) {
@@ -276,8 +292,53 @@
             var ctrl = this;
             ctrl.$state = $state;
             ctrl.BCircle = BCircle;
+            ctrl.BCollab = BCollab;
             ctrl.space = $rootScope.current.space;
             ctrl.circle = $rootScope.current.circle;
+        }
+
+        getCollabRolesForManage(collab){
+            var ctrl = this;
+
+            var roles = ctrl.space.roles.slice();
+            var collobRoles = collab.childRoles;
+
+            roles.forEach(function(r,index){
+                collobRoles.forEach(function(cr){
+                    if(r._id === cr._id){
+                        roles[index] = cr;
+                    }
+                })
+            })
+
+            return roles;
+        }
+
+        addCollabRole(collab, role, joinStatus) {
+            var ctrl = this;
+            var joinStatus = joinStatus || 'joined';
+            ctrl.BCollab.addCollabRole({
+                collabId: collab._id,
+                childRoleId: role._id,
+                joinStatus: joinStatus
+            }).then(function(collabRole){
+                role.CollabRole = collabRole;
+            })
+        }
+
+        toggleShowSlice(showId){
+            var ctrl = this;
+            ctrl.showSlice = ctrl.showSlice || {};
+            ctrl.showSlice[showId] ? ctrl.showSlice[showId] = ! ctrl.showSlice[showId]: ctrl.showSlice[showId] = true;
+            var tempShowId = ctrl.showSlice[showId];
+            //first toggle all showList to false
+            for(var key in ctrl.showSlice){
+                ctrl.showSlice[key] = false;
+            }
+            //change current
+            ctrl.showSlice[showId] = tempShowId;
+            
+            ctrl.showSlice;
         }
     }
 
