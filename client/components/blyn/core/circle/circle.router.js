@@ -18,6 +18,10 @@ angular.module('billynApp.core')
     $urlRouterProvider.when(
       '/pc/space/:spaceId/app/:appId/circle/:nutId/circleMemberChief/:circleId/listCollab',
       '/pc/space/:spaceId/app/:appId/circle/:nutId/circleMemberChief/:circleId/listCollab/home'),
+    $urlRouterProvider.when(
+      '/pc/space/:spaceId/app/:appId/circle/:nutId/circleMember',
+      '/pc/space/:spaceId/app/:appId/circle/:nutId/circleMember/home');
+
 
     $stateProvider
       .state('pc.space.app.circle', {
@@ -203,6 +207,31 @@ angular.module('billynApp.core')
         controllerAs: 'vm',
         ncyBreadcrumb: { label: '关注功能' },
         authenticate: true,
+      })
+      .state('pc.space.app.circle.circleMember', {
+        url: '/circleMember',
+        template: '<div ui-view=""></div>',
+        //templateUrl: 'components/blyn/core/circle/view/adminCircle.html',
+        controller: 'CircleMemberController',
+        controllerAs: 'vm',
+        ncyBreadcrumb: { label: '我的机构圈' },
+        authenticate: true
+      })
+      .state('pc.space.app.circle.circleMember.home', {
+        url: '/home',
+        templateUrl: 'components/blyn/core/circle/view/circleMember.html',
+        controller: 'CircleMemberController',
+        controllerAs: 'vm',
+        ncyBreadcrumb: { skip: true },
+        authenticate: true
+      })
+      .state('pc.space.app.circle.circleMember.spaces', {
+        url: '/:circleId/spaces',
+        templateUrl: 'components/blyn/core/circle/view/circleMemberSpaces.html',
+        controller: 'CircleMemberSpacesController',
+        controllerAs: 'vm',
+        ncyBreadcrumb: { label: '圈子机构' },
+        authenticate: true
       })
 
   });

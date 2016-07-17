@@ -9,7 +9,7 @@ router.get('/spaces/joinable', controller.findAllJoinableSpace);
 router.get('/spaces/joined', controller.findAllJoinedSpace);
 router.get('/user/nut/permits', controller.findAllUserNutPermitByCollab);
 router.get('/user/nuts', controller.findAllUserNutPermit);
-router.get('/roles/child', controller.findAllChildRole);
+//router.get('/roles/child', controller.findAllChildRole);
 router.get('/roles/parent', controller.findAllParentRole);
 router.get('/:id', controller.show);
 router.get('/', controller.index);

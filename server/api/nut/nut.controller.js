@@ -137,7 +137,7 @@ export function show(req, res) {
   }
 
   if (spaceId && appId) {
-    console.log('nutData:',JSON.stringify(nutData));
+    //console.log('nutData:',JSON.stringify(nutData));
     Nut.find({
       where: nutData,
       include: [{
@@ -230,7 +230,7 @@ export function findAllUserPermitNut(req, res) {
   //console.log('query 1:', JSON.stringify(query));
 
   if (!req.query.spaceId || !req.query.userId) {
-    handleError(res);
+    res.status(500).send('please provice spaceId and userId!');
   } else {
     var whereData = {};
     whereData.userId = req.query.userId;
@@ -280,6 +280,12 @@ export function findAllUserPermitNut(req, res) {
         };
       }
 
+      if (req.query.hasOwnProperty('nutId') && req.query.nutId > 0) {
+        nutInclude.where = {
+          _id: req.query.nutId
+        };
+      }
+
       //console.log('nutInclude:',nutInclude);
 
       //console.log('req.query 5:', JSON.stringify(req.query));
@@ -295,7 +301,7 @@ export function findAllUserPermitNut(req, res) {
         userRoleList.push(eRole._id);
         or.push(eRole._id);
         query['$or'] = or;
-        console.log('userRoleList:', JSON.stringify(userRoleList));
+        //console.log('userRoleList:', JSON.stringify(userRoleList));
         return PermitRole.findAll({
           //where: query,
           include: [

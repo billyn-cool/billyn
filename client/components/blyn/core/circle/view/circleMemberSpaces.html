@@ -4,7 +4,7 @@
             <span style="display: inline-block;" class="animated flipInY">
                 <img src="components/blyn/core/space/view/img/icon64_appwx_logo.png" class="img-rounded" width="50" height="50">
                 &nbsp;
-                我的机构圈子
+                机构圈的机构
             </span>
         </div>
     </div>
@@ -17,32 +17,30 @@
         <!-- dashboard-body -->
         <div class="dashboard-body">
             <div class="dashboard-title">
-                <b>我的机构圈</b>
+                <b>机构圈机构---当前机构圈：{{vm.circle.alias}}</b>
             </div>
+
             <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="circle in vm.circles">
+
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="space in vm.circle.spaces">
                     <div class="dashboard-space">
                         <div>
-                            <a style="cursor: pointer" ui-sref="pc.space.app.circle({circleId: circle._id})">
-                                <i class="fa fa-circle-o"></i> {{circle.alias}}
+                            <a style="cursor: pointer" ui-sref="pc.space.app.circle.manageCircle.spaces({spaceId: space._id})">
+                                <i class="fa fa-window"></i> {{space.alias}}
                             </a>
                         </div>
 
-                        <div class="appBookmark">
-                            <div>圈子描述：{{circle.description}}</div>
-                        </div>
-                        <div class="appBookmark">
+                        <div class="appBookmark" ng-repeat="(index, collab) in space.collabs">
                             <div>
-                                <a ui-sref="pc.space.app.circle.circleMember.spaces({circleId:circle._id})">
-                                    <i class="fa fa-windows"></i> 机构数量：{{circle.spaces.length}}
-                                </a>
+                                <a href="#" ng-click="vm.toggleShowSlice('collab'+collab._id)"><i class="fa fa-plus-circle"></i> {{collab.alias}}</a>
                             </div>
-                            <div>
-                                <a ui-sref="pc.space.app.circle.circleMember.spaces({circleId:circle._id})">
-                                    <i class="fa fa-random"></i> 协作数量：{{circle.collabs.length}}
-                                </a>
+                            <div style="margin-top:10px;padding-right:10px;padding-left:10px;" ng-show="vm.showSlice['collab'+collab._id]">
+                                <div ng-repeat="(index, nutPermit) in collab.nutPermits">
+                                    <a ui-sref="pc.space.app.{{nutPermit.nut.name}}.{{nutPermit.permit.name}}">{{nutPermit.nut.alias}}::{{nutPermit.permit.alias}}</a>
+                                </div>
                             </div>
                         </div>
+
                         <!-- <div style="min-height: 258px"> -->
                     </div>
                 </div>

@@ -73,11 +73,11 @@
 					collabs.forEach(function (collab) {
 						collab.childRoles = [];
 						collab.parentRoles = [];
-						collab.roles.forEach(function(r){
-							if(r.CollabRole.roleType === 'child'){
+						collab.roles.forEach(function (r) {
+							if (r.CollabRole.roleType === 'child') {
 								collab.childRoles.push(r);
 							}
-							if(r.CollabRole.roleType === 'parent'){
+							if (r.CollabRole.roleType === 'parent') {
 								collab.parentRoles.push(r);
 							}
 						})
@@ -99,11 +99,11 @@
 					collabs.forEach(function (collab) {
 						collab.childRoles = [];
 						collab.parentRoles = [];
-						collab.roles.forEach(function(r){
-							if(r.CollabRole.roleType === 'child'){
+						collab.roles.forEach(function (r) {
+							if (r.CollabRole.roleType === 'child') {
 								collab.childRoles.push(r);
 							}
-							if(r.CollabRole.roleType === 'parent'){
+							if (r.CollabRole.roleType === 'parent') {
 								collab.parentRoles.push(r);
 							}
 						})
@@ -149,8 +149,8 @@
 					circleData.spaceId = $rootScope.current.space._id;
 				}
 
-				if(circleData.type && angular.isString(circleData.type)){
-					return this.getConfig().then(function(config){
+				if (circleData.type && angular.isString(circleData.type)) {
+					return this.getConfig().then(function (config) {
 						var oType = config.circleTypes[circleData.type];
 						circleData.type = oType;
 						return resCircle.save(circleData).$promise;
@@ -201,7 +201,7 @@
 			//$q.reject('fail to create circle, please provide valide params!');
 		}
 
-		service.create = function(circleData){
+		service.create = function (circleData) {
 			return this.createCircle(circleData);
 		}
 
@@ -420,18 +420,66 @@
 			if (findData && findData.spaceId && findData.spaceId > 0) {
 				spaceId = findData.spaceId;
 			}
-			return resCircle.findJoinedCircles({ spaceId: spaceId }).$promise.then(function(circles){
-				circles.forEach(function(oCircle){
+			return resCircle.findJoinedCircles({ spaceId: spaceId }).$promise.then(function (circles) {
+				circles.forEach(function (oCircle) {
 					oCircle.CircleSpace = oCircle.CircleSpaces[0]
 				})
 				return $q.when(circles);
 			});
 		}
 
+		service.findUserCirclesAsMember = function (findData) {
+
+			findData = typeof findData === 'object' ? findData : {};
+
+			findData.spaceId = findData.spaceId || $rootScope.current.space._id;
+			findData.userId = findData.userId || $rootScope.current.user._id;
+
+			return resCircle.findUserCircles(findData).$promise.then(function (circles) {
+				circles.forEach(function (circle) {
+					var spaces = circle.spaces;
+					spaces.forEach(function (space) {
+						var collabs = space.collabs;
+						collabs.forEach(function (collab) {
+							var spaceCollab = collab;
+							var parentRoles = collab.parentRoles;
+							parentRoles.forEach(function (pr) {
+								var nutPermits = pr.nutPermits;
+								pr.nutPermits.forEach(function (np) {
+									spaceCollab.nutPermits = spaceCollab.nutPermits || [];
+									spaceCollab.nutPermits.push(np);
+								})
+							})
+						})
+					})
+					var collabs = circle.collabs;
+					collabs.forEach(function (collab) {
+						var circleCollab = collab;
+						var parentRoles = collab.parentRoles;
+						parentRoles.forEach(function (pr) {
+							var nutPermits = pr.nutPermits;
+							pr.nutPermits.forEach(function (np) {
+								circleCollab.nutPermits = circleCollab.nutPermits || [];
+								circleCollab.nutPermits.push(np);
+							})
+						})
+					})
+				})
+				return $q.when(circles);
+			});
+		}
+
+		service.findUserCircle = function (findData) {
+
+			return this.findUserCirclesAsMember(findData).then(function(circles){
+				return $q.when(circles[0]);
+			})
+		}
+
 		/**
 		 * add space into circle
 		 */
-		service.addCircleSpace = function (space,circle, joinStatus) {
+		service.addCircleSpace = function (space, circle, joinStatus) {
 			var space = space || $rootScope.current.space;
 			var circle = circle || $rootScope.current.circle;
 			var joinStatus = joinStatus || "applying";

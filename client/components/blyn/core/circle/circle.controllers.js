@@ -103,7 +103,7 @@
         constructor($rootScope, BCircle, $state, BNut, $q) {
             var ctrl = this;
             ctrl.BNut = BNut;
-            
+
 
         }
     }
@@ -117,10 +117,10 @@
             ctrl.circle = $rootScope.current.circle;
             ctrl.current = {};
             var space = $rootScope.current.space;
-            
+
             BCollab.findAll({
                 spaceId: space._id
-            }).then(function(collabs){
+            }).then(function (collabs) {
                 space.collabs = collabs;
                 ctrl.current.space = space;
                 ctrl.current.space.showManageCollab = false;
@@ -133,18 +133,18 @@
             }*/
         }
 
-        toggleShowList(showId){
+        toggleShowList(showId) {
             var ctrl = this;
             ctrl.showList = ctrl.showList || {};
-            ctrl.showList[showId] ? ctrl.showList[showId] = ! ctrl.showList[showId]: ctrl.showList[showId] = true;
+            ctrl.showList[showId] ? ctrl.showList[showId] = !ctrl.showList[showId] : ctrl.showList[showId] = true;
             var tempShowId = ctrl.showList[showId];
             //first toggle all showList to false
-            for(var key in ctrl.showList){
+            for (var key in ctrl.showList) {
                 ctrl.showList[key] = false;
             }
             //change current
             ctrl.showList[showId] = tempShowId;
-            
+
             ctrl.showList;
         }
 
@@ -297,15 +297,15 @@
             ctrl.circle = $rootScope.current.circle;
         }
 
-        getCollabRolesForManage(collab){
+        getCollabRolesForManage(collab) {
             var ctrl = this;
 
             var roles = ctrl.space.roles.slice();
             var collobRoles = collab.childRoles;
 
-            roles.forEach(function(r,index){
-                collobRoles.forEach(function(cr){
-                    if(r._id === cr._id){
+            roles.forEach(function (r, index) {
+                collobRoles.forEach(function (cr) {
+                    if (r._id === cr._id) {
                         roles[index] = cr;
                     }
                 })
@@ -321,23 +321,23 @@
                 collabId: collab._id,
                 childRoleId: role._id,
                 joinStatus: joinStatus
-            }).then(function(collabRole){
+            }).then(function (collabRole) {
                 role.CollabRole = collabRole;
             })
         }
 
-        toggleShowSlice(showId){
+        toggleShowSlice(showId) {
             var ctrl = this;
             ctrl.showSlice = ctrl.showSlice || {};
-            ctrl.showSlice[showId] ? ctrl.showSlice[showId] = ! ctrl.showSlice[showId]: ctrl.showSlice[showId] = true;
+            ctrl.showSlice[showId] ? ctrl.showSlice[showId] = !ctrl.showSlice[showId] : ctrl.showSlice[showId] = true;
             var tempShowId = ctrl.showSlice[showId];
             //first toggle all showList to false
-            for(var key in ctrl.showSlice){
+            for (var key in ctrl.showSlice) {
                 ctrl.showSlice[key] = false;
             }
             //change current
             ctrl.showSlice[showId] = tempShowId;
-            
+
             ctrl.showSlice;
         }
     }
@@ -400,6 +400,47 @@
                     console.log('err:', err);
                 });
             }
+        }
+    }
+
+    class CircleMemberController {
+        constructor($rootScope, BCircle, $state, $stateParams, BCollab, BSpace, $q) {
+            var ctrl = this;
+            this.$state = $state;
+            this.creating = false;
+            this.BCollab = BCollab;
+
+            BCircle.findUserCirclesAsMember().then(function (circles) {
+                ctrl.circles = circles;
+            })
+        }
+    }
+
+    class CircleMemberSpacesController {
+        constructor($rootScope, BCircle, $state, $stateParams, BCollab, BSpace, $q) {
+            var ctrl = this;
+            this.$state = $state;
+            this.creating = false;
+            this.BCollab = BCollab;
+
+            BCircle.findUserCircle($stateParams).then(function (circle) {
+                ctrl.circle = $rootScope.current.circle = circle;
+            })
+        }
+
+        toggleShowSlice(showId) {
+            var ctrl = this;
+            ctrl.showSlice = ctrl.showSlice || {};
+            ctrl.showSlice[showId] ? ctrl.showSlice[showId] = !ctrl.showSlice[showId] : ctrl.showSlice[showId] = true;
+            var tempShowId = ctrl.showSlice[showId];
+            //first toggle all showList to false
+            //for(var key in ctrl.showSlice){
+            //ctrl.showSlice[key] = false;
+            //}
+            //change current
+            ctrl.showSlice[showId] = tempShowId;
+
+            ctrl.showSlice;
         }
     }
 
@@ -513,5 +554,7 @@
         .controller('ShareCollabController', ShareCollabController)
         .controller('ListCircleCollabController', ListCircleCollabController)
         .controller('JoinCircleCollabController', JoinCircleCollabController)
+        .controller('CircleMemberController', CircleMemberController)
+        .controller('CircleMemberSpacesController', CircleMemberSpacesController)
         .controller('CreateCircleController', CreateCircleController);
 })();
