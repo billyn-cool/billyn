@@ -151,12 +151,14 @@ export default function (sequelize, DataTypes) {
           return Promise.reject(new Error('fail to find users, make sure userId | spaceId is provided!'));
         },
         findAllUserSpaceRole: function (userId, spaceId) {
+          //console.log('userId:',userId);
+          //console.log('spaceId:',spaceId);
 
-          if (!userId) {
+          if (!userId) {     
             Promise.reject('please provide userId!');
           }
 
-          if (!spaceId) {
+          if (!spaceId) {           
             Promise.reject('please provide spaceId!');
           }
 
@@ -164,6 +166,7 @@ export default function (sequelize, DataTypes) {
           var Category = sqldb.Category;
           var Space = sqldb.Space;
           var that = this;
+          var theRoles;
 
           that.hasMany(UserRole);
           that.belongsTo(Space, { as: 'space' });
@@ -181,16 +184,18 @@ export default function (sequelize, DataTypes) {
                 }
               },
               {
-                model: Space, as: 'space',
-                include: [
-                  {
-                    model: Category, as: 'type'
-                  }
-                ]
-              }
+                  model: Space, as: 'space',
+                  include: [
+                    {
+                      model: Category, as: 'type'
+                    }
+                  ]
+                }
             ]
             //add everyone role for each user roles
           }).then(function (roles) {
+            //console.log('roles', JSON.stringify(roles));
+            theRoles = roles;
             return that.find({
               where: {
                 spaceId: spaceId,
@@ -204,11 +209,12 @@ export default function (sequelize, DataTypes) {
                       model: Category, as: 'type'
                     }
                   ]
-                }
+                },
+                
               ]
             }).then(function (role) {
-              roles.push(role);
-              return Promise.resolve(roles);
+              theRoles.push(role);
+              return Promise.resolve(theRoles);
             })
           })
         },

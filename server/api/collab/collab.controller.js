@@ -594,11 +594,6 @@ export function findAllUserNutPermitByCollab(req, res) {
     .catch(handleError(res));
 }
 
-export function findAllChildRole(req, res) {
-
-
-}
-
 export function findAllParentRole(req, res) {
 
 }

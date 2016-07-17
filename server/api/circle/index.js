@@ -18,7 +18,7 @@ router.patch('/collabs/:id', controller.updateCollab);
 router.delete('/collabs/:id', controller.destroyCollab);
 */
 
-router.get('/user', controller.findUserCircles);
+router.get('/user', controller.findAllUserCircleAsMember);
 router.get('/joinable', controller.findCirclesForJoin);
 router.get('/joined', controller.findJoinedCircles);
 router.get('/spaces/manage', controller.findCircleSpacesForManage);

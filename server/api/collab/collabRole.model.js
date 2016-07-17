@@ -157,6 +157,7 @@ export default function (sequelize, DataTypes) {
 							that.belongsTo(Collab, { as: 'collab' });
 							Collab.belongsTo(Category, { as: 'type' });
 							//console.log('4:');
+							var joinStatus = data.joinStatus || "joined";
 							return that.findOrCreate({
 								where: {
 									collabId: collabId,
@@ -164,9 +165,17 @@ export default function (sequelize, DataTypes) {
 									roleType: 'child'
 								},
 								defaults: {
+									joinStatus: joinStatus
 								}
 							}).spread(function (row, create) {
 								//console.log('2 row:', JSON.stringify(row));
+								if(!create){
+									row.joinStatus = joinStatus;
+									return row.save();
+								} else {
+									return Promise.resolve(row);
+								}								
+							}).then(function(row){
 								return that.find({
 									where: {
 										_id: row._id

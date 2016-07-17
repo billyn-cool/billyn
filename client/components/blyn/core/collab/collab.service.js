@@ -252,7 +252,6 @@
 			$q.reject('fail to destroy collab role, please provide valide params!');
 		}
 
-		//special functions
 		//find user's nuts under some collab
 		service.findAllUserCollabNut = function (findData) {
 			var userId = $rootScope.current.user._id;

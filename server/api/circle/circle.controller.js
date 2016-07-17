@@ -84,7 +84,7 @@ export function index(req, res) {
 
   Circle.belongsToMany(Space, { as: 'spaces', through: 'CircleSpace' });
   Circle.belongsToMany(Collab, { as: 'collabs', through: 'CircleCollab' });
-  Collab.belongsToMany(Role, {through: 'CollabRole', as: 'roles'});
+  Collab.belongsToMany(Role, { through: 'CollabRole', as: 'roles' });
   //Collab.belongsToMany(Role, {through: 'CollabRole', as: 'parentRoles'});
 
   Circle.findAll(
@@ -352,7 +352,7 @@ export function show(req, res) {
   Circle.belongsTo(Space, { as: 'space' });
   Circle.belongsToMany(Space, { as: 'spaces', through: 'CircleSpace' });
   Circle.belongsToMany(Collab, { through: 'CircleCollab', as: 'collabs' });
-  Collab.belongsToMany(Role, {through: 'CollabRole', as: 'roles'});
+  Collab.belongsToMany(Role, { through: 'CollabRole', as: 'roles' });
   //Collab.belongsToMany(Role, {through: 'CollabRole', as: 'parentRoles'});
 
   if (circleId && circleId > 0) {
@@ -361,7 +361,7 @@ export function show(req, res) {
       include: [
         {
           model: Category, as: 'type'
-        }, 
+        },
         {
           model: Space, as: 'space'
         },
@@ -369,7 +369,8 @@ export function show(req, res) {
           model: Collab, as: 'collabs',
           include: [
             {
-              model: Role, as: 'roles'},
+              model: Role, as: 'roles'
+            },
           ]
         },
         {
@@ -718,5 +719,146 @@ export function findCircleSpacesForManage(req, res) {
       .catch(handleError(res));
   } else {
     res.status(500).send('please check input!');
+  }
+}
+
+/**
+ * This function use to find all user circles after user join
+ * some collabs
+ * @returns array return circles array, in each circle has many 
+ * spaces and each space has many collabs which is joined by 
+ * user, and also return parent roles for each collab, which will
+ * be used to find nut permits for user
+ */
+export function findAllUserCircleAsMember(req, res) {
+  var spaceId = req.query.spaceId || undefined;
+  var userId = req.query.userId || undefined;
+  var circleId = req.query.circleId || undefined;
+
+  Circle.belongsToMany(Space, { through: CircleSpace, as: 'spaces' });
+  Circle.belongsToMany(Collab, { through: CircleCollab, as: 'collabs' });
+  Space.hasMany(Collab, { as: 'collabs' });
+  Collab.hasMany(CollabRole);
+  Role.hasMany(CollabRole);
+  //Collab.belongsTo
+  Collab.belongsToMany(Role, { through: CollabRole, as: 'parentRoles', foreignKey: 'collabId', otherKey: 'roleId' });
+  Role.hasMany(PermitRole, { as: 'nutPermits' });
+  PermitRole.belongsTo(Permit, { as: 'permit' });
+  PermitRole.belongsTo(Nut, { foreignKey: 'ownerId', as: 'nut' });
+
+  if (spaceId && userId) {
+
+    Role.findAllUserSpaceRole(userId, spaceId)
+      .then(function (roles) {
+        var roleIdList = [];
+        roles.forEach(function (r) {
+          roleIdList.push(r._id);
+        })
+
+        //console.log('roleIdList', roleIdList);
+
+        var whereData = {};
+        if (circleId) {
+          whereData._id = circleId;
+        }
+
+        return Circle.findAll(
+          {
+            where: whereData,
+            include: [
+              {
+                model: Space, as: 'spaces',
+                include: [
+                  {
+                    model: Collab, as: 'collabs',
+                    include: [
+                      {
+                        model: CollabRole,
+                        where: {
+                          roleType: 'child',
+                          roleId: {
+                            $in: roleIdList
+                          }
+                        }
+                      },
+                      {
+                        model: Role, as: 'parentRoles',
+                        include: [
+                          {
+                            model: CollabRole,
+                            where: {
+                              roleType: 'parent'
+                            }
+                          },
+                          {
+                            model: PermitRole, as: 'nutPermits',
+                            where: {
+                              owner: 'nut'
+                            },
+                            include: [
+                              {
+                                model: Nut, as: 'nut'
+                              },
+                              {
+                                model: Permit, as: 'permit'
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                model: Collab, as: 'collabs',
+                include: [
+                  {
+                    model: CollabRole,
+                    where: {
+                      roleType: 'child',
+                      roleId: {
+                        $in: roleIdList
+                      }
+                    }
+                  },
+                  {
+                    model: Role, as: 'parentRoles',
+                    include: [
+                      {
+                        model: CollabRole,
+                        where: {
+                          roleType: 'parent'
+                        }
+                      },
+                      {
+                        model: PermitRole, as: 'nutPermits',
+                        where: {
+                          owner: 'nut'
+                        },
+                        include: [
+                          {
+                            model: Nut, as: 'nut'
+                          },
+                          {
+                            model: Permit, as: 'permit'
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        )
+          .then(respondWithResult(res, 201))
+          .catch(handleError(res));
+      })
+
+
+
+  } else {
+    res.status(500).send('please provide spaceId & userId!');
   }
 }
